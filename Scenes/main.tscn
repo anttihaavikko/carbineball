@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cg0hee5ygajqg" path="res://Sprites/round_bumper.png" id="34_8cuat"]
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
+[ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -86,6 +87,15 @@ bounce = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwxat"]
 radius = 232.55157
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1aky"]
+shader = ExtResource("12_jwpg7")
+shader_parameter/amount = 12.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/offset = 0.0
+shader_parameter/speed = 0.1
+shader_parameter/peaks = 11.0
+shader_parameter/time_mod = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fevyy"]
 radius = 180.97275
@@ -215,8 +225,15 @@ polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 105
 
 [node name="Sign" type="Sprite2D" parent="." unique_id=617540960]
 self_modulate = Color(0.68289727, 0.36716983, 0.20488298, 1)
-position = Vector2(960, 1104)
+position = Vector2(960.00006, 1118.0001)
 scale = Vector2(2.78405, 2.78405)
+texture = ExtResource("40_aqgau")
+offset = Vector2(-0.35916138, -66.09073)
+
+[node name="Bonus Sign" type="Sprite2D" parent="Sign" unique_id=1599779976]
+self_modulate = Color(0.68289727, 0.36716983, 0.20488298, 1)
+position = Vector2(-1.2446389, -132.97803)
+scale = Vector2(0.5349623, 0.40435135)
 texture = ExtResource("40_aqgau")
 offset = Vector2(-0.35916138, -66.09073)
 
@@ -229,6 +246,20 @@ offset_bottom = -51.36403
 theme = ExtResource("29_6vcvc")
 bbcode_enabled = true
 text = "Bump the ball or shoot (with [img=12]res://_Starter/Sprites/mouse_click.png[/img] or [img=12]res://_Starter/Sprites/mouse_right.png[/img]) it to get started..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bonus Game" type="RichTextLabel" parent="Sign" unique_id=229076703]
+self_modulate = Color(0.9268312, 0.629104, 0.48638684, 1)
+offset_left = -43.935287
+offset_top = -187.85583
+offset_right = 41.910873
+offset_bottom = -153.0145
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "BONUS GAME:
+Sunny Bumpers"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -432,7 +463,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -449,10 +480,12 @@ cam = NodePath("../Camera2D")
 yellow = Color(0.9764706, 0.90588236, 0.5176471, 1)
 red = Color(0.9726061, 0.77588844, 0.7609485, 1)
 help_message = NodePath("../Sign/RichTextLabel")
+score_label = NodePath("../CanvasLayer/Score")
+multi_label = NodePath("../CanvasLayer/Multi")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(924.1047, 579.81464)
+position = Vector2(924.1047, 542.81464)
 rotation = -0.7959311
 scale = Vector2(35.000183, 35.999977)
 texture = ExtResource("1_jjgbg")
@@ -470,7 +503,7 @@ shape = SubResource("RectangleShape2D_jjgbg")
 
 [node name="Holder Right" type="Sprite2D" parent="Board" unique_id=1158385671 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(1002.1046, 577.81464)
+position = Vector2(1002.1046, 540.81464)
 rotation = 0.61912084
 scale = Vector2(35.000183, 35.999977)
 texture = ExtResource("1_jjgbg")
@@ -487,7 +520,7 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_jjgbg")
 
 [node name="Spawn Point" type="Node2D" parent="Board" unique_id=216003704]
-position = Vector2(960, 500)
+position = Vector2(960, 463)
 
 [node name="Bumper Right" parent="Board" unique_id=681354212 instance=ExtResource("7_jkdf5")]
 position = Vector2(1412.5765, 682.6546)
@@ -752,9 +785,9 @@ visuals = NodePath("../Visuals")
 shape = SubResource("CircleShape2D_kwxat")
 
 [node name="Ball Lock" type="Sprite2D" parent="Board" unique_id=34788498 node_paths=PackedStringArray("area", "board", "markers", "label", "count_label", "left_trigger", "right_trigger")]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0.09803922, 0.09803922, 0.09803922, 1)
 position = Vector2(776.00006, 143)
-scale = Vector2(0.25061283, 0.25061283)
+scale = Vector2(0.25061283, 0.2502283)
 texture = ExtResource("2_bo1nx")
 script = ExtResource("14_hibaj")
 area = NodePath("Area2D")
@@ -762,8 +795,15 @@ board = NodePath("..")
 markers = [NodePath("Marker Mid/Fill"), NodePath("Marker Right/Fill"), NodePath("Marker Left/Fill")]
 label = NodePath("Label")
 count_label = NodePath("Count")
+off_color = Color(0.68235296, 0.36862746, 0.20392157, 1)
 left_trigger = NodePath("../Multi Left")
 right_trigger = NodePath("../Multi Right")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board/Ball Lock" unique_id=553310758]
+self_modulate = Color(0.8980392, 0.56078434, 0.39607844, 1)
+material = SubResource("ShaderMaterial_o1aky")
+scale = Vector2(0.8032036, 0.8032036)
+texture = ExtResource("2_bo1nx")
 
 [node name="Area2D" type="Area2D" parent="Board/Ball Lock" unique_id=945581834]
 collision_mask = 3
@@ -819,12 +859,12 @@ vertical_alignment = 1
 
 [node name="Count" type="RichTextLabel" parent="Board/Ball Lock" unique_id=779560953]
 offset_left = -123.69701
-offset_top = -7.980423
+offset_top = -55.948936
 offset_right = 243.40309
-offset_bottom = 351.13928
+offset_bottom = 374.0992
 scale = Vector2(0.6762942, 0.6762942)
 theme = ExtResource("29_6vcvc")
-theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "0 BALLS"
 horizontal_alignment = 1
@@ -1175,6 +1215,50 @@ polygon = PackedVector2Array(331, 842, 620, 841, 334, 551)
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Bad Zones" unique_id=1058317709]
 position = Vector2(947, -2)
 polygon = PackedVector2Array(331, 842, 620, 841, 618, 572)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1900353573]
+
+[node name="Score" type="RichTextLabel" parent="CanvasLayer" unique_id=1903292123]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 3.0
+offset_top = -9.0
+offset_right = -23.0
+offset_bottom = 132.0
+grow_horizontal = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 80
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_direction = 1
+metadata/_edit_lock_ = true
+
+[node name="Multi" type="RichTextLabel" parent="CanvasLayer" unique_id=904412571]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 3.0
+offset_top = 65.0
+offset_right = -23.0
+offset_bottom = 206.0
+grow_horizontal = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 60
+text = "x1"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_direction = 1
+metadata/_edit_lock_ = true
+
+[node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("42_o1aky")]
 
 [connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
 [connection signal="used" from="Board/Saver Right" to="Board/Ball Lock" method="toggle_right"]

@@ -54,8 +54,8 @@ func toggle_markers():
 	label.text = "[wave]LOCK ONLINE" if is_enabled() else "LOCK OFFLINE"
 	count_label.text = str(balls) + (" BALL" if balls == 1 else " BALLS")
 	var can_start = balls > 0
-	count_label.modulate = Color.WHITE if can_start else off_color
-	label.modulate = Color.WHITE if is_enabled() else off_color
+	count_label.modulate = Color.BLACK if can_start else off_color
+	label.modulate = Color.BLACK if is_enabled() else off_color
 	left_trigger.locked = !can_start
 	right_trigger.locked = !can_start
 	left_trigger.label.visible = can_start

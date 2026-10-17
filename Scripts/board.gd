@@ -15,11 +15,14 @@ class_name Board extends Node2D
 @export var yellow: Color
 @export var red: Color
 @export var help_message: RichTextLabel
+@export var score_label: RichTextLabel
+@export var multi_label: RichTextLabel
 
 var started := false
 var balls: Array[Ball] = []
 var multi := 1
 var balls_left := 3
+var score = 0
 
 func _ready() -> void:
 	reset()
@@ -52,7 +55,10 @@ func start():
 	holder_right.retract()
 
 func add_score(amount: int, pos: Vector2):
-	pop(Utils.as_score(amount * multi), pos)
+	var amt = amount * multi
+	pop(Utils.as_score(amt), pos)
+	score += amt
+	score_label.text = Utils.as_score(score)
 
 func reset_after(delay: float):
 	await get_tree().create_timer(delay).timeout
@@ -65,6 +71,10 @@ func reset():
 	saver_buttons.reset()
 	ball_lock.reset()
 	multi = 1
+	show_multi()
+
+func show_multi():
+	multi_label.text = "x%d" % [multi]
 
 func get_pop() -> String:
 	return ["POP", "POW", "KAPOW", "BOOM"].pick_random()
@@ -79,6 +89,7 @@ func pop(text: String, pos: Vector2, color: Color = Color.WHITE):
 func increment_multi(pos: Vector2):
 	multi += 1
 	pop("x%d" % [multi], pos, yellow)
+	show_multi()
 
 func next():
 	balls_left -= 1

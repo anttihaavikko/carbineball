@@ -13,7 +13,7 @@ config_version=5
 config/name="Pinball"
 run/main_scene="uid://vf7dgj6kl1vn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dlovvg7hm5ebs"
 
 [display]
 
