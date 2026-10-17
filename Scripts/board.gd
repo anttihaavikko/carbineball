@@ -8,6 +8,7 @@ class_name Board extends Node2D
 @export var saver_left: SaveBumper
 @export var saver_right: SaveBumper
 @export var saver_buttons: ButtonSet
+@export var ball_lock: BallLock
 
 var started := false
 var balls: Array[Ball] = []
@@ -21,6 +22,8 @@ func spawn_ball():
 	ball.board = self
 	add_child(ball)
 	balls.append(ball)
+	holder_left.reset()
+	holder_right.reset()
 
 func apply_savers():
 	saver_left.reset()
@@ -33,11 +36,10 @@ func start():
 
 func reset():
 	spawn_ball()
-	holder_left.reset()
-	holder_right.reset()
 	saver_left.retract()
 	saver_right.retract()
 	saver_buttons.reset()
+	ball_lock.reset()
 
 func die(node: Node):
 	if node is Ball:

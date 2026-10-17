@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cq2l5pra5v8gg" path="res://Scenes/round_bumper.tscn" id="11_b3802"]
 [ext_resource type="Script" uid="uid://6vw1i8bs08bl" path="res://Scripts/rotating_area.gd" id="11_fevyy"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
+[ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
+[ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="15_pdsj5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
 absorbent = true
@@ -31,6 +33,9 @@ bounce = 2.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cvyb"]
 radius = 232.55157
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fevyy"]
+radius = 180.97275
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
 
@@ -40,7 +45,10 @@ radius = 102.825096
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpkcx"]
 radius = 51.1957
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h1bgf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdsj5"]
+size = Vector2(14840, 2276)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ed4kf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1bgf"]
 radius = 75.00667
@@ -64,7 +72,7 @@ offset_bottom = 2122.0
 color = Color(0.8980392, 0.56078434, 0.39607844, 1)
 metadata/_edit_lock_ = true
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -74,6 +82,7 @@ lines = NodePath("../LineDrawer")
 saver_left = NodePath("Saver Left")
 saver_right = NodePath("Saver Right")
 saver_buttons = NodePath("Saver Buttons")
+ball_lock = NodePath("Ball Lock")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -133,10 +142,20 @@ rotation = 0.72511786
 state = true
 locked = true
 
-[node name="Rotate Button2" parent="Board" unique_id=230316017 instance=ExtResource("9_k12tt")]
+[node name="Rotate Left" parent="Board" unique_id=1230328409 instance=ExtResource("9_k12tt")]
 position = Vector2(983, 165.99998)
-rotation = -0.5326251
+rotation = -0.532625
 state = true
+locked = true
+
+[node name="Multi Left" parent="Board" unique_id=874122156 instance=ExtResource("9_k12tt")]
+position = Vector2(212.00003, 981.99994)
+rotation = 3.9342313
+locked = true
+
+[node name="Multi Right" parent="Board" unique_id=230316017 instance=ExtResource("9_k12tt")]
+position = Vector2(1710.0001, 984.00006)
+rotation = 2.336644
 locked = true
 
 [node name="Saver Buttons" type="Node2D" parent="Board" unique_id=530732387]
@@ -182,6 +201,54 @@ physics_material_override = SubResource("PhysicsMaterial_7cvyb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Rotating Area/Multi/AnimatableBody2D" unique_id=1410353457]
 shape = SubResource("CircleShape2D_7cvyb")
+
+[node name="Ball Lock" type="Sprite2D" parent="Board" unique_id=34788498 node_paths=PackedStringArray("area", "board", "markers")]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(776.00006, 143)
+scale = Vector2(0.25061283, 0.25061283)
+texture = ExtResource("2_bo1nx")
+script = ExtResource("14_hibaj")
+area = NodePath("Area2D")
+board = NodePath("..")
+markers = [NodePath("Marker Mid/Fill"), NodePath("Marker Right/Fill"), NodePath("Marker Left/Fill")]
+
+[node name="Area2D" type="Area2D" parent="Board/Ball Lock" unique_id=945581834]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Ball Lock/Area2D" unique_id=1719224535]
+shape = SubResource("CircleShape2D_fevyy")
+
+[node name="Marker Right" type="Sprite2D" parent="Board/Ball Lock" unique_id=727023450]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(119.86389, 299.424)
+scale = Vector2(0.22408246, 0.22408246)
+texture = ExtResource("2_bo1nx")
+
+[node name="Fill" type="Sprite2D" parent="Board/Ball Lock/Marker Right" unique_id=437932728]
+visible = false
+scale = Vector2(0.666604, 0.666604)
+texture = ExtResource("2_bo1nx")
+
+[node name="Marker Left" type="Sprite2D" parent="Board/Ball Lock" unique_id=1561095425]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-131.51993, 299.424)
+scale = Vector2(0.22408246, 0.22408246)
+texture = ExtResource("2_bo1nx")
+
+[node name="Fill" type="Sprite2D" parent="Board/Ball Lock/Marker Left" unique_id=564750892]
+visible = false
+scale = Vector2(0.666604, 0.666604)
+texture = ExtResource("2_bo1nx")
+
+[node name="Marker Mid" type="Sprite2D" parent="Board/Ball Lock" unique_id=679887512]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-3.83292, 327.3556)
+scale = Vector2(0.22408246, 0.22408246)
+texture = ExtResource("2_bo1nx")
+
+[node name="Fill" type="Sprite2D" parent="Board/Ball Lock/Marker Mid" unique_id=1424861873]
+visible = false
+scale = Vector2(0.666604, 0.666604)
+texture = ExtResource("2_bo1nx")
 
 [node name="Walls" type="Node2D" parent="." unique_id=1373971343]
 
@@ -334,6 +401,7 @@ shape = SubResource("RectangleShape2D_jjgbg")
 position = Vector2(960, 1079)
 scale = Vector2(1, 1.0143921)
 physics_material_override = SubResource("PhysicsMaterial_jjvhh")
+script = ExtResource("15_pdsj5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sun" unique_id=1141022074]
 shape = SubResource("CircleShape2D_6bp64")
@@ -457,8 +525,14 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death Area" unique_id=570535150]
-position = Vector2(49.5, -18)
-shape = SubResource("WorldBoundaryShape2D_h1bgf")
+visible = false
+position = Vector2(6, 1009)
+shape = SubResource("RectangleShape2D_pdsj5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Death Area" unique_id=2054945981]
+visible = false
+position = Vector2(6, 1435)
+shape = SubResource("WorldBoundaryShape2D_ed4kf")
 
 [node name="Shot Line" type="Line2D" parent="." unique_id=1463574616]
 position = Vector2(115, -283)
@@ -479,9 +553,12 @@ position = Vector2(947, -2)
 polygon = PackedVector2Array(331, 842, 620, 841, 618, 572)
 
 [connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
+[connection signal="used" from="Board/Saver Right" to="Board/Ball Lock" method="toggle_right"]
 [connection signal="used" from="Board/Saver Left" to="Board/Saver Buttons" method="reset"]
+[connection signal="used" from="Board/Saver Left" to="Board/Ball Lock" method="toggle_left"]
 [connection signal="used" from="Board/Rotate Button" to="Board/Rotating Area" method="rotate_left"]
-[connection signal="used" from="Board/Rotate Button2" to="Board/Rotating Area" method="rotate_right"]
+[connection signal="used" from="Board/Rotate Left" to="Board/Rotating Area" method="rotate_right"]
 [connection signal="when_all_on" from="Board/Saver Buttons" to="Board" method="apply_savers"]
+[connection signal="hit" from="Sun" to="Board/Ball Lock" method="toggle"]
 [connection signal="body_entered" from="Death Area" to="Board" method="die"]
 [connection signal="body_entered" from="Bad Zones" to="Board" method="entered_bad_zone"]

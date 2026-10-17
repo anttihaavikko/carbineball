@@ -27,6 +27,7 @@ func shoot():
 		var cp = ray.get_collision_point()
 		board.lines.add(ray.global_position, cp)
 		if hit is Ball:
+			if hit.locked: return
 			var dir = cp - ray.global_position
 			hit.apply_impulse(dir.normalized() * 2500)
 			board.start()
