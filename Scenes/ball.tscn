@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ktqgft2vo86g"]
+
+[ext_resource type="Script" uid="uid://xpxovkbp7l1f" path="res://Scripts/ball.gd" id="1_ij5cq"]
+[ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_376qj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kry3j"]
+bounce = 0.7
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8gbba"]
+radius = 47.010635
+
+[node name="Ball" type="RigidBody2D" unique_id=1932390979 node_paths=PackedStringArray("board")]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_kry3j")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_ij5cq")
+board = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=157506610]
+shape = SubResource("CircleShape2D_8gbba")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=2043940934]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.19886917, 0.19886917)
+texture = ExtResource("2_376qj")
+
+[node name="Fill" type="Sprite2D" parent="Body" unique_id=573618181]
+scale = Vector2(0.86799544, 0.86799544)
+texture = ExtResource("2_376qj")

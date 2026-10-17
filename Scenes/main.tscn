@@ -3,24 +3,18 @@
 [ext_resource type="Script" uid="uid://b0fr17vp8abvx" path="res://_Starter/Scripts/dev_restart.gd" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://74hyg5isj5x3" path="res://_Starter/Sprites/square.png" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_bo1nx"]
-[ext_resource type="Script" uid="uid://xpxovkbp7l1f" path="res://Scripts/ball.gd" id="2_jjvhh"]
 [ext_resource type="Script" uid="uid://ct7rhapds5qbb" path="res://Scripts/board.gd" id="2_kry3j"]
 [ext_resource type="Script" uid="uid://uq5uddkuj305" path="res://Scripts/dude.gd" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://bg23xdidtnsgd" path="res://Scripts/retractor.gd" id="3_21xkr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://ktqgft2vo86g" path="res://Scenes/ball.tscn" id="5_6bp64"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
 absorbent = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_21xkr"]
 bounce = 2.0
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kry3j"]
-bounce = 0.7
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8gbba"]
-radius = 47.010635
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -39,6 +33,64 @@ size = Vector2(1675, 412)
 [node name="DevRestart" type="Node" parent="." unique_id=1485280152]
 script = ExtResource("1_6bp64")
 metadata/_custom_type_script = "uid://b0fr17vp8abvx"
+
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point")]
+script = ExtResource("2_kry3j")
+holder_left = NodePath("Holder Left")
+holder_right = NodePath("Holder Right")
+ball_prefab = ExtResource("5_6bp64")
+spawn_point = NodePath("Spawn Point")
+
+[node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(924.1047, 579.81464)
+rotation = -0.7959311
+scale = Vector2(35.000183, 35.999977)
+texture = ExtResource("1_jjgbg")
+script = ExtResource("3_21xkr")
+body = NodePath("StaticBody2D")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Board/Holder Left" unique_id=1695611080]
+scale = Vector2(0.049999997, 0.049999997)
+physics_material_override = SubResource("PhysicsMaterial_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Holder Left/StaticBody2D" unique_id=1569930754]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_jjgbg")
+
+[node name="Holder Right" type="Sprite2D" parent="Board" unique_id=1158385671 node_paths=PackedStringArray("body")]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(1002.1046, 577.81464)
+rotation = 0.61912084
+scale = Vector2(35.000183, 35.999977)
+texture = ExtResource("1_jjgbg")
+script = ExtResource("3_21xkr")
+body = NodePath("StaticBody2D")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Board/Holder Right" unique_id=340497728]
+scale = Vector2(0.049999997, 0.049999997)
+physics_material_override = SubResource("PhysicsMaterial_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Holder Right/StaticBody2D" unique_id=44922931]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_jjgbg")
+
+[node name="Bumper Right" type="Polygon2D" parent="Board" unique_id=1590542561]
+position = Vector2(-794, -201)
+scale = Vector2(1.1039698, 0.9924686)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(1901.3201, 1093.2336, 2146.7979, 799.0178, 2138.6455, 1067.0364)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Board/Bumper Right" unique_id=526622041]
+physics_material_override = SubResource("PhysicsMaterial_21xkr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board/Bumper Right/StaticBody2D" unique_id=493038999]
+polygon = PackedVector2Array(1901.3201, 1093.2336, 2146.7979, 799.0178, 2138.6455, 1067.0364)
+
+[node name="Spawn Point" type="Node2D" parent="Board" unique_id=216003704]
+position = Vector2(960, 500)
 
 [node name="Walls" type="Node2D" parent="." unique_id=1373971343]
 
@@ -142,79 +194,6 @@ scale = Vector2(0.049999997, 0.049999997)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_jjgbg")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right")]
-script = ExtResource("2_kry3j")
-holder_left = NodePath("Holder Left")
-holder_right = NodePath("Holder Right")
-
-[node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(924.1047, 579.81464)
-rotation = -0.7959311
-scale = Vector2(35.000183, 35.999977)
-texture = ExtResource("1_jjgbg")
-script = ExtResource("3_21xkr")
-body = NodePath("StaticBody2D")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Board/Holder Left" unique_id=1695611080]
-scale = Vector2(0.049999997, 0.049999997)
-physics_material_override = SubResource("PhysicsMaterial_8gbba")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Holder Left/StaticBody2D" unique_id=1569930754]
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_jjgbg")
-
-[node name="Holder Right" type="Sprite2D" parent="Board" unique_id=1158385671 node_paths=PackedStringArray("body")]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(1002.1046, 577.81464)
-rotation = 0.61912084
-scale = Vector2(35.000183, 35.999977)
-texture = ExtResource("1_jjgbg")
-script = ExtResource("3_21xkr")
-body = NodePath("StaticBody2D")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Board/Holder Right" unique_id=340497728]
-scale = Vector2(0.049999997, 0.049999997)
-physics_material_override = SubResource("PhysicsMaterial_8gbba")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Holder Right/StaticBody2D" unique_id=44922931]
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_jjgbg")
-
-[node name="Bumper Right" type="Polygon2D" parent="Board" unique_id=1590542561]
-position = Vector2(-794, -201)
-scale = Vector2(1.1039698, 0.9924686)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(1901.3201, 1093.2336, 2146.7979, 799.0178, 2138.6455, 1067.0364)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Board/Bumper Right" unique_id=526622041]
-physics_material_override = SubResource("PhysicsMaterial_21xkr")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board/Bumper Right/StaticBody2D" unique_id=493038999]
-polygon = PackedVector2Array(1901.3201, 1093.2336, 2146.7979, 799.0178, 2138.6455, 1067.0364)
-
-[node name="Ball" type="RigidBody2D" parent="." unique_id=1497616953 node_paths=PackedStringArray("board")]
-position = Vector2(960, 513)
-physics_material_override = SubResource("PhysicsMaterial_kry3j")
-contact_monitor = true
-max_contacts_reported = 1
-script = ExtResource("2_jjvhh")
-board = NodePath("../Board")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1412808999]
-shape = SubResource("CircleShape2D_8gbba")
-
-[node name="Body" type="Sprite2D" parent="Ball" unique_id=719079086]
-self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.19886917, 0.19886917)
-texture = ExtResource("2_bo1nx")
-
-[node name="Fill" type="Sprite2D" parent="Ball/Body" unique_id=2137953343]
-scale = Vector2(0.86799544, 0.86799544)
-texture = ExtResource("2_bo1nx")
-
 [node name="Sun" type="AnimatableBody2D" parent="." unique_id=224876035]
 position = Vector2(960, 1079)
 scale = Vector2(1, 1.0143921)
@@ -249,9 +228,13 @@ texture = ExtResource("2_bo1nx")
 scale = Vector2(0.8535397, 0.8535397)
 texture = ExtResource("2_bo1nx")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1612607923]
-position = Vector2(954, 1346)
+[node name="Death Area" type="Area2D" parent="." unique_id=1612607923]
+position = Vector2(954, 1392)
+collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=570535150]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death Area" unique_id=570535150]
 position = Vector2(49.5, -18)
 shape = SubResource("RectangleShape2D_cpkcx")
+
+[connection signal="body_entered" from="Death Area" to="Board" method="die"]

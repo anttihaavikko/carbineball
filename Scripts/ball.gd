@@ -1,6 +1,6 @@
 class_name Ball extends RigidBody2D
 
-@export var board: Board
+var board: Board
 
 func _ready() -> void:
 	body_entered.connect(hit)
