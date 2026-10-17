@@ -31,9 +31,11 @@
 [ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
 [ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="15_pdsj5"]
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
+[ext_resource type="Script" uid="uid://dfrcme5q3nvfq" path="res://Scripts/hand_swap.gd" id="18_v2nl5"]
 [ext_resource type="Texture2D" uid="uid://c6etrnelspok1" path="res://Sprites/sun_halo.png" id="19_hdf80"]
-[ext_resource type="Script" uid="uid://cahkyqjkmgnwc" path="res://_Starter/Scripts/visible_node.gd" id="20_3pmx8"]
+[ext_resource type="Texture2D" uid="uid://bclc3ad2ia5ry" path="res://Sprites/shrug_hand.png" id="19_v2nl5"]
 [ext_resource type="Texture2D" uid="uid://8wv7hf1jvyl8" path="res://Sprites/brow.png" id="21_k2e45"]
+[ext_resource type="Texture2D" uid="uid://cdangjfii2hhk" path="res://Sprites/palm.png" id="22_dmskm"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
 [ext_resource type="Texture2D" uid="uid://ts28k0yp7xc4" path="res://Sprites/saver_bg.png" id="23_neg2b"]
 [ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
@@ -307,33 +309,47 @@ texture = ExtResource("2_bo1nx")
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(164.91211, -2.3223443)
 scale = Vector2(2.3558877, 2.3558877)
-points = PackedVector2Array(0, 0, 230.9878, 499.14392, 296, -47.000244)
+points = PackedVector2Array(0, 0, 335.45386, 435.8562, 300, -112.99994)
 width = 57.56
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 script = ExtResource("9_ynf5e")
-target = NodePath("Point")
+target = NodePath("Point/Pointer")
 length = 550.0
 metadata/_custom_type_script = "uid://d21tebxx08yd3"
 
-[node name="Point" type="Node2D" parent="Sun/Body/Arm Right" unique_id=581004999]
-position = Vector2(296, -46.333168)
-script = ExtResource("20_3pmx8")
-size = 25
-show_label = false
-metadata/_custom_type_script = "uid://cahkyqjkmgnwc"
+[node name="Point" type="Node2D" parent="Sun/Body/Arm Right" unique_id=1642756758 node_paths=PackedStringArray("sprites")]
+position = Vector2(296, -108.43933)
+script = ExtResource("18_v2nl5")
+sprites = [NodePath("Pointer"), NodePath("Shrug"), NodePath("Palm")]
 
 [node name="Pointer" type="Sprite2D" parent="Sun/Body/Arm Right/Point" unique_id=1290280150]
+visible = false
 self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
 position = Vector2(3.9999561, -2.9574304)
 scale = Vector2(0.49863896, 0.49863896)
 texture = ExtResource("7_u50mg")
 offset = Vector2(-2.005371, -124.55139)
 
+[node name="Shrug" type="Sprite2D" parent="Sun/Body/Arm Right/Point" unique_id=796708193]
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+position = Vector2(78.999954, 47.31898)
+scale = Vector2(0.49863896, 0.49863896)
+texture = ExtResource("19_v2nl5")
+offset = Vector2(-2.005371, -124.55139)
+
+[node name="Palm" type="Sprite2D" parent="Sun/Body/Arm Right/Point" unique_id=243763314]
+visible = false
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+position = Vector2(-18.999985, -4.9290543)
+scale = Vector2(0.49863896, 0.49863896)
+texture = ExtResource("22_dmskm")
+offset = Vector2(-2.005371, -124.55139)
+
 [node name="LineMimic" type="Line2D" parent="Sun/Body/Arm Right" unique_id=1617499568 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
-points = PackedVector2Array(0, 0, 230.9878, 499.14392, 296, -47.000244)
+points = PackedVector2Array(0, 0, 335.45386, 435.8562, 300, -112.99994)
 width = 35.27
 joint_mode = 2
 begin_cap_mode = 2
@@ -346,7 +362,7 @@ metadata/_custom_type_script = "uid://cav6gx1wclcxg"
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-179.04749, -2.3223443)
 scale = Vector2(2.3558877, 2.3558877)
-points = PackedVector2Array(0, 0, -239.95038, 494.8977, -307, -51)
+points = PackedVector2Array(0, 0, -336.27887, 435.2201, -307, -114)
 width = 57.56
 joint_mode = 2
 begin_cap_mode = 2
@@ -357,14 +373,13 @@ length = 550.0
 flip = true
 metadata/_custom_type_script = "uid://d21tebxx08yd3"
 
-[node name="Point" type="Node2D" parent="Sun/Body/Arm Left" unique_id=1093770699]
-position = Vector2(-307, -50.276405)
-script = ExtResource("20_3pmx8")
-size = 25
-show_label = false
-metadata/_custom_type_script = "uid://cahkyqjkmgnwc"
+[node name="Point" type="Node2D" parent="Sun/Body/Arm Left" unique_id=1697685463 node_paths=PackedStringArray("sprites")]
+position = Vector2(-307, -112.38257)
+script = ExtResource("18_v2nl5")
+sprites = [NodePath("Pointer"), NodePath("Shrug"), NodePath("Palm")]
 
 [node name="Pointer" type="Sprite2D" parent="Sun/Body/Arm Left/Point" unique_id=696727896]
+visible = false
 self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
 position = Vector2(3.9999561, -2.9574304)
 scale = Vector2(0.49863896, 0.49863896)
@@ -372,9 +387,26 @@ texture = ExtResource("7_u50mg")
 offset = Vector2(-2.005371, -124.55139)
 flip_h = true
 
+[node name="Shrug" type="Sprite2D" parent="Sun/Body/Arm Left/Point" unique_id=511525853]
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+position = Vector2(-74.999985, 47.31898)
+scale = Vector2(0.49863896, 0.49863896)
+texture = ExtResource("19_v2nl5")
+offset = Vector2(-2.005371, -124.55139)
+flip_h = true
+
+[node name="Palm" type="Sprite2D" parent="Sun/Body/Arm Left/Point" unique_id=124406057]
+visible = false
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+position = Vector2(22.000015, -4.9290543)
+scale = Vector2(0.49863896, 0.49863896)
+texture = ExtResource("22_dmskm")
+offset = Vector2(-2.005371, -124.55139)
+flip_h = true
+
 [node name="LineMimic" type="Line2D" parent="Sun/Body/Arm Left" unique_id=1010736670 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
-points = PackedVector2Array(0, 0, -239.95038, 494.8977, -307, -51)
+points = PackedVector2Array(0, 0, -336.27887, 435.2201, -307, -114)
 width = 35.27
 joint_mode = 2
 begin_cap_mode = 2

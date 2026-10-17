@@ -1,7 +1,7 @@
 class_name Sunny extends Node2D
 
-@export var left: Node2D
-@export var right: Node2D
+@export var left: HandSwap
+@export var right: HandSwap
 @export var face: Face
 @export var brow: Node2D
 
@@ -24,8 +24,10 @@ func angry():
 	brow.show()
 	var mouth = face.mouth
 	if mouth is Sprite2D: mouth.flip_v = true
-	move_hand(true, global_position + Vector2(-200, -150), 0)
-	move_hand(false, global_position + Vector2(200, -150), 0)
+	move_hand(true, global_position + Vector2(-200, -120), 0)
+	move_hand(false, global_position + Vector2(200, -120), 0)
+	change_hand(true, HandSwap.HandSprite.Palm)
+	change_hand(false, HandSwap.HandSprite.Palm)
 	await get_tree().create_timer(1.75).timeout
 	if mouth is Sprite2D: mouth.flip_v = false
 	brow.hide()
@@ -38,10 +40,15 @@ func point(pos: Vector2):
 	var use_left = sequence % 2 == 0
 	var tip = pos.move_toward(global_position, 200)
 	var angle = global_position.angle_to_point(pos) + PI * 0.5
+	change_hand(use_left, HandSwap.HandSprite.Pointer)
 	move_hand(use_left, tip, angle)
 	sequence += 1
 	await get_tree().create_timer(0.5).timeout
 	reset_hand(use_left)
+
+func change_hand(use_left: bool, target: HandSwap.HandSprite):
+	var hand = left if use_left else right
+	hand.change(target)
 
 func move_hand(use_left: bool, pos: Vector2, angle: float):
 	var hand = left if use_left else right
@@ -55,3 +62,4 @@ func reset_hand(use_left: bool):
 	var rot = left_rot if use_left else right_rot
 	get_tree().create_tween().tween_property(hand, "global_position", origin, 0.5).set_trans(Tween.TRANS_QUAD)
 	get_tree().create_tween().tween_property(hand, "rotation", rot, 0.3).set_trans(Tween.TRANS_BOUNCE)
+	hand.change(HandSwap.HandSprite.Shrug)
