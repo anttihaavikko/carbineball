@@ -13,7 +13,7 @@ var cooling := 0.0
 func score(bumper: Node2D):
 	if cooling > 0: return
 	var sum = values[0] * values[1] * values[2]
-	board.add_score(roundi(pow(sum, 2)), bumper.global_position)
+	board.add_score(roundi(pow(sum, 2)), bumper.global_position, Board.BonusGame.Carousel)
 	cooling = 0.1
 
 func _process(delta) -> void:

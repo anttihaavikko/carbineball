@@ -35,7 +35,9 @@ func hit(other: Node):
 	if other is not FakeParticle and linear_velocity.length() > 100:
 		Effects.singleton.add(4, global_position)
 	if other is Sunny:
-		board.increment_multi(mid)
+		var bonus = board.bonus_game == Board.BonusGame.SunnyBumpers
+		if bonus: board.bonus_pop(mid, true)
+		board.increment_multi(mid, 5 if bonus else 1)
 		board.cam.shake(7, 0.12)
 		board.ball_lock.toggle()
 	if other is Dude:

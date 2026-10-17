@@ -84,8 +84,14 @@ func start():
 	holder_right.retract()
 	started = true
 
-func add_score(amount: int, pos: Vector2):
-	var amt = amount * multi
+func bonus_pop(pos: Vector2, for_multi: bool = false):
+	pop("[font_size=35]BONUS INCREASE!", pos + Vector2.UP * 25, Color.WHITE if for_multi else yellow)
+
+func add_score(amount: int, pos: Vector2, source: BonusGame = BonusGame.SunnyBumpers):
+	var multiball_bonus = bonus_game == BonusGame.MultiBall and balls.size() > 1
+	var extra = 10 if source == bonus_game or multiball_bonus else 1
+	var amt = amount * multi * extra * balls.size()
+	if extra > 1: bonus_pop(pos)
 	pop(Utils.as_score(amt), pos)
 	score += amt
 	score_label.text = Utils.as_score(score)
@@ -118,11 +124,11 @@ func pop(text: String, pos: Vector2, color: Color = Color.WHITE):
 	var eff = Effects.singleton.pop("[wave]%s" % [text], pos)
 	eff.modulate = color
 
-func increment_multi(pos: Vector2):
+func increment_multi(pos: Vector2, amount: int = 1):
 	if multi >= max_multi:
 		pop("MAX MULTI!", pos, yellow)
 		return
-	multi = mini(multi + 1, max_multi)
+	multi = mini(multi + amount, max_multi)
 	pop("x%d" % [multi], pos, yellow)
 	show_multi()
 
@@ -142,6 +148,8 @@ func die(node: Node):
 		burst.play()
 		node.queue_free()
 		balls.remove_at(balls.find(node))
+		if balls.size() == 1 and not ball_lock.spawning:
+			help_message.text = "Multi ball maddness over! You survived for %d seconds." % [roundi(ball_lock.multiball_duration)]
 		if balls.size() == 0 and not ball_lock.spawning:
 			await get_tree().create_timer(0.5).timeout
 			call_deferred("next")

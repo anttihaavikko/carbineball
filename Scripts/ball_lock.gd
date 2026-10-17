@@ -14,6 +14,7 @@ var mid := false
 var left := false
 var right := false
 var spawning := false
+var multiball_duration := 0.0
 
 func _ready() -> void:
 	area.body_entered.connect(enter)
@@ -24,8 +25,14 @@ func _ready() -> void:
 	# right_trigger.state = true
 	# hit_trigger()
 
+func _process(delta) -> void:
+	if board.balls.size() > 1:
+		multiball_duration += delta
+
 func hit_trigger():
+	if spawning: return
 	if left_trigger.state and right_trigger.state:
+		multiball_duration = 0
 		spawning = true
 		for i in balls:
 			await get_tree().create_timer(0.7).timeout
