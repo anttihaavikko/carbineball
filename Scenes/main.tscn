@@ -255,6 +255,7 @@ offset_left = -43.935287
 offset_top = -187.85583
 offset_right = 41.910873
 offset_bottom = -153.0145
+pivot_offset = Vector2(41.42096, 16.163483)
 theme = ExtResource("29_6vcvc")
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
@@ -463,7 +464,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -482,6 +483,7 @@ red = Color(0.9726061, 0.77588844, 0.7609485, 1)
 help_message = NodePath("../Sign/RichTextLabel")
 score_label = NodePath("../CanvasLayer/Score")
 multi_label = NodePath("../CanvasLayer/Multi")
+bonus_game_display = NodePath("../Sign/Bonus Game")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)

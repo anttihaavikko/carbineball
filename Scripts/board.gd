@@ -17,15 +17,43 @@ class_name Board extends Node2D
 @export var help_message: RichTextLabel
 @export var score_label: RichTextLabel
 @export var multi_label: RichTextLabel
+@export var bonus_game_display: RichTextLabel
 
 var started := false
 var balls: Array[Ball] = []
 var multi := 1
 var balls_left := 3
 var score = 0
+var bonus_game: BonusGame
+var bonuses := [
+	BonusGame.Carousel,
+	BonusGame.SunnyBumpers,
+	BonusGame.MultiBall
+]
+
+enum BonusGame {
+	Carousel,
+	SunnyBumpers,
+	MultiBall
+}
 
 func _ready() -> void:
 	reset()
+	bonuses.shuffle()
+	change_bonus()
+
+func change_bonus():
+	bonus_game = bonuses.pop_front()
+	bonuses.push_back(bonus_game)
+	var game_name = [
+		"Carousel",
+		"Sunny Bumpers",
+		"Multi Ball"
+	][bonus_game]
+	bonus_game_display.text = "BONUS GAME:\n%s" % [game_name]
+	await get_tree().create_timer(30).timeout
+	change_bonus()
+	if started: pop("NEW BONUS GAME!", spawn_point.global_position + Vector2.DOWN * 100, yellow)
 
 func spawn_ball():
 	create_ball(spawn_point.global_position)
@@ -53,6 +81,7 @@ func start():
 	help_message.text = "Okay, here we go!"
 	holder_left.retract()
 	holder_right.retract()
+	started = true
 
 func add_score(amount: int, pos: Vector2):
 	var amt = amount * multi
@@ -72,6 +101,8 @@ func reset():
 	ball_lock.reset()
 	multi = 1
 	show_multi()
+	bonuses.shuffle()
+	started = false
 
 func show_multi():
 	multi_label.text = "x%d" % [multi]
