@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="1_6dtsg"]
 [ext_resource type="Script" uid="uid://b6wi31avwrvcy" path="res://_Starter/Scripts/face.gd" id="1_hsvtw"]
 [ext_resource type="Texture2D" uid="uid://b86g0fd25ahdx" path="res://_Starter/Sprites/mouth.png" id="2_1a1d3"]
-[ext_resource type="Texture2D" uid="uid://dgl0p7bp5hfcu" path="res://Sprites/square.png" id="3_yp0oe"]
+[ext_resource type="Texture2D" uid="uid://74hyg5isj5x3" path="res://_Starter/Sprites/square.png" id="3_yp0oe"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1uy03"]
 blend_mode = 3
@@ -31,10 +31,10 @@ scale = Vector2(0.027740411, 0.017691946)
 texture = ExtResource("1_6dtsg")
 
 [node name="Fill" type="Sprite2D" parent="Wrapper/Blushes/Blush Left" unique_id=1046209242]
-self_modulate = Color(0.90588236, 0.43529412, 0.31764707, 1)
+self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
 material = SubResource("CanvasItemMaterial_1uy03")
 position = Vector2(-16.606659, 1.7359161)
-scale = Vector2(6.4248075, 7.353402)
+scale = Vector2(695.53235, 795.9949)
 texture = ExtResource("3_yp0oe")
 
 [node name="Blush Right" type="Sprite2D" parent="Wrapper/Blushes" unique_id=69306370]
@@ -46,10 +46,10 @@ scale = Vector2(0.028567871, 0.016588679)
 texture = ExtResource("1_6dtsg")
 
 [node name="Fill" type="Sprite2D" parent="Wrapper/Blushes/Blush Right" unique_id=353374705]
-self_modulate = Color(0.90588236, 0.43529412, 0.31764707, 1)
+self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
 material = SubResource("CanvasItemMaterial_1uy03")
 position = Vector2(-16.606659, 1.7359161)
-scale = Vector2(6.4248075, 7.353402)
+scale = Vector2(629.04266, 719.9014)
 texture = ExtResource("3_yp0oe")
 
 [node name="Eye Left" type="Sprite2D" parent="Wrapper" unique_id=3138396]

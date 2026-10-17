@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xpxovkbp7l1f" path="res://Scripts/ball.gd" id="1_ij5cq"]
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_376qj"]
+[ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="3_376qj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kry3j"]
 bounce = 0.7
@@ -26,5 +27,8 @@ scale = Vector2(0.19886917, 0.19886917)
 texture = ExtResource("2_376qj")
 
 [node name="Fill" type="Sprite2D" parent="Body" unique_id=573618181]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
 scale = Vector2(0.86799544, 0.86799544)
 texture = ExtResource("2_376qj")
+
+[node name="Face" parent="." unique_id=1240513132 instance=ExtResource("3_376qj")]
