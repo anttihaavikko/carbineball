@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cg0hee5ygajqg" path="res://Sprites/round_bumper.png" id="34_8cuat"]
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
+[ext_resource type="Texture2D" uid="uid://3ss1u6gvyjjd" path="res://Sprites/hand.png" id="42_kwxat"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
@@ -255,7 +256,7 @@ offset_left = -43.935287
 offset_top = -187.85583
 offset_right = 41.910873
 offset_bottom = -153.0145
-pivot_offset = Vector2(41.42096, 16.163483)
+pivot_offset = Vector2(-91.11978, -112.066986)
 theme = ExtResource("29_6vcvc")
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
@@ -1106,6 +1107,13 @@ position = Vector2(-84.922195, -41.610516)
 target_position = Vector2(-1482.9092, -2.3120728)
 collision_mask = 3
 
+[node name="Hand" type="Sprite2D" parent="Dude/Arm Right/Hand" unique_id=22538223]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(8, -9)
+rotation = 0.43819404
+scale = Vector2(0.5386526, 0.5386526)
+texture = ExtResource("42_kwxat")
+
 [node name="Arm Left" type="Node2D" parent="Dude" unique_id=636013504]
 
 [node name="LiveLimb" type="Line2D" parent="Dude/Arm Left" unique_id=1687019625 node_paths=PackedStringArray("target")]
@@ -1141,6 +1149,14 @@ flip_h = true
 position = Vector2(77.305695, -48.447147)
 target_position = Vector2(1796.0073, 40.19519)
 collision_mask = 3
+
+[node name="Hand" type="Sprite2D" parent="Dude/Arm Left/Hand" unique_id=201489336]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(-12, -13)
+rotation = -0.60087705
+scale = Vector2(0.5386526, 0.5386526)
+texture = ExtResource("42_kwxat")
+flip_h = true
 
 [node name="Body" type="Sprite2D" parent="Dude" unique_id=70389479]
 self_modulate = Color(0, 0, 0, 1)
