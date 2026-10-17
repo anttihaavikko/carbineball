@@ -9,6 +9,7 @@ class_name Board extends Node2D
 @export var saver_right: SaveBumper
 @export var saver_buttons: ButtonSet
 @export var ball_lock: BallLock
+@export var sun: Sunny
 
 var started := false
 var balls: Array[Ball] = []

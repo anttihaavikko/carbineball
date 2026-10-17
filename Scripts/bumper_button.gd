@@ -7,6 +7,7 @@ class_name BumperButton extends Node2D
 @export var in_set: ButtonSet
 @export var toggles := true
 @export var label: RichTextLabel
+@export var board: Board
 
 var cooling := 0.0
 var origin: Vector2
@@ -43,3 +44,4 @@ func enter(node: Node):
 		get_tree().create_tween().tween_property(self, "position", origin + dir, 0.1).set_trans(Tween.TRANS_BOUNCE)
 		await get_tree().create_timer(0.1).timeout
 		get_tree().create_tween().tween_property(self, "position", origin, 0.1).set_trans(Tween.TRANS_BOUNCE)
+		if board: board.sun.point(global_position)

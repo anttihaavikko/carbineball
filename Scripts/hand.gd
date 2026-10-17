@@ -23,6 +23,7 @@ func shoot():
 
 	ray.force_raycast_update()
 	if ray.is_colliding():
+		# board.sun.point(ray.global_position)
 		var hit = ray.get_collider()
 		var cp = ray.get_collision_point()
 		board.lines.add(ray.global_position, cp)
