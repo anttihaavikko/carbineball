@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cq2l5pra5v8gg"]
+
+[ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="1_7cvyb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7cvyb"]
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cvyb"]
+radius = 232.55157
+
+[node name="Round Bumper" type="Sprite2D" unique_id=1315277982]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.32391077, 0.32391077)
+texture = ExtResource("1_7cvyb")
+
+[node name="Fill" type="Sprite2D" parent="." unique_id=202550059]
+scale = Vector2(0.8586879, 0.8586879)
+texture = ExtResource("1_7cvyb")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1756901750]
+physics_material_override = SubResource("PhysicsMaterial_7cvyb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1410353457]
+shape = SubResource("CircleShape2D_7cvyb")

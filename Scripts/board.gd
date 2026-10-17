@@ -45,3 +45,7 @@ func die(node: Node):
 		balls.remove_at(balls.find(node))
 		if balls.size() == 0:
 			call_deferred("reset")
+
+func entered_bad_zone(node: Node):
+	if node is Dude:
+		print("bad!")

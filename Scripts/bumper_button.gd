@@ -9,6 +9,8 @@ class_name BumperButton extends Node2D
 var cooling := 0.0
 var origin: Vector2
 
+signal used
+
 func _ready() -> void:
 	origin = position
 	colorize()
@@ -29,6 +31,8 @@ func enter(node: Node):
 		if not locked: state = !state
 		if in_set: in_set.check()
 		colorize()
-		get_tree().create_tween().tween_property(self, "position", origin + Vector2(0, -10), 0.1).set_trans(Tween.TRANS_BOUNCE)
+		used.emit()
+		var dir = Vector2(0, -10).rotated(rotation)
+		get_tree().create_tween().tween_property(self, "position", origin + dir, 0.1).set_trans(Tween.TRANS_BOUNCE)
 		await get_tree().create_timer(0.1).timeout
 		get_tree().create_tween().tween_property(self, "position", origin, 0.1).set_trans(Tween.TRANS_BOUNCE)
