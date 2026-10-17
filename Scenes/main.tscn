@@ -41,8 +41,11 @@
 [ext_resource type="Texture2D" uid="uid://cg0hee5ygajqg" path="res://Sprites/round_bumper.png" id="34_8cuat"]
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
+[ext_resource type="Texture2D" uid="uid://c4k45aop5npkf" path="res://Sprites/scarf.png" id="40_nwwfm"]
 [ext_resource type="Texture2D" uid="uid://3ss1u6gvyjjd" path="res://Sprites/hand.png" id="42_kwxat"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
+[ext_resource type="Texture2D" uid="uid://r5ggaewnjl7g" path="res://Sprites/scarf_front.png" id="43_aa8k8"]
+[ext_resource type="Script" uid="uid://bwknch2pvkg4u" path="res://_Starter/Scripts/line.gd" id="44_kqrg6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -111,6 +114,10 @@ size = Vector2(14840, 2276)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1bgf"]
 radius = 75.00667
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa8k8"]
+radius = 6.0
+height = 32.0
 
 [node name="Main" type="Node2D" unique_id=619511135]
 
@@ -226,6 +233,7 @@ polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 105
 
 [node name="Sign" type="Sprite2D" parent="." unique_id=617540960]
 self_modulate = Color(0.68289727, 0.36716983, 0.20488298, 1)
+z_index = -2
 position = Vector2(960.00006, 1118.0001)
 scale = Vector2(2.78405, 2.78405)
 texture = ExtResource("40_aqgau")
@@ -1074,11 +1082,22 @@ right = NodePath("Arm Right/Hand")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dude" unique_id=199478386]
 shape = SubResource("CircleShape2D_cpkcx")
 
+[node name="Scarf" type="Line2D" parent="Dude" unique_id=101335346 node_paths=PackedStringArray("targets")]
+self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
+z_index = -1
+z_as_relative = false
+width = 70.0
+texture = ExtResource("40_nwwfm")
+texture_mode = 2
+script = ExtResource("44_kqrg6")
+targets = [NodePath("."), NodePath("../../Scarf Link 1/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 2/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 3/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 4/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 5/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 5/CollisionShape2D/Tip")]
+per_segment = 4
+
 [node name="Arm Right" type="Node2D" parent="Dude" unique_id=445329833]
 
 [node name="LiveLimb" type="Line2D" parent="Dude/Arm Right" unique_id=1046464281 node_paths=PackedStringArray("target")]
-position = Vector2(26, 20)
-points = PackedVector2Array(0, 0, 63.684082, 22.62085, 99, -35)
+position = Vector2(38, -11)
+points = PackedVector2Array(0, 0, 45.56714, 42.963013, 87, -3.999878)
 width = 19.54
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -1117,8 +1136,8 @@ texture = ExtResource("42_kwxat")
 [node name="Arm Left" type="Node2D" parent="Dude" unique_id=636013504]
 
 [node name="LiveLimb" type="Line2D" parent="Dude/Arm Left" unique_id=1687019625 node_paths=PackedStringArray("target")]
-position = Vector2(-28, 18)
-points = PackedVector2Array(0, 0, -62.33008, 24.152222, -97, -33)
+position = Vector2(-39, -10)
+points = PackedVector2Array(0, 0, -45.61908, 42.548096, -86, -5)
 width = 19.54
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -1179,8 +1198,8 @@ metadata/_custom_type_script = "uid://bg61yohsj8qnu"
 
 [node name="LineMimic" type="Line2D" parent="Dude" unique_id=1322360832 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
-position = Vector2(26, 20)
-points = PackedVector2Array(0, 0, 63.684082, 22.62085, 99, -35)
+position = Vector2(38, -11)
+points = PackedVector2Array(0, 0, 45.56714, 42.963013, 87, -3.999878)
 width = 7.74
 joint_mode = 2
 begin_cap_mode = 2
@@ -1191,8 +1210,8 @@ metadata/_custom_type_script = "uid://cav6gx1wclcxg"
 
 [node name="LineMimic2" type="Line2D" parent="Dude" unique_id=1704752509 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
-position = Vector2(-28, 18)
-points = PackedVector2Array(0, 0, -62.33008, 24.152222, -97, -33)
+position = Vector2(-39, -10)
+points = PackedVector2Array(0, 0, -45.61908, 42.548096, -86, -5)
 width = 7.74
 joint_mode = 2
 begin_cap_mode = 2
@@ -1200,6 +1219,12 @@ end_cap_mode = 2
 script = ExtResource("22_ee4r6")
 target = NodePath("../Arm Left/LiveLimb")
 metadata/_custom_type_script = "uid://cav6gx1wclcxg"
+
+[node name="Scarf Front" type="Sprite2D" parent="Dude" unique_id=1500993285]
+self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
+position = Vector2(0, 24)
+scale = Vector2(0.7145846, 0.7145846)
+texture = ExtResource("43_aa8k8")
 
 [node name="Death Area" type="Area2D" parent="." unique_id=1612607923]
 position = Vector2(954, 1392)
@@ -1277,6 +1302,88 @@ text_direction = 1
 metadata/_edit_lock_ = true
 
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("42_o1aky")]
+
+[node name="Scarf Link 1" type="RigidBody2D" parent="." unique_id=1592078168]
+position = Vector2(961, 835)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 1" unique_id=70027630]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 1/CollisionShape2D" unique_id=1245362208]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Dude")
+node_b = NodePath("../..")
+bias = 0.2
+
+[node name="Scarf Link 2" type="RigidBody2D" parent="." unique_id=1296334514]
+position = Vector2(961, 881)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 2" unique_id=1897376704]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 2/CollisionShape2D" unique_id=1262420303]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 1")
+node_b = NodePath("../..")
+bias = 0.2
+
+[node name="Scarf Link 3" type="RigidBody2D" parent="." unique_id=115734818]
+position = Vector2(961, 926)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 3" unique_id=1793345702]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 3/CollisionShape2D" unique_id=1446088771]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 2")
+node_b = NodePath("../..")
+bias = 0.2
+
+[node name="Scarf Link 4" type="RigidBody2D" parent="." unique_id=915333257]
+position = Vector2(961, 969)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 4" unique_id=1077305728]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 4/CollisionShape2D" unique_id=201833835]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 3")
+node_b = NodePath("../..")
+bias = 0.2
+
+[node name="Scarf Link 5" type="RigidBody2D" parent="." unique_id=1930397580]
+position = Vector2(960, 1013)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 5" unique_id=1148512464]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 5/CollisionShape2D" unique_id=1291473425]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 4")
+node_b = NodePath("../..")
+bias = 0.2
+
+[node name="Tip" type="Node2D" parent="Scarf Link 5/CollisionShape2D" unique_id=1016483556]
+position = Vector2(0, 15)
 
 [connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
 [connection signal="used" from="Board/Saver Right" to="Board/Ball Lock" method="toggle_right"]
