@@ -5,10 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://b2gfrikyseqk" path="res://_Starter/Scripts/line_drawer.gd" id="2_d1ilt"]
 [ext_resource type="Script" uid="uid://ct7rhapds5qbb" path="res://Scripts/board.gd" id="2_kry3j"]
+[ext_resource type="Script" uid="uid://calgx5smnk57" path="res://_Starter/Scripts/effects.gd" id="2_ueoa1"]
 [ext_resource type="Script" uid="uid://ova7wngb7x7i" path="res://_Starter/Scripts/camera.gd" id="3_1w6v2"]
+[ext_resource type="PackedScene" uid="uid://brpgseb06rh2n" path="res://_Starter/Scenes/Effects/pop.tscn" id="3_6vcvc"]
 [ext_resource type="Script" uid="uid://uq5uddkuj305" path="res://Scripts/dude.gd" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://bg23xdidtnsgd" path="res://Scripts/retractor.gd" id="3_21xkr"]
+[ext_resource type="PackedScene" uid="uid://b8ktnq4xfb7at" path="res://_Starter/Scenes/Effects/white_bits.tscn" id="4_7k868"]
 [ext_resource type="PackedScene" uid="uid://ktqgft2vo86g" path="res://Scenes/ball.tscn" id="5_6bp64"]
+[ext_resource type="PackedScene" uid="uid://b717m4xp3kdqg" path="res://_Starter/Scenes/Effects/blood.tscn" id="5_hpc6h"]
+[ext_resource type="PackedScene" uid="uid://cquer2q1nf54t" path="res://_Starter/Scenes/Effects/black_bits.tscn" id="6_kltya"]
 [ext_resource type="PackedScene" uid="uid://cm28ria524vm5" path="res://Scenes/bumper.tscn" id="7_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://cyot1afpoa0mo" path="res://Sprites/pointer.png" id="7_u50mg"]
 [ext_resource type="Texture2D" uid="uid://ctm6u0gsqbmpx" path="res://Sprites/gun.png" id="8_344ge"]
@@ -22,11 +27,11 @@
 [ext_resource type="Script" uid="uid://6vw1i8bs08bl" path="res://Scripts/rotating_area.gd" id="11_fevyy"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
 [ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
-[ext_resource type="FontFile" uid="uid://dmnd70v1560ge" path="res://Misc/ChunkFive-Regular.otf" id="15_gt3je"]
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
 [ext_resource type="Script" uid="uid://cahkyqjkmgnwc" path="res://_Starter/Scripts/visible_node.gd" id="20_3pmx8"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
 [ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
+[ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="29_6vcvc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -48,9 +53,6 @@ radius = 232.55157
 [sub_resource type="CircleShape2D" id="CircleShape2D_fevyy"]
 radius = 180.97275
 
-[sub_resource type="Theme" id="Theme_gt3je"]
-RichTextLabel/fonts/normal_font = ExtResource("15_gt3je")
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpkcx"]
 radius = 51.1957
 
@@ -71,6 +73,11 @@ point_count = 2
 [node name="DevRestart" type="Node" parent="." unique_id=1485280152]
 script = ExtResource("1_6bp64")
 metadata/_custom_type_script = "uid://b0fr17vp8abvx"
+
+[node name="Effects" type="Node" parent="." unique_id=1781284213]
+script = ExtResource("2_ueoa1")
+effects = Array[PackedScene]([ExtResource("3_6vcvc"), ExtResource("4_7k868"), ExtResource("5_hpc6h"), ExtResource("6_kltya")])
+metadata/_custom_type_script = "uid://calgx5smnk57"
 
 [node name="LineDrawer" type="Node" parent="." unique_id=2077545025 node_paths=PackedStringArray("line")]
 script = ExtResource("2_d1ilt")
@@ -404,7 +411,7 @@ offset_left = -183.5503
 offset_top = -227.44249
 offset_right = 183.5498
 offset_bottom = 131.6772
-theme = SubResource("Theme_gt3je")
+theme = ExtResource("29_6vcvc")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "LOCK
@@ -418,7 +425,7 @@ offset_top = -7.980423
 offset_right = 243.40309
 offset_bottom = 351.13928
 scale = Vector2(0.6762942, 0.6762942)
-theme = SubResource("Theme_gt3je")
+theme = ExtResource("29_6vcvc")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "0 BALLS"
@@ -432,7 +439,7 @@ offset_top = 3236.0679
 offset_right = -2031.0212
 offset_bottom = 3427.5981
 rotation = 0.7810348
-theme = SubResource("Theme_gt3je")
+theme = ExtResource("29_6vcvc")
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
 text = "LETS"
@@ -446,7 +453,7 @@ offset_top = 3495.4316
 offset_right = 3978.248
 offset_bottom = 3686.962
 rotation = -0.78016216
-theme = SubResource("Theme_gt3je")
+theme = ExtResource("29_6vcvc")
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
 text = "GO!"

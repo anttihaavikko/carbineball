@@ -8,7 +8,7 @@ _data = [Vector2(0, 0), 0.0, 4.568529, 0, 0, Vector2(0.65400004, 1), -0.01466513
 point_count = 3
 
 [node name="Bits" type="Node2D" unique_id=422818921]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.09803922, 0.09803922, 0.09803922, 1)
 script = ExtResource("1_s434i")
 particle = ExtResource("2_t3bv7")
 amount = 7
@@ -17,7 +17,6 @@ lifetime = 0.1
 lifetime_variation = 0.3
 velocity = 0.3
 velocity_variation = 0.7
+width = 5
 width_variation = 0.3
 width_curve = SubResource("Curve_ylsbi")
-color_dark_variation = 0.2
-color_light_variation = 0.2

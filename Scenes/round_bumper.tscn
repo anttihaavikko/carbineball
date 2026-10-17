@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cq2l5pra5v8gg"]
 
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="1_7cvyb"]
+[ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="2_gmo33"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7cvyb"]
 bounce = 2.0
@@ -19,6 +20,8 @@ texture = ExtResource("1_7cvyb")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1756901750]
 physics_material_override = SubResource("PhysicsMaterial_7cvyb")
+script = ExtResource("2_gmo33")
+score = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1410353457]
 shape = SubResource("CircleShape2D_7cvyb")

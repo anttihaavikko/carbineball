@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://kcq31sl3gxax" path="res://_Starter/Themes/button_hover.tres" id="1_ycwtu"]
 [ext_resource type="StyleBox" uid="uid://c3pbq5ojka84b" path="res://_Starter/Themes/button_default.tres" id="2_kab2l"]
 [ext_resource type="Texture2D" uid="uid://d4hcalv6stfy7" path="res://_Starter/Sprites/empty_pixel.png" id="3_et2xi"]
-[ext_resource type="FontFile" uid="uid://cqtinoap5rcje" path="res://Misc/ChunkFive-Regular.otf" id="4_kab2l"]
+[ext_resource type="FontFile" uid="uid://dmnd70v1560ge" path="res://Misc/ChunkFive-Regular.otf" id="4_kab2l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xdaro"]
 border_width_top = 10

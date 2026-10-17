@@ -45,6 +45,9 @@ func start():
 	holder_left.retract()
 	holder_right.retract()
 
+func add_score(amount: int, pos: Vector2):
+	pop(str(amount), pos)
+
 func reset():
 	spawn_ball()
 	saver_left.retract()
@@ -52,10 +55,13 @@ func reset():
 	saver_buttons.reset()
 	ball_lock.reset()
 
+func pop(text: String, pos: Vector2):
+	Effects.singleton.pop(text, pos)
+
 func die(node: Node):
 	if node is Ball:
 		burst.global_position = node.global_position
-		cam.shake(25, 0.3)
+		cam.shake(30, 0.3)
 		burst.play()
 		node.queue_free()
 		balls.remove_at(balls.find(node))

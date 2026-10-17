@@ -27,10 +27,12 @@ func shoot():
 		var hit = ray.get_collider()
 		var cp = ray.get_collision_point()
 		board.lines.add(ray.global_position, cp)
+		Effects.singleton.add_many([1, 3], cp)
 		if hit is Ball:
 			if hit.locked: return
 			var dir = cp - ray.global_position
 			hit.apply_impulse(dir.normalized() * 2500)
+			Effects.singleton.add(2, cp)
 			board.start()
 	recoil()
 

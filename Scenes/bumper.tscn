@@ -1,18 +1,37 @@
 [gd_scene format=3 uid="uid://cm28ria524vm5"]
 
 [ext_resource type="Texture2D" uid="uid://b4twsxp8lqu2l" path="res://Sprites/bumper.png" id="1_gmmk5"]
+[ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="2_1l0as"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_21xkr"]
-bounce = 1.3
+bounce = 0.6
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1l0as"]
+bounce = 5.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1l0as"]
+height = 604.0932
 
 [node name="Bumper" type="Sprite2D" unique_id=681354212]
 scale = Vector2(0.7186184, 0.7186184)
 texture = ExtResource("1_gmmk5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=456564391]
-position = Vector2(-3071.171, -1299.7162)
+position = Vector2(8.349365, 0)
 scale = Vector2(1.5362393, 1.3810787)
 physics_material_override = SubResource("PhysicsMaterial_21xkr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=752385755]
+position = Vector2(-2002.7721, -940.08014)
 polygon = PackedVector2Array(1868.7106, 1118.4233, 1858.7466, 1097.2639, 2139.5513, 785.91907, 2155.856, 794.98737, 2160.3853, 1103.3094, 2147.7036, 1118.4233)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=546123511]
+position = Vector2(5.566236, 5.566236)
+rotation = 0.77298
+physics_material_override = SubResource("PhysicsMaterial_1l0as")
+script = ExtResource("2_1l0as")
+score = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=38756652]
+rotation = 0.010141617
+shape = SubResource("CapsuleShape2D_1l0as")

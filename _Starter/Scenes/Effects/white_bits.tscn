@@ -8,7 +8,6 @@ _data = [Vector2(0, 0), 0.0, 4.568529, 0, 0, Vector2(0.65400004, 1), -0.01466513
 point_count = 3
 
 [node name="Bits" type="Node2D" unique_id=422818921]
-modulate = Color(1, 1, 1, 0.48235294)
 script = ExtResource("1_gmdny")
 particle = ExtResource("2_hv1of")
 amount = 12
@@ -20,5 +19,3 @@ velocity_variation = 0.5
 width = 15
 width_variation = 0.3
 width_curve = SubResource("Curve_ylsbi")
-color_dark_variation = 0.2
-color_light_variation = 0.2

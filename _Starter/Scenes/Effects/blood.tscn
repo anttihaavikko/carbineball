@@ -8,17 +8,14 @@ _data = [Vector2(0, 0), 0.0, 4.568529, 0, 0, Vector2(0.65400004, 1), -0.01466513
 point_count = 3
 
 [node name="Blood" type="Node2D" unique_id=422818921]
-modulate = Color(0.89142495, 0.12244945, 0.17903769, 1)
+modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
 script = ExtResource("1_vtyq0")
 particle = ExtResource("2_prg0j")
-amount = 15
+amount = 7
 amount_variation = 0.2
 lifetime = 0.25
 lifetime_variation = 0.3
 velocity = 0.75
 velocity_variation = 0.7
-width = 20
 width_variation = 0.3
 width_curve = SubResource("Curve_ylsbi")
-color_dark_variation = 0.2
-color_light_variation = 0.2

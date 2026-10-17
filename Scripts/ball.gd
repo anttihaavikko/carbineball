@@ -11,7 +11,12 @@ func _process(_delta) -> void:
 		board.die(self)
 
 func hit(other: Node):
+	var mid = (global_position + other.global_position) * 0.5;
 	if other is Dude:
+		board.pop("666", mid)
 		board.start()
 	if other is Bumpable:
+		if other.score > 0:
+			board.add_score(other.score, mid)
+			board.cam.shake(5, 0.1)
 		other.bump()
