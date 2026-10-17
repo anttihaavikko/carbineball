@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cm28ria524vm5"]
+
+[ext_resource type="Texture2D" uid="uid://b4twsxp8lqu2l" path="res://Sprites/bumper.png" id="1_gmmk5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_21xkr"]
+bounce = 1.3
+
+[node name="Bumper" type="Sprite2D" unique_id=681354212]
+scale = Vector2(0.7186184, 0.7186184)
+texture = ExtResource("1_gmmk5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=456564391]
+position = Vector2(-3071.171, -1299.7162)
+scale = Vector2(1.5362393, 1.3810787)
+physics_material_override = SubResource("PhysicsMaterial_21xkr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=752385755]
+polygon = PackedVector2Array(1868.7106, 1118.4233, 1858.7466, 1097.2639, 2139.5513, 785.91907, 2155.856, 794.98737, 2160.3853, 1103.3094, 2147.7036, 1118.4233)
