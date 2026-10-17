@@ -46,6 +46,8 @@
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
 [ext_resource type="Texture2D" uid="uid://r5ggaewnjl7g" path="res://Sprites/scarf_front.png" id="43_aa8k8"]
 [ext_resource type="Script" uid="uid://bwknch2pvkg4u" path="res://_Starter/Scripts/line.gd" id="44_kqrg6"]
+[ext_resource type="Texture2D" uid="uid://b0hq8arh3621k" path="res://Sprites/eyepatch.png" id="45_s8vy0"]
+[ext_resource type="Texture2D" uid="uid://bidn5b6nfy86k" path="res://Sprites/eyepatch_string.png" id="46_jut3y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -1071,13 +1073,17 @@ scale = Vector2(0.049999997, 0.049999997)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_jjgbg")
 
-[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1981658746 node_paths=PackedStringArray("left", "right")]
+[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1981658746 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string")]
 z_index = 2
 position = Vector2(960, 791)
 physics_material_override = SubResource("PhysicsMaterial_jjvhh")
 script = ExtResource("3_8gbba")
 left = NodePath("Arm Left/Hand")
 right = NodePath("Arm Right/Hand")
+scarf_front = NodePath("Scarf Front")
+scarf_back = NodePath("Scarf")
+eyepatch = NodePath("Looker Offset/Looker/Face/Eyepatch")
+eyepatch_string = NodePath("Looker Offset/Eyepatch String")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dude" unique_id=199478386]
 shape = SubResource("CircleShape2D_cpkcx")
@@ -1187,15 +1193,6 @@ self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
 scale = Vector2(0.8535397, 0.8535397)
 texture = ExtResource("2_bo1nx")
 
-[node name="Looker Offset" type="Node2D" parent="Dude" unique_id=1826339769]
-
-[node name="Looker" type="Node2D" parent="Dude/Looker Offset" unique_id=1369719952 node_paths=PackedStringArray("board")]
-script = ExtResource("9_fdnlq")
-board = NodePath("../../../Board")
-metadata/_custom_type_script = "uid://bg61yohsj8qnu"
-
-[node name="Face" parent="Dude/Looker Offset/Looker" unique_id=1204823452 instance=ExtResource("12_6iyac")]
-
 [node name="LineMimic" type="Line2D" parent="Dude" unique_id=1322360832 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
 position = Vector2(38, -11)
@@ -1219,6 +1216,30 @@ end_cap_mode = 2
 script = ExtResource("22_ee4r6")
 target = NodePath("../Arm Left/LiveLimb")
 metadata/_custom_type_script = "uid://cav6gx1wclcxg"
+
+[node name="Looker Offset" type="Node2D" parent="Dude" unique_id=1826339769]
+
+[node name="Looker" type="Node2D" parent="Dude/Looker Offset" unique_id=1369719952 node_paths=PackedStringArray("board")]
+script = ExtResource("9_fdnlq")
+board = NodePath("../../../Board")
+metadata/_custom_type_script = "uid://bg61yohsj8qnu"
+
+[node name="Face" parent="Dude/Looker Offset/Looker" unique_id=1204823452 instance=ExtResource("12_6iyac")]
+
+[node name="Eyepatch" type="Sprite2D" parent="Dude/Looker Offset/Looker/Face" unique_id=217558188]
+visible = false
+z_index = 2
+position = Vector2(14, -8)
+rotation = 0.74057686
+scale = Vector2(0.5987787, 0.5987787)
+texture = ExtResource("45_s8vy0")
+
+[node name="Eyepatch String" type="Sprite2D" parent="Dude/Looker Offset" unique_id=1794043175]
+visible = false
+position = Vector2(18, -19)
+rotation = 0.10502192
+scale = Vector2(0.55308825, 0.55308825)
+texture = ExtResource("46_jut3y")
 
 [node name="Scarf Front" type="Sprite2D" parent="Dude" unique_id=1500993285]
 self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
@@ -1317,7 +1338,7 @@ shape = SubResource("CapsuleShape2D_aa8k8")
 position = Vector2(0, -16)
 node_a = NodePath("../../../Dude")
 node_b = NodePath("../..")
-bias = 0.2
+softness = 1.0
 
 [node name="Scarf Link 2" type="RigidBody2D" parent="." unique_id=1296334514]
 position = Vector2(961, 881)
@@ -1333,7 +1354,7 @@ shape = SubResource("CapsuleShape2D_aa8k8")
 position = Vector2(0, -16)
 node_a = NodePath("../../../Scarf Link 1")
 node_b = NodePath("../..")
-bias = 0.2
+softness = 1.0
 
 [node name="Scarf Link 3" type="RigidBody2D" parent="." unique_id=115734818]
 position = Vector2(961, 926)
@@ -1349,7 +1370,7 @@ shape = SubResource("CapsuleShape2D_aa8k8")
 position = Vector2(0, -16)
 node_a = NodePath("../../../Scarf Link 2")
 node_b = NodePath("../..")
-bias = 0.2
+softness = 1.0
 
 [node name="Scarf Link 4" type="RigidBody2D" parent="." unique_id=915333257]
 position = Vector2(961, 969)
@@ -1365,7 +1386,7 @@ shape = SubResource("CapsuleShape2D_aa8k8")
 position = Vector2(0, -16)
 node_a = NodePath("../../../Scarf Link 3")
 node_b = NodePath("../..")
-bias = 0.2
+softness = 1.0
 
 [node name="Scarf Link 5" type="RigidBody2D" parent="." unique_id=1930397580]
 position = Vector2(960, 1013)
@@ -1380,7 +1401,7 @@ shape = SubResource("CapsuleShape2D_aa8k8")
 position = Vector2(0, -16)
 node_a = NodePath("../../../Scarf Link 4")
 node_b = NodePath("../..")
-bias = 0.2
+softness = 1.0
 
 [node name="Tip" type="Node2D" parent="Scarf Link 5/CollisionShape2D" unique_id=1016483556]
 position = Vector2(0, 15)
