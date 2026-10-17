@@ -5,6 +5,8 @@ class_name BumperButton extends Node2D
 @export var state := false
 @export var locked := false
 @export var in_set: ButtonSet
+@export var toggles := true
+@export var label: RichTextLabel
 
 var cooling := 0.0
 var origin: Vector2
@@ -22,13 +24,18 @@ func _process(delta) -> void:
 
 func colorize():
 	sprite.modulate = Color.WHITE if state else Color(0.25, 0.25, 0.25)
+	if label: label.modulate = sprite.modulate
+
+func toggle(to: bool):
+	state = to
+	colorize()
 
 func enter(node: Node):
 	if cooling > 0: return
 
 	if node is Ball:
 		cooling = 0.1
-		if not locked: state = !state
+		if not locked and (toggles or not state): state = !state
 		if in_set: in_set.check()
 		colorize()
 		used.emit()

@@ -17,13 +17,21 @@ func _ready() -> void:
 	reset()
 
 func spawn_ball():
+	create_ball(spawn_point.global_position)
+	holder_left.reset()
+	holder_right.reset()
+
+func add_extra_ball():
+	var ball = create_ball(ball_lock.global_position)
+	ball.apply_impulse(Vector2(500, 2500))
+
+func create_ball(pos) -> Ball:
 	var ball = ball_prefab.instantiate() as Ball
-	ball.global_position = spawn_point.global_position
+	ball.global_position = pos
 	ball.board = self
 	add_child(ball)
 	balls.append(ball)
-	holder_left.reset()
-	holder_right.reset()
+	return ball
 
 func apply_savers():
 	saver_left.reset()
