@@ -51,6 +51,10 @@ func start():
 func add_score(amount: int, pos: Vector2):
 	pop(str(amount * multi), pos)
 
+func reset_after(delay: float):
+	await get_tree().create_timer(delay).timeout
+	reset()
+
 func reset():
 	spawn_ball()
 	saver_left.retract()
@@ -66,7 +70,7 @@ func get_bonk() -> String:
 	return ["BONK", "THUD", "SPLAT"].pick_random()
 
 func pop(text: String, pos: Vector2, color: Color = Color.WHITE):
-	var eff = Effects.singleton.pop(text, pos)
+	var eff = Effects.singleton.pop("[wave]%s" % [text], pos)
 	eff.modulate = color
 
 func increment_multi(pos: Vector2):
@@ -80,7 +84,7 @@ func die(node: Node):
 		burst.play()
 		node.queue_free()
 		balls.remove_at(balls.find(node))
-		if balls.size() == 0:
+		if balls.size() == 0 and not ball_lock.spawning:
 			await get_tree().create_timer(0.5).timeout
 			call_deferred("reset")
 
@@ -88,5 +92,7 @@ func entered_bad_zone(node: Node):
 	if node is Dude:
 		if multi > 1:
 			cam.shake(20, 0.2)
-			pop("[font_size=60]TOUCH!", node.global_position, red)
+			var msg = ["TOUCH", "TOO CLOSE", "WATCH IT", "KEEP THE DISTANCE", "TOUCHED", "BAD TOUCH", "NO TOUCHING", "FLEW TOO CLOSE"].pick_random()
+			pop("[font_size=60][shake level=20]%s!" % [msg], node.global_position, red)
+			sun.angry()
 			multi = 1

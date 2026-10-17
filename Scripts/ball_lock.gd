@@ -13,6 +13,7 @@ var balls := 2
 var mid := false
 var left := false
 var right := false
+var spawning := false
 
 func _ready() -> void:
 	area.body_entered.connect(enter)
@@ -25,11 +26,13 @@ func _ready() -> void:
 
 func hit_trigger():
 	if left_trigger.state and right_trigger.state:
+		spawning = true
 		for i in balls:
 			await get_tree().create_timer(0.7).timeout
 			board.add_extra_ball()
 			balls -= 1
 			toggle_markers()
+		spawning = false
 		reset()
 
 func toggle():

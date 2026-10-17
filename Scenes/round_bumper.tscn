@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cq2l5pra5v8gg"]
 
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="1_7cvyb"]
+[ext_resource type="Texture2D" uid="uid://cg0hee5ygajqg" path="res://Sprites/round_bumper.png" id="2_0bj05"]
 [ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="2_gmo33"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7cvyb"]
@@ -9,19 +10,24 @@ bounce = 2.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cvyb"]
 radius = 232.55157
 
-[node name="Round Bumper" type="Sprite2D" unique_id=1315277982]
+[node name="Round Bumper" type="Node2D" unique_id=1766371253]
 self_modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.32391077, 0.32391077)
+
+[node name="Visuals" type="Sprite2D" parent="." unique_id=1402226975]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.99760747, 0.99760747)
 texture = ExtResource("1_7cvyb")
 
-[node name="Fill" type="Sprite2D" parent="." unique_id=202550059]
-scale = Vector2(0.8586879, 0.8586879)
-texture = ExtResource("1_7cvyb")
+[node name="Fill" type="Sprite2D" parent="Visuals" unique_id=202550059]
+scale = Vector2(1.0885139, 1.0885139)
+texture = ExtResource("2_0bj05")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1756901750]
+[node name="AnimatableBody2D" type="StaticBody2D" parent="." unique_id=1288405051 node_paths=PackedStringArray("visuals")]
 physics_material_override = SubResource("PhysicsMaterial_7cvyb")
 script = ExtResource("2_gmo33")
 score = 50
+visuals = NodePath("../Visuals")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1410353457]
 shape = SubResource("CircleShape2D_7cvyb")

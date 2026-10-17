@@ -3,6 +3,8 @@ class_name Ball extends RigidBody2D
 var board: Board
 var locked := false
 var bonked := false
+var last_hits: Array[Node] = []
+var dupes := 0
 
 func _ready() -> void:
 	body_entered.connect(hit)
@@ -12,6 +14,21 @@ func _process(_delta) -> void:
 		board.die(self)
 
 func hit(other: Node):
+	if last_hits.has(other):
+		dupes += 1
+	else:
+		dupes = 0
+		last_hits.append(other)
+	if dupes == 10:
+		board.pop("[font_size=75][shake level 20]TILT WARNING!", global_position, board.red)
+	if dupes == 15:
+		Effects.singleton.add_many([0, 1, 2, 3, 4], global_position)
+		board.pop("[font_size=80][shake level 20]TILT!", global_position, board.red)
+		board.balls.remove_at(board.balls.find(self))
+		board.reset_after(1.0)
+		queue_free()
+		return
+	if last_hits.size() > 2: last_hits.pop_front()
 	var mid = (global_position + other.global_position) * 0.5;
 	if other is not FakeParticle and linear_velocity.length() > 100:
 		Effects.singleton.add(4, global_position)

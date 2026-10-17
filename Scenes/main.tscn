@@ -28,19 +28,32 @@
 [ext_resource type="PackedScene" uid="uid://cq2l5pra5v8gg" path="res://Scenes/round_bumper.tscn" id="11_b3802"]
 [ext_resource type="Script" uid="uid://6vw1i8bs08bl" path="res://Scripts/rotating_area.gd" id="11_fevyy"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
+[ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="12_jwpg7"]
 [ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
+[ext_resource type="Texture2D" uid="uid://c6etrnelspok1" path="res://Sprites/sun_halo.png" id="19_hdf80"]
 [ext_resource type="Script" uid="uid://cahkyqjkmgnwc" path="res://_Starter/Scripts/visible_node.gd" id="20_3pmx8"]
+[ext_resource type="Texture2D" uid="uid://8wv7hf1jvyl8" path="res://Sprites/brow.png" id="21_k2e45"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
 [ext_resource type="Texture2D" uid="uid://ts28k0yp7xc4" path="res://Sprites/saver_bg.png" id="23_neg2b"]
 [ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="29_6vcvc"]
+[ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6bp64"]
 radius = 102.825096
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwpg7"]
+shader = ExtResource("12_jwpg7")
+shader_parameter/amount = 12.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/offset = 0.0
+shader_parameter/speed = 0.1
+shader_parameter/peaks = 7.0
+shader_parameter/time_mod = 1.0
 
 [sub_resource type="Curve" id="Curve_cbgmd"]
 _data = [Vector2(0, 0.44931507), 0.0, 0.9319281, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -50,6 +63,15 @@ point_count = 2
 absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_536cc"]
+shader = ExtResource("12_jwpg7")
+shader_parameter/amount = 12.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/offset = 0.0
+shader_parameter/speed = 0.1
+shader_parameter/peaks = 7.0
+shader_parameter/time_mod = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7cvyb"]
 bounce = 2.0
@@ -187,16 +209,24 @@ polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 105
 position = Vector2(961, 541)
 script = ExtResource("3_1w6v2")
 
-[node name="Sun" type="AnimatableBody2D" parent="." unique_id=224876035 node_paths=PackedStringArray("left", "right")]
+[node name="Sun" type="AnimatableBody2D" parent="." unique_id=224876035 node_paths=PackedStringArray("left", "right", "face", "brow")]
 position = Vector2(960, 1079)
 scale = Vector2(1, 1.0143921)
 physics_material_override = SubResource("PhysicsMaterial_jjvhh")
 script = ExtResource("16_3pmx8")
 left = NodePath("Body/Arm Left/Point")
 right = NodePath("Body/Arm Right/Point")
+face = NodePath("Looker Offset/Looker/Face")
+brow = NodePath("Looker Offset/Looker/Brow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sun" unique_id=1141022074]
 shape = SubResource("CircleShape2D_6bp64")
+
+[node name="Halo" type="Sprite2D" parent="Sun" unique_id=1970333974]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+material = SubResource("ShaderMaterial_jwpg7")
+scale = Vector2(0.7540797, 0.7540797)
+texture = ExtResource("19_hdf80")
 
 [node name="Body" type="Sprite2D" parent="Sun" unique_id=1920043684]
 self_modulate = Color(0, 0, 0, 1)
@@ -207,7 +237,7 @@ texture = ExtResource("2_bo1nx")
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(164.91211, -2.3223443)
 scale = Vector2(2.3558877, 2.3558877)
-points = PackedVector2Array(0, 0, 260.39978, 484.4502, 357, -57.00006)
+points = PackedVector2Array(0, 0, 230.9878, 499.14392, 296, -47.000244)
 width = 57.56
 joint_mode = 2
 begin_cap_mode = 2
@@ -218,7 +248,7 @@ length = 550.0
 metadata/_custom_type_script = "uid://d21tebxx08yd3"
 
 [node name="Point" type="Node2D" parent="Sun/Body/Arm Right" unique_id=581004999]
-position = Vector2(357, -56.191288)
+position = Vector2(296, -46.333168)
 script = ExtResource("20_3pmx8")
 size = 25
 show_label = false
@@ -233,7 +263,7 @@ offset = Vector2(-2.005371, -124.55139)
 
 [node name="LineMimic" type="Line2D" parent="Sun/Body/Arm Right" unique_id=1617499568 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
-points = PackedVector2Array(0, 0, 260.39978, 484.4502, 357, -57.00006)
+points = PackedVector2Array(0, 0, 230.9878, 499.14392, 296, -47.000244)
 width = 35.27
 joint_mode = 2
 begin_cap_mode = 2
@@ -246,7 +276,7 @@ metadata/_custom_type_script = "uid://cav6gx1wclcxg"
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-179.04749, -2.3223443)
 scale = Vector2(2.3558877, 2.3558877)
-points = PackedVector2Array(0, 0, -285.51318, 470.0874, -351, -76)
+points = PackedVector2Array(0, 0, -239.95038, 494.8977, -307, -51)
 width = 57.56
 joint_mode = 2
 begin_cap_mode = 2
@@ -258,7 +288,7 @@ flip = true
 metadata/_custom_type_script = "uid://d21tebxx08yd3"
 
 [node name="Point" type="Node2D" parent="Sun/Body/Arm Left" unique_id=1093770699]
-position = Vector2(-351, -74.92171)
+position = Vector2(-307, -50.276405)
 script = ExtResource("20_3pmx8")
 size = 25
 show_label = false
@@ -274,7 +304,7 @@ flip_h = true
 
 [node name="LineMimic" type="Line2D" parent="Sun/Body/Arm Left" unique_id=1010736670 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
-points = PackedVector2Array(0, 0, -285.51318, 470.0874, -351, -76)
+points = PackedVector2Array(0, 0, -239.95038, 494.8977, -307, -51)
 width = 35.27
 joint_mode = 2
 begin_cap_mode = 2
@@ -300,6 +330,13 @@ board = NodePath("../../../Board")
 [node name="Face" parent="Sun/Looker Offset/Looker" unique_id=1240513132 instance=ExtResource("12_6iyac")]
 position = Vector2(0, 5.914795)
 scale = Vector2(1.6293973, 1.6293973)
+
+[node name="Brow" type="Sprite2D" parent="Sun/Looker Offset/Looker" unique_id=1627336084]
+visible = false
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+position = Vector2(0, -15.772994)
+scale = Vector2(0.31197545, 0.31197545)
+texture = ExtResource("21_k2e45")
 
 [node name="Burst" type="Node2D" parent="." unique_id=142651107]
 position = Vector2(744, 1082)
@@ -492,18 +529,33 @@ position = Vector2(-117, 10)
 in_set = NodePath("..")
 board = NodePath("../..")
 
+[node name="Round Bumper" parent="Board" unique_id=1315277982 instance=ExtResource("11_b3802")]
+position = Vector2(1422, 304)
+
+[node name="Round Bumper2" parent="Board" unique_id=1170194060 instance=ExtResource("11_b3802")]
+position = Vector2(1144, 258)
+
+[node name="Round Bumper3" parent="Board" unique_id=1259518716 instance=ExtResource("11_b3802")]
+position = Vector2(1323, 60)
+
 [node name="Rotating Area" type="Node2D" parent="Board" unique_id=2133149037]
 position = Vector2(1292, 214)
 script = ExtResource("11_fevyy")
 
-[node name="Round Bumper" parent="Board/Rotating Area" unique_id=1315277982 instance=ExtResource("11_b3802")]
+[node name="Spot 1" type="RemoteTransform2D" parent="Board/Rotating Area" unique_id=702039613]
 position = Vector2(130, 90)
+scale = Vector2(0.32391077, 0.32391077)
+remote_path = NodePath("../../Round Bumper")
 
-[node name="Round Bumper2" parent="Board/Rotating Area" unique_id=1170194060 instance=ExtResource("11_b3802")]
+[node name="Spot2" type="RemoteTransform2D" parent="Board/Rotating Area" unique_id=57050849]
 position = Vector2(-148, 44)
+scale = Vector2(0.32391077, 0.32391077)
+remote_path = NodePath("../../Round Bumper2")
 
-[node name="Round Bumper3" parent="Board/Rotating Area" unique_id=1259518716 instance=ExtResource("11_b3802")]
+[node name="Spot3" type="RemoteTransform2D" parent="Board/Rotating Area" unique_id=905666368]
 position = Vector2(31, -154)
+scale = Vector2(0.32391077, 0.32391077)
+remote_path = NodePath("../../Round Bumper3")
 
 [node name="Multi" type="Sprite2D" parent="Board/Rotating Area" unique_id=597047214]
 self_modulate = Color(0, 0, 0, 1)
@@ -511,8 +563,14 @@ scale = Vector2(0.17095001, 0.17095001)
 texture = ExtResource("2_bo1nx")
 
 [node name="Fill" type="Sprite2D" parent="Board/Rotating Area/Multi" unique_id=202550059]
+self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
 scale = Vector2(0.80213434, 0.80213434)
 texture = ExtResource("2_bo1nx")
+
+[node name="Plus" type="Sprite2D" parent="Board/Rotating Area/Multi" unique_id=347105021]
+material = SubResource("ShaderMaterial_536cc")
+scale = Vector2(1.6829134, 1.6829134)
+texture = ExtResource("34_536cc")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="Board/Rotating Area/Multi" unique_id=1756901750]
 physics_material_override = SubResource("PhysicsMaterial_7cvyb")
@@ -535,6 +593,7 @@ left_trigger = NodePath("../Multi Left")
 right_trigger = NodePath("../Multi Right")
 
 [node name="Area2D" type="Area2D" parent="Board/Ball Lock" unique_id=945581834]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Ball Lock/Area2D" unique_id=1719224535]
 shape = SubResource("CircleShape2D_fevyy")
@@ -830,6 +889,7 @@ offset = Vector2(-37.98352, -20.308777)
 [node name="RayCast2D" type="RayCast2D" parent="Dude/Arm Right/Hand/Gun" unique_id=1542682832]
 position = Vector2(-84.922195, -41.610516)
 target_position = Vector2(-1482.9092, -2.3120728)
+collision_mask = 3
 
 [node name="Arm Left" type="Node2D" parent="Dude" unique_id=636013504]
 
@@ -865,6 +925,7 @@ flip_h = true
 [node name="RayCast2D" type="RayCast2D" parent="Dude/Arm Left/Hand/Gun" unique_id=1820929679]
 position = Vector2(77.305695, -48.447147)
 target_position = Vector2(1796.0073, 40.19519)
+collision_mask = 3
 
 [node name="Body" type="Sprite2D" parent="Dude" unique_id=70389479]
 self_modulate = Color(0, 0, 0, 1)

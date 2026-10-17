@@ -18,6 +18,8 @@ metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1158532372]
 scale = Vector2(0.049999997, 0.049999997)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=456627375]
 scale = Vector2(0.9999999, 0.99999994)
@@ -28,6 +30,7 @@ scale = Vector2(0.8678909, 0.7806486)
 texture = ExtResource("1_1cmwl")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1637201297]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=358387012]
 scale = Vector2(0.052329417, 0.052329417)

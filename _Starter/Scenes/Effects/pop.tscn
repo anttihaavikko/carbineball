@@ -73,9 +73,9 @@ anim = NodePath("Wrap/Content/AnimationPlayer")
 [node name="Wrap" type="Node2D" parent="." unique_id=1426834117]
 
 [node name="Content" type="RichTextLabel" parent="Wrap" unique_id=1515678487]
-offset_left = -380.0
+offset_left = -748.0
 offset_top = -114.12
-offset_right = 381.0
+offset_right = 752.0
 offset_bottom = 122.88
 theme = ExtResource("2_jrvpy")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
