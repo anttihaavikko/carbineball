@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://7n7g46pd3sxq"]
+
+[ext_resource type="Script" uid="uid://btjqafdfue3sb" path="res://Scripts/saver.gd" id="1_t3pmt"]
+[ext_resource type="Texture2D" uid="uid://4f5sglb81xox" path="res://Sprites/saver.png" id="2_t3pmt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsu2k"]
+radius = 23.0
+height = 86.0
+
+[node name="Saver" type="Node2D" unique_id=1649372960 node_paths=PackedStringArray("area")]
+script = ExtResource("1_t3pmt")
+area = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1056414633]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=749768265]
+shape = SubResource("CapsuleShape2D_wsu2k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=464789955]
+scale = Vector2(0.34764442, 0.34764442)
+texture = ExtResource("2_t3pmt")

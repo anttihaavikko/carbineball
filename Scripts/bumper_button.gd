@@ -1,0 +1,34 @@
+class_name BumperButton extends Node2D
+
+@export var area: Area2D
+@export var sprite: Node2D
+@export var state := false
+@export var locked := false
+@export var in_set: ButtonSet
+
+var cooling := 0.0
+var origin: Vector2
+
+func _ready() -> void:
+	origin = position
+	colorize()
+	area.body_entered.connect(enter)
+	if in_set: in_set.buttons.append(self)
+
+func _process(delta) -> void:
+	cooling -= delta
+
+func colorize():
+	sprite.modulate = Color.WHITE if state else Color(0.25, 0.25, 0.25)
+
+func enter(node: Node):
+	if cooling > 0: return
+
+	if node is Ball:
+		cooling = 0.1
+		if not locked: state = !state
+		if in_set: in_set.check()
+		colorize()
+		get_tree().create_tween().tween_property(self, "position", origin + Vector2(0, -10), 0.1).set_trans(Tween.TRANS_BOUNCE)
+		await get_tree().create_timer(0.1).timeout
+		get_tree().create_tween().tween_property(self, "position", origin, 0.1).set_trans(Tween.TRANS_BOUNCE)

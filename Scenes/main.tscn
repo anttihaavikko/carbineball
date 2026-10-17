@@ -10,8 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://ktqgft2vo86g" path="res://Scenes/ball.tscn" id="5_6bp64"]
 [ext_resource type="PackedScene" uid="uid://cm28ria524vm5" path="res://Scenes/bumper.tscn" id="7_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://ctm6u0gsqbmpx" path="res://Sprites/gun.png" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://7n7g46pd3sxq" path="res://Scenes/saver.tscn" id="8_wsu2k"]
 [ext_resource type="Script" uid="uid://bg61yohsj8qnu" path="res://Scripts/looker.gd" id="9_fdnlq"]
+[ext_resource type="Script" uid="uid://c4qpntc5su70t" path="res://Scripts/button_set.gd" id="9_h1bgf"]
 [ext_resource type="Script" uid="uid://blkmne3taoehe" path="res://Scripts/hand.gd" id="9_hptm8"]
+[ext_resource type="PackedScene" uid="uid://dkv55r634eg3b" path="res://Scenes/button.tscn" id="9_k12tt"]
 [ext_resource type="Script" uid="uid://d21tebxx08yd3" path="res://_Starter/Scripts/limb_live.gd" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
 
@@ -29,8 +32,7 @@ radius = 102.825096
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpkcx"]
 radius = 51.1957
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpkcx"]
-size = Vector2(1675, 412)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h1bgf"]
 
 [node name="Main" type="Node2D" unique_id=619511135]
 
@@ -51,13 +53,16 @@ offset_bottom = 2122.0
 color = Color(0.8980392, 0.56078434, 0.39607844, 1)
 metadata/_edit_lock_ = true
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
 ball_prefab = ExtResource("5_6bp64")
 spawn_point = NodePath("Spawn Point")
 lines = NodePath("../LineDrawer")
+saver_left = NodePath("Saver Left")
+saver_right = NodePath("Saver Right")
+saver_buttons = NodePath("Saver Buttons")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -104,6 +109,28 @@ position = Vector2(1412.5765, 682.6546)
 [node name="Bumper Left" parent="Board" unique_id=682989126 instance=ExtResource("7_jkdf5")]
 position = Vector2(489.5767, 682.6546)
 rotation = 1.5707964
+
+[node name="Saver Right" parent="Board" unique_id=1649372960 instance=ExtResource("8_wsu2k")]
+position = Vector2(1674, 744)
+
+[node name="Saver Left" parent="Board" unique_id=1791166857 instance=ExtResource("8_wsu2k")]
+position = Vector2(240, 744)
+
+[node name="Saver Buttons" type="Node2D" parent="Board" unique_id=530732387]
+position = Vector2(520, 72)
+script = ExtResource("9_h1bgf")
+
+[node name="Button" parent="Board/Saver Buttons" unique_id=230316017 node_paths=PackedStringArray("in_set") instance=ExtResource("9_k12tt")]
+position = Vector2(-1, 10)
+in_set = NodePath("..")
+
+[node name="Button2" parent="Board/Saver Buttons" unique_id=65692378 node_paths=PackedStringArray("in_set") instance=ExtResource("9_k12tt")]
+position = Vector2(115, 10)
+in_set = NodePath("..")
+
+[node name="Button3" parent="Board/Saver Buttons" unique_id=1448168052 node_paths=PackedStringArray("in_set") instance=ExtResource("9_k12tt")]
+position = Vector2(-117, 10)
+in_set = NodePath("..")
 
 [node name="Walls" type="Node2D" parent="." unique_id=1373971343]
 
@@ -192,6 +219,21 @@ scale = Vector2(0.049999997, 0.049999997)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_jjgbg")
 
+[node name="Wall Slant Right2" type="Sprite2D" parent="Walls" unique_id=1965050117]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(1947, -108)
+rotation = 0.7853982
+scale = Vector2(320.49988, 744.2817)
+texture = ExtResource("1_jjgbg")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/Wall Slant Right2" unique_id=1205950389]
+scale = Vector2(0.049999997, 0.049999997)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall Slant Right2/StaticBody2D" unique_id=186233855]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_jjgbg")
+
 [node name="Wall Slant Left" type="Sprite2D" parent="Walls" unique_id=1544284350]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-110.800255, 884.19977)
@@ -204,6 +246,21 @@ metadata/_edit_group_ = true
 scale = Vector2(0.049999997, 0.049999997)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall Slant Left/StaticBody2D" unique_id=20847471]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_jjgbg")
+
+[node name="Wall Slant Left2" type="Sprite2D" parent="Walls" unique_id=961982479]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-44.000053, -94.99982)
+rotation = -0.7853982
+scale = Vector2(320.49988, 743.36487)
+texture = ExtResource("1_jjgbg")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/Wall Slant Left2" unique_id=1282322121]
+scale = Vector2(0.049999997, 0.049999997)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall Slant Left2/StaticBody2D" unique_id=1837403470]
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_jjgbg")
 
@@ -335,10 +392,13 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death Area" unique_id=570535150]
 position = Vector2(49.5, -18)
-shape = SubResource("RectangleShape2D_cpkcx")
+shape = SubResource("WorldBoundaryShape2D_h1bgf")
 
 [node name="Shot Line" type="Line2D" parent="." unique_id=1463574616]
 position = Vector2(115, -283)
 points = PackedVector2Array(866, 81, 0, 0)
 
+[connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
+[connection signal="used" from="Board/Saver Left" to="Board/Saver Buttons" method="reset"]
+[connection signal="when_all_on" from="Board/Saver Buttons" to="Board" method="apply_savers"]
 [connection signal="body_entered" from="Death Area" to="Board" method="die"]
