@@ -19,7 +19,9 @@ func score(bumper: Node2D):
 func _process(delta) -> void:
 	cooling -= delta
 
-func increment(_node: Node2D):
+func increment(node: Node2D):
+	var msg = ["UP UP UP!", "LEVEL UP!", "NEXT LEVEL!", "MORE!", "ADDING!", "ADD MORE!", "INCREMENT!"].pick_random()
+	board.pop(msg, node.global_position, board.yellow)
 	values[cur] = (values[cur] + 1) % 9 + 1
 	update_labels()
 
