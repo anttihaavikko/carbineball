@@ -20,6 +20,7 @@ class_name Board extends Node2D
 @export var bonus_game_display: RichTextLabel
 
 var started := false
+var max_multi := 100
 var balls: Array[Ball] = []
 var multi := 1
 var balls_left := 3
@@ -118,7 +119,10 @@ func pop(text: String, pos: Vector2, color: Color = Color.WHITE):
 	eff.modulate = color
 
 func increment_multi(pos: Vector2):
-	multi += 1
+	if multi >= max_multi:
+		pop("MAX MULTI!", pos, yellow)
+		return
+	multi = mini(multi + 1, max_multi)
 	pop("x%d" % [multi], pos, yellow)
 	show_multi()
 
