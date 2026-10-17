@@ -28,12 +28,16 @@ func shoot():
 		var cp = ray.get_collision_point()
 		board.lines.add(ray.global_position, cp)
 		Effects.singleton.add_many([1, 3], cp)
+		board.cam.shake(10, 0.1)
 		if hit is Ball:
 			if hit.locked: return
 			var dir = cp - ray.global_position
 			hit.apply_impulse(dir.normalized() * 2500)
-			Effects.singleton.add(2, cp)
+			Effects.singleton.add_many([2, 4], cp)
 			board.start()
+			if hit.bonked:
+				board.pop("[font_size=40]%s!" % [board.get_pop()], cp, board.yellow)
+			hit.bonked = false
 	recoil()
 
 func recoil():

@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://bpt1nog23ndgh"]
+
+[ext_resource type="Script" uid="uid://ch587gui708gb" path="res://_Starter/Scripts/randomize_anim_speed.gd" id="1_l7sa7"]
+[ext_resource type="Texture2D" uid="uid://crda6xdrqw2q5" path="res://Sprites/square.png" id="2_l3oha"]
+[ext_resource type="Texture2D" uid="uid://5j4od6j1rhd7" path="res://Sprites/tree.png" id="3_m36md"]
+
+[sub_resource type="Animation" id="Animation_wl4bb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Branches:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.01745329251994329]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Branches/Branches2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.01745329251994329]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Branches/Branches2/Branches3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.01745329251994329]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Branches/Branches2/Branches3/Branches4:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.01745329251994329]
+}
+
+[sub_resource type="Animation" id="Animation_1tvlp"]
+resource_name = "tree"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Branches:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.03490658503988659, 0.03490658503988659]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Branches/Branches2:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.03490658503988659, 0.03490658503988659]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Branches/Branches2/Branches3:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.03490658503988659, 0.03490658503988659]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Branches/Branches2/Branches3/Branches4:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.03490658503988659, 0.03490658503988659]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wl4bb"]
+_data = {
+&"RESET": SubResource("Animation_wl4bb"),
+&"tree": SubResource("Animation_1tvlp")
+}
+
+[node name="Tree" type="Node2D" unique_id=596932785]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1480484782]
+root_node = NodePath("../Trunk")
+libraries/ = SubResource("AnimationLibrary_wl4bb")
+autoplay = &"tree"
+speed_scale = 2.0
+script = ExtResource("1_l7sa7")
+min_speed = 1.5
+max_speed = 1.7
+
+[node name="Trunk" type="Sprite2D" parent="." unique_id=329324177]
+position = Vector2(-1, -1)
+scale = Vector2(0.23360509, 0.9762678)
+texture = ExtResource("2_l3oha")
+offset = Vector2(5.280729, -18.246424)
+
+[node name="Branches" type="Sprite2D" parent="." unique_id=416815452]
+position = Vector2(-0.85394263, -32.611862)
+rotation = -0.017453292
+skew = 0.068641424
+texture = ExtResource("3_m36md")
+offset = Vector2(0.68002367, -95.39817)
+
+[node name="Branches2" type="Sprite2D" parent="Branches" unique_id=1226245417]
+position = Vector2(-0.05702448, -87.88338)
+rotation = -0.017453292
+scale = Vector2(0.88964283, 0.88964283)
+texture = ExtResource("3_m36md")
+offset = Vector2(-5.0082803, -100.35762)
+
+[node name="Branches3" type="Sprite2D" parent="Branches/Branches2" unique_id=1716292303]
+position = Vector2(0.429821, -101.12134)
+rotation = -0.017453292
+scale = Vector2(0.9279345, 0.9279345)
+texture = ExtResource("3_m36md")
+offset = Vector2(-6.579357, -85.149536)
+
+[node name="Branches4" type="Sprite2D" parent="Branches/Branches2/Branches3" unique_id=1704704171]
+position = Vector2(-8.161351, -118.99175)
+rotation = -0.017453292
+scale = Vector2(0.6856978, 0.6856978)
+texture = ExtResource("3_m36md")
+offset = Vector2(1, -92)

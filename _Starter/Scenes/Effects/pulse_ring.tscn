@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://w80g3fd86xfk"]
+
+[ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="1_jy60n"]
+[ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="1_okjov"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okjov"]
+shader = ExtResource("1_jy60n")
+shader_parameter/amount = 50.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/offset = 0.0
+shader_parameter/speed = 0.1
+shader_parameter/peaks = 7.0
+shader_parameter/time_mod = 1.0
+
+[sub_resource type="Curve" id="Curve_e5peh"]
+_data = [Vector2(0, 0.0132392645), 0.0, 3.2431314, 0, 0, Vector2(1, 1), -0.036589287, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_f6rfp"]
+offsets = PackedFloat32Array(0.925, 1)
+colors = PackedColorArray(1, 1, 1, 0.21176471, 1, 1, 1, 0)
+
+[node name="Pulse" type="CPUParticles2D" unique_id=344679068]
+z_index = -1
+z_as_relative = false
+material = SubResource("ShaderMaterial_okjov")
+emitting = false
+amount = 1
+texture = ExtResource("1_okjov")
+lifetime = 0.25
+one_shot = true
+randomness = 1.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_e5peh")
+color_ramp = SubResource("Gradient_f6rfp")

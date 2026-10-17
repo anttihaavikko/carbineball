@@ -45,3 +45,4 @@ func enter(node: Node):
 		await get_tree().create_timer(0.1).timeout
 		get_tree().create_tween().tween_property(self, "position", origin, 0.1).set_trans(Tween.TRANS_BOUNCE)
 		if board: board.sun.point(global_position)
+		board.cam.shake(7, 0.12)

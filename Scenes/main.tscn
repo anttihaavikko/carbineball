@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vf7dgj6kl1vn"]
 
 [ext_resource type="Script" uid="uid://b0fr17vp8abvx" path="res://_Starter/Scripts/dev_restart.gd" id="1_6bp64"]
+[ext_resource type="PackedScene" uid="uid://bpt1nog23ndgh" path="res://Scenes/tree.tscn" id="1_e08e2"]
 [ext_resource type="Texture2D" uid="uid://74hyg5isj5x3" path="res://_Starter/Sprites/square.png" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://b2gfrikyseqk" path="res://_Starter/Scripts/line_drawer.gd" id="2_d1ilt"]
@@ -15,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b717m4xp3kdqg" path="res://_Starter/Scenes/Effects/blood.tscn" id="5_hpc6h"]
 [ext_resource type="PackedScene" uid="uid://cquer2q1nf54t" path="res://_Starter/Scenes/Effects/black_bits.tscn" id="6_kltya"]
 [ext_resource type="PackedScene" uid="uid://cm28ria524vm5" path="res://Scenes/bumper.tscn" id="7_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://w80g3fd86xfk" path="res://_Starter/Scenes/Effects/pulse_ring.tscn" id="7_r33sp"]
 [ext_resource type="Texture2D" uid="uid://cyot1afpoa0mo" path="res://Sprites/pointer.png" id="7_u50mg"]
 [ext_resource type="Texture2D" uid="uid://ctm6u0gsqbmpx" path="res://Sprites/gun.png" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://7n7g46pd3sxq" path="res://Scenes/saver.tscn" id="8_wsu2k"]
@@ -30,6 +32,7 @@
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
 [ext_resource type="Script" uid="uid://cahkyqjkmgnwc" path="res://_Starter/Scripts/visible_node.gd" id="20_3pmx8"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
+[ext_resource type="Texture2D" uid="uid://ts28k0yp7xc4" path="res://Sprites/saver_bg.png" id="23_neg2b"]
 [ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="29_6vcvc"]
 
@@ -38,6 +41,10 @@ bounce = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6bp64"]
 radius = 102.825096
+
+[sub_resource type="Curve" id="Curve_cbgmd"]
+_data = [Vector2(0, 0.44931507), 0.0, 0.9319281, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
 absorbent = true
@@ -64,10 +71,6 @@ size = Vector2(14840, 2276)
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1bgf"]
 radius = 75.00667
 
-[sub_resource type="Curve" id="Curve_cbgmd"]
-_data = [Vector2(0, 0.44931507), 0.0, 0.9319281, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [node name="Main" type="Node2D" unique_id=619511135]
 
 [node name="DevRestart" type="Node" parent="." unique_id=1485280152]
@@ -76,7 +79,7 @@ metadata/_custom_type_script = "uid://b0fr17vp8abvx"
 
 [node name="Effects" type="Node" parent="." unique_id=1781284213]
 script = ExtResource("2_ueoa1")
-effects = Array[PackedScene]([ExtResource("3_6vcvc"), ExtResource("4_7k868"), ExtResource("5_hpc6h"), ExtResource("6_kltya")])
+effects = Array[PackedScene]([ExtResource("3_6vcvc"), ExtResource("4_7k868"), ExtResource("5_hpc6h"), ExtResource("6_kltya"), ExtResource("7_r33sp")])
 metadata/_custom_type_script = "uid://calgx5smnk57"
 
 [node name="LineDrawer" type="Node" parent="." unique_id=2077545025 node_paths=PackedStringArray("line")]
@@ -84,17 +87,105 @@ script = ExtResource("2_d1ilt")
 line = NodePath("../Shot Line")
 metadata/_custom_type_script = "uid://b2gfrikyseqk"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1254553476]
-position = Vector2(961, 541)
-script = ExtResource("3_1w6v2")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1870561501]
+[node name="Bg" type="ColorRect" parent="." unique_id=1870561501]
+z_index = -10
 offset_left = -1329.0
 offset_top = -913.0
 offset_right = 3177.0
 offset_bottom = 2122.0
 color = Color(0.8980392, 0.56078434, 0.39607844, 1)
 metadata/_edit_lock_ = true
+
+[node name="Back Trees" type="Node2D" parent="." unique_id=1377650473]
+modulate = Color(0.9249347, 0.6238935, 0.4766543, 1)
+z_index = -10
+position = Vector2(38.999996, 816.00006)
+scale = Vector2(0.671913, 0.671913)
+
+[node name="Tree" parent="Back Trees" unique_id=1110862205 instance=ExtResource("1_e08e2")]
+position = Vector2(1642, 178)
+
+[node name="Tree2" parent="Back Trees" unique_id=462628805 instance=ExtResource("1_e08e2")]
+position = Vector2(273, 173)
+
+[node name="Tree3" parent="Back Trees" unique_id=1325449746 instance=ExtResource("1_e08e2")]
+position = Vector2(468, 191)
+
+[node name="Tree4" parent="Back Trees" unique_id=162966848 instance=ExtResource("1_e08e2")]
+position = Vector2(657, 173)
+
+[node name="Tree5" parent="Back Trees" unique_id=1963886300 instance=ExtResource("1_e08e2")]
+position = Vector2(775, 208)
+
+[node name="Tree6" parent="Back Trees" unique_id=252446316 instance=ExtResource("1_e08e2")]
+position = Vector2(1050, 194)
+
+[node name="Tree7" parent="Back Trees" unique_id=27415627 instance=ExtResource("1_e08e2")]
+position = Vector2(1248, 117)
+
+[node name="Tree8" parent="Back Trees" unique_id=1373293996 instance=ExtResource("1_e08e2")]
+position = Vector2(1443, 160)
+
+[node name="Tree9" parent="Back Trees" unique_id=596932785 instance=ExtResource("1_e08e2")]
+position = Vector2(1814.2229, 212.82513)
+
+[node name="Tree10" parent="Back Trees" unique_id=362842885 instance=ExtResource("1_e08e2")]
+position = Vector2(2010.6769, 166.68822)
+
+[node name="Tree11" parent="Back Trees" unique_id=1030035001 instance=ExtResource("1_e08e2")]
+position = Vector2(2143.1345, 93.762115)
+
+[node name="Tree12" parent="Back Trees" unique_id=1194755988 instance=ExtResource("1_e08e2")]
+position = Vector2(2361.9128, 74.414375)
+
+[node name="Tree13" parent="Back Trees" unique_id=31365039 instance=ExtResource("1_e08e2")]
+position = Vector2(2503.3003, 107.15671)
+
+[node name="Tree14" parent="Back Trees" unique_id=223172925 instance=ExtResource("1_e08e2")]
+position = Vector2(2659.5703, 157.75848)
+
+[node name="Polygon2D" type="Polygon2D" parent="Back Trees" unique_id=1540328276]
+position = Vector2(971, 117)
+offset = Vector2(-971, -117)
+polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 2332.147, 194.9657, 2580.691, 125.01611, 2726.5432, 200.91882, 2753.3325, 586.3854, 1945, 489, 42, 415)
+
+[node name="Trees" type="Node2D" parent="." unique_id=1391566031]
+modulate = Color(0.83591425, 0.4813332, 0.3037173, 1)
+z_index = -10
+position = Vector2(-2, 844)
+
+[node name="Tree" parent="Trees" unique_id=655034135 instance=ExtResource("1_e08e2")]
+position = Vector2(1642, 178)
+
+[node name="Tree2" parent="Trees" unique_id=2045523780 instance=ExtResource("1_e08e2")]
+position = Vector2(273, 173)
+
+[node name="Tree3" parent="Trees" unique_id=2081180034 instance=ExtResource("1_e08e2")]
+position = Vector2(468, 191)
+
+[node name="Tree4" parent="Trees" unique_id=944448721 instance=ExtResource("1_e08e2")]
+position = Vector2(657, 173)
+
+[node name="Tree5" parent="Trees" unique_id=362940587 instance=ExtResource("1_e08e2")]
+position = Vector2(775, 208)
+
+[node name="Tree6" parent="Trees" unique_id=1987207005 instance=ExtResource("1_e08e2")]
+position = Vector2(1050, 194)
+
+[node name="Tree7" parent="Trees" unique_id=1253372846 instance=ExtResource("1_e08e2")]
+position = Vector2(1248, 117)
+
+[node name="Tree8" parent="Trees" unique_id=706307820 instance=ExtResource("1_e08e2")]
+position = Vector2(1443, 160)
+
+[node name="Polygon2D" type="Polygon2D" parent="Trees" unique_id=2038607216]
+position = Vector2(971, 117)
+offset = Vector2(-971, -117)
+polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 1945, 489, 42, 415)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1254553476]
+position = Vector2(961, 541)
+script = ExtResource("3_1w6v2")
 
 [node name="Sun" type="AnimatableBody2D" parent="." unique_id=224876035 node_paths=PackedStringArray("left", "right")]
 position = Vector2(960, 1079)
@@ -210,6 +301,73 @@ board = NodePath("../../../Board")
 position = Vector2(0, 5.914795)
 scale = Vector2(1.6293973, 1.6293973)
 
+[node name="Burst" type="Node2D" parent="." unique_id=142651107]
+position = Vector2(744, 1082)
+script = ExtResource("26_cbgmd")
+hide_chance = 0.4
+metadata/_custom_type_script = "uid://3g8mgivqrdc4"
+
+[node name="Line2D" type="Line2D" parent="Burst" unique_id=1743364185]
+visible = false
+points = PackedVector2Array(0, 0, -92, -1587)
+width = 120.0
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D2" type="Line2D" parent="Burst" unique_id=1090474691]
+visible = false
+points = PackedVector2Array(0, 0, 45, -1309)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D3" type="Line2D" parent="Burst" unique_id=1720292547]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -19.601929, -1373.6699)
+width = 53.27
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D4" type="Line2D" parent="Burst" unique_id=17803115]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -415.99316, -1312.8423)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D5" type="Line2D" parent="Burst" unique_id=588207682]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -573.46826, -1412.8752)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D6" type="Line2D" parent="Burst" unique_id=1178915876]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -432.35226, -1536.7472)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D7" type="Line2D" parent="Burst" unique_id=1244584231]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -109.19452, -1608.4766)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D8" type="Line2D" parent="Burst" unique_id=1749806435]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D9" type="Line2D" parent="Burst" unique_id=1297816528]
+visible = false
+rotation = -0.37285432
+points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
 [node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
@@ -224,6 +382,8 @@ ball_lock = NodePath("Ball Lock")
 sun = NodePath("../Sun")
 burst = NodePath("../Burst")
 cam = NodePath("../Camera2D")
+yellow = Color(0.9764706, 0.90588236, 0.5176471, 1)
+red = Color(0.9726061, 0.77588844, 0.7609485, 1)
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -270,6 +430,12 @@ position = Vector2(1412.5765, 682.6546)
 [node name="Bumper Left" parent="Board" unique_id=682989126 instance=ExtResource("7_jkdf5")]
 position = Vector2(489.5767, 682.6546)
 rotation = 1.5707964
+
+[node name="SaverBg" type="Sprite2D" parent="Board" unique_id=1530612233]
+visible = false
+position = Vector2(240, 744.00006)
+scale = Vector2(0.3442998, 0.3442998)
+texture = ExtResource("23_neg2b")
 
 [node name="Saver Right" parent="Board" unique_id=1649372960 instance=ExtResource("8_wsu2k")]
 position = Vector2(1674, 744)
@@ -775,74 +941,6 @@ polygon = PackedVector2Array(331, 842, 620, 841, 334, 551)
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Bad Zones" unique_id=1058317709]
 position = Vector2(947, -2)
 polygon = PackedVector2Array(331, 842, 620, 841, 618, 572)
-
-[node name="Burst" type="Node2D" parent="." unique_id=142651107]
-z_index = 100
-position = Vector2(744, 1082)
-script = ExtResource("26_cbgmd")
-hide_chance = 0.4
-metadata/_custom_type_script = "uid://3g8mgivqrdc4"
-
-[node name="Line2D" type="Line2D" parent="Burst" unique_id=1743364185]
-visible = false
-points = PackedVector2Array(0, 0, -92, -1587)
-width = 120.0
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D2" type="Line2D" parent="Burst" unique_id=1090474691]
-visible = false
-points = PackedVector2Array(0, 0, 45, -1309)
-width = 45.42
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D3" type="Line2D" parent="Burst" unique_id=1720292547]
-visible = false
-rotation = 0.13979748
-points = PackedVector2Array(0, 0, -19.601929, -1373.6699)
-width = 53.27
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D4" type="Line2D" parent="Burst" unique_id=17803115]
-visible = false
-rotation = 0.13979748
-points = PackedVector2Array(0, 0, -415.99316, -1312.8423)
-width = 45.42
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D5" type="Line2D" parent="Burst" unique_id=588207682]
-visible = false
-rotation = 0.13979748
-points = PackedVector2Array(0, 0, -573.46826, -1412.8752)
-width = 45.42
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D6" type="Line2D" parent="Burst" unique_id=1178915876]
-visible = false
-rotation = 0.13979748
-points = PackedVector2Array(0, 0, -432.35226, -1536.7472)
-width = 45.42
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D7" type="Line2D" parent="Burst" unique_id=1244584231]
-visible = false
-rotation = 0.13979748
-points = PackedVector2Array(0, 0, -109.19452, -1608.4766)
-width = 45.42
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D8" type="Line2D" parent="Burst" unique_id=1749806435]
-visible = false
-rotation = 0.13979748
-points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
-width = 45.42
-width_curve = SubResource("Curve_cbgmd")
-
-[node name="Line2D9" type="Line2D" parent="Burst" unique_id=1297816528]
-visible = false
-rotation = -0.37285432
-points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
-width = 45.42
-width_curve = SubResource("Curve_cbgmd")
 
 [connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
 [connection signal="used" from="Board/Saver Right" to="Board/Ball Lock" method="toggle_right"]
