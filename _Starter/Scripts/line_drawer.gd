@@ -21,8 +21,8 @@ func _init() -> void:
 		_singleton = self
 
 func add(from: Vector2, to: Vector2, delay: float = 0.05):
-	line.points[0] = from
-	line.points[1] = to
+	line.set_point_position(0, line.to_local(from))
+	line.set_point_position(1, line.to_local(to))
 	line.width = randf_range(3, 12)
 	line.show()
 	await get_tree().create_timer(delay).timeout

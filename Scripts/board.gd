@@ -4,6 +4,7 @@ class_name Board extends Node2D
 @export var holder_right: Retractor
 @export var ball_prefab: PackedScene
 @export var spawn_point: Node2D
+@export var lines: LineDrawer
 
 var started := false
 var balls: Array[Ball] = []

@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://b0fr17vp8abvx" path="res://_Starter/Scripts/dev_restart.gd" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://74hyg5isj5x3" path="res://_Starter/Sprites/square.png" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://b2gfrikyseqk" path="res://_Starter/Scripts/line_drawer.gd" id="2_d1ilt"]
 [ext_resource type="Script" uid="uid://ct7rhapds5qbb" path="res://Scripts/board.gd" id="2_kry3j"]
 [ext_resource type="Script" uid="uid://uq5uddkuj305" path="res://Scripts/dude.gd" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://bg23xdidtnsgd" path="res://Scripts/retractor.gd" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://ktqgft2vo86g" path="res://Scenes/ball.tscn" id="5_6bp64"]
+[ext_resource type="Texture2D" uid="uid://ctm6u0gsqbmpx" path="res://Sprites/gun.png" id="8_344ge"]
+[ext_resource type="Script" uid="uid://blkmne3taoehe" path="res://Scripts/hand.gd" id="9_hptm8"]
+[ext_resource type="Script" uid="uid://d21tebxx08yd3" path="res://_Starter/Scripts/limb_live.gd" id="9_ynf5e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
 absorbent = true
@@ -14,10 +18,10 @@ absorbent = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_21xkr"]
-bounce = 2.0
+bounce = 1.3
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
-bounce = 2.0
+bounce = 1.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6bp64"]
 radius = 102.825096
@@ -34,12 +38,18 @@ size = Vector2(1675, 412)
 script = ExtResource("1_6bp64")
 metadata/_custom_type_script = "uid://b0fr17vp8abvx"
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point")]
+[node name="LineDrawer" type="Node" parent="." unique_id=2077545025 node_paths=PackedStringArray("line")]
+script = ExtResource("2_d1ilt")
+line = NodePath("../Shot Line")
+metadata/_custom_type_script = "uid://b2gfrikyseqk"
+
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
 ball_prefab = ExtResource("5_6bp64")
 spawn_point = NodePath("Spawn Point")
+lines = NodePath("../LineDrawer")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -211,13 +221,74 @@ texture = ExtResource("2_bo1nx")
 scale = Vector2(0.8931779, 0.8931779)
 texture = ExtResource("2_bo1nx")
 
-[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1981658746]
+[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1981658746 node_paths=PackedStringArray("left", "right")]
 position = Vector2(960, 791)
 physics_material_override = SubResource("PhysicsMaterial_jjvhh")
 script = ExtResource("3_8gbba")
+left = NodePath("Arm Left/Hand")
+right = NodePath("Arm Right/Hand")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dude" unique_id=199478386]
 shape = SubResource("CircleShape2D_cpkcx")
+
+[node name="Arm Right" type="Node2D" parent="Dude" unique_id=445329833]
+
+[node name="LiveLimb" type="Line2D" parent="Dude/Arm Right" unique_id=1046464281 node_paths=PackedStringArray("target")]
+position = Vector2(26, 20)
+points = PackedVector2Array(0, 0, 63.684082, 22.62085, 99, -35)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("9_ynf5e")
+target = NodePath("../Hand")
+bezier = true
+metadata/_custom_type_script = "uid://d21tebxx08yd3"
+
+[node name="Hand" type="Node2D" parent="Dude/Arm Right" unique_id=887294284 node_paths=PackedStringArray("gun", "ray", "board")]
+position = Vector2(125, -15)
+script = ExtResource("9_hptm8")
+gun = NodePath("Gun")
+ray = NodePath("Gun/RayCast2D")
+board = NodePath("../../../Board")
+
+[node name="Gun" type="Sprite2D" parent="Dude/Arm Right/Hand" unique_id=2057225534]
+position = Vector2(-0.31702328, -1.2738876)
+rotation = 0.829154
+texture = ExtResource("8_344ge")
+offset = Vector2(-37.98352, -20.308777)
+
+[node name="RayCast2D" type="RayCast2D" parent="Dude/Arm Right/Hand/Gun" unique_id=1542682832]
+position = Vector2(-84.922195, -41.610516)
+target_position = Vector2(-1482.9092, -2.3120728)
+
+[node name="Arm Left" type="Node2D" parent="Dude" unique_id=636013504]
+
+[node name="LiveLimb" type="Line2D" parent="Dude/Arm Left" unique_id=1687019625 node_paths=PackedStringArray("target")]
+position = Vector2(-28, 18)
+points = PackedVector2Array(0, 0, -62.33008, 24.152222, -97, -33)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("9_ynf5e")
+target = NodePath("../Hand")
+flip = true
+bezier = true
+metadata/_custom_type_script = "uid://d21tebxx08yd3"
+
+[node name="Hand" type="Node2D" parent="Dude/Arm Left" unique_id=2036872053 node_paths=PackedStringArray("gun", "ray", "board")]
+position = Vector2(-125, -15)
+script = ExtResource("9_hptm8")
+gun = NodePath("Gun")
+flip = -1
+ray = NodePath("Gun/RayCast2D")
+board = NodePath("../../../Board")
+
+[node name="Gun" type="Sprite2D" parent="Dude/Arm Left/Hand" unique_id=1472099343]
+position = Vector2(-1.5080032, -1.2738914)
+rotation = -0.8290314
+texture = ExtResource("8_344ge")
+offset = Vector2(31.045227, -26.402344)
+flip_h = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Dude/Arm Left/Hand/Gun" unique_id=1820929679]
+position = Vector2(77.305695, -48.447147)
+target_position = Vector2(1796.0073, 40.19519)
 
 [node name="Body" type="Sprite2D" parent="Dude" unique_id=70389479]
 self_modulate = Color(0, 0, 0, 1)
@@ -236,5 +307,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death Area" unique_id=570535150]
 position = Vector2(49.5, -18)
 shape = SubResource("RectangleShape2D_cpkcx")
+
+[node name="Shot Line" type="Line2D" parent="." unique_id=1463574616]
+position = Vector2(115, -283)
+points = PackedVector2Array(866, 81, 0, 0)
 
 [connection signal="body_entered" from="Death Area" to="Board" method="die"]
