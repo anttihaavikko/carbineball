@@ -10,6 +10,8 @@ class_name Board extends Node2D
 @export var saver_buttons: ButtonSet
 @export var ball_lock: BallLock
 @export var sun: Sunny
+@export var burst: Burst
+@export var cam: Camera
 
 var started := false
 var balls: Array[Ball] = []
@@ -52,9 +54,13 @@ func reset():
 
 func die(node: Node):
 	if node is Ball:
+		burst.global_position = node.global_position
+		cam.shake(25, 0.3)
+		burst.play()
 		node.queue_free()
 		balls.remove_at(balls.find(node))
 		if balls.size() == 0:
+			await get_tree().create_timer(0.5).timeout
 			call_deferred("reset")
 
 func entered_bad_zone(node: Node):

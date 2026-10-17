@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://b2gfrikyseqk" path="res://_Starter/Scripts/line_drawer.gd" id="2_d1ilt"]
 [ext_resource type="Script" uid="uid://ct7rhapds5qbb" path="res://Scripts/board.gd" id="2_kry3j"]
+[ext_resource type="Script" uid="uid://ova7wngb7x7i" path="res://_Starter/Scripts/camera.gd" id="3_1w6v2"]
 [ext_resource type="Script" uid="uid://uq5uddkuj305" path="res://Scripts/dude.gd" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://bg23xdidtnsgd" path="res://Scripts/retractor.gd" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://ktqgft2vo86g" path="res://Scenes/ball.tscn" id="5_6bp64"]
@@ -25,6 +26,7 @@
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
 [ext_resource type="Script" uid="uid://cahkyqjkmgnwc" path="res://_Starter/Scripts/visible_node.gd" id="20_3pmx8"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
+[ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -60,6 +62,10 @@ size = Vector2(14840, 2276)
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1bgf"]
 radius = 75.00667
 
+[sub_resource type="Curve" id="Curve_cbgmd"]
+_data = [Vector2(0, 0.44931507), 0.0, 0.9319281, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Main" type="Node2D" unique_id=619511135]
 
 [node name="DevRestart" type="Node" parent="." unique_id=1485280152]
@@ -70,6 +76,10 @@ metadata/_custom_type_script = "uid://b0fr17vp8abvx"
 script = ExtResource("2_d1ilt")
 line = NodePath("../Shot Line")
 metadata/_custom_type_script = "uid://b2gfrikyseqk"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1254553476]
+position = Vector2(961, 541)
+script = ExtResource("3_1w6v2")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1870561501]
 offset_left = -1329.0
@@ -193,7 +203,7 @@ board = NodePath("../../../Board")
 position = Vector2(0, 5.914795)
 scale = Vector2(1.6293973, 1.6293973)
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -205,6 +215,8 @@ saver_right = NodePath("Saver Right")
 saver_buttons = NodePath("Saver Buttons")
 ball_lock = NodePath("Ball Lock")
 sun = NodePath("../Sun")
+burst = NodePath("../Burst")
+cam = NodePath("../Camera2D")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -756,6 +768,74 @@ polygon = PackedVector2Array(331, 842, 620, 841, 334, 551)
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Bad Zones" unique_id=1058317709]
 position = Vector2(947, -2)
 polygon = PackedVector2Array(331, 842, 620, 841, 618, 572)
+
+[node name="Burst" type="Node2D" parent="." unique_id=142651107]
+z_index = 100
+position = Vector2(744, 1082)
+script = ExtResource("26_cbgmd")
+hide_chance = 0.4
+metadata/_custom_type_script = "uid://3g8mgivqrdc4"
+
+[node name="Line2D" type="Line2D" parent="Burst" unique_id=1743364185]
+visible = false
+points = PackedVector2Array(0, 0, -92, -1587)
+width = 120.0
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D2" type="Line2D" parent="Burst" unique_id=1090474691]
+visible = false
+points = PackedVector2Array(0, 0, 45, -1309)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D3" type="Line2D" parent="Burst" unique_id=1720292547]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -19.601929, -1373.6699)
+width = 53.27
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D4" type="Line2D" parent="Burst" unique_id=17803115]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -415.99316, -1312.8423)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D5" type="Line2D" parent="Burst" unique_id=588207682]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -573.46826, -1412.8752)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D6" type="Line2D" parent="Burst" unique_id=1178915876]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -432.35226, -1536.7472)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D7" type="Line2D" parent="Burst" unique_id=1244584231]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, -109.19452, -1608.4766)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D8" type="Line2D" parent="Burst" unique_id=1749806435]
+visible = false
+rotation = 0.13979748
+points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
+
+[node name="Line2D9" type="Line2D" parent="Burst" unique_id=1297816528]
+visible = false
+rotation = -0.37285432
+points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
+width = 45.42
+width_curve = SubResource("Curve_cbgmd")
 
 [connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
 [connection signal="used" from="Board/Saver Right" to="Board/Ball Lock" method="toggle_right"]

@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if not target:
-		target = board.balls[0]
+		if board.balls.size() > 0: target = board.balls[0]
 		return
 	var pos := target.global_position
 	target_pos = original_pos.move_toward(to_local(pos), delta * 60 * 100).normalized() * distance
