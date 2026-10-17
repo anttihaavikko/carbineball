@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
 [ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="12_jwpg7"]
 [ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
+[ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="15_pdsj5"]
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
 [ext_resource type="Texture2D" uid="uid://c6etrnelspok1" path="res://Sprites/sun_halo.png" id="19_hdf80"]
 [ext_resource type="Script" uid="uid://cahkyqjkmgnwc" path="res://_Starter/Scripts/visible_node.gd" id="20_3pmx8"]
@@ -39,6 +40,7 @@
 [ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="29_6vcvc"]
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
+[ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -204,6 +206,25 @@ position = Vector2(1443, 160)
 position = Vector2(971, 117)
 offset = Vector2(-971, -117)
 polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 1945, 489, 42, 415)
+
+[node name="Sign" type="Sprite2D" parent="." unique_id=617540960]
+self_modulate = Color(0.68289727, 0.36716983, 0.20488298, 1)
+position = Vector2(960, 1104)
+scale = Vector2(2.78405, 2.78405)
+texture = ExtResource("40_aqgau")
+offset = Vector2(-0.35916138, -66.09073)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sign" unique_id=2081668577]
+self_modulate = Color(0.9268312, 0.629104, 0.48638684, 1)
+offset_left = -86.20536
+offset_top = -137.21019
+offset_right = 87.28292
+offset_bottom = -51.36403
+theme = ExtResource("29_6vcvc")
+bbcode_enabled = true
+text = "Bump the ball or shoot (with [img=12]res://_Starter/Sprites/mouse_click.png[/img] or [img=12]res://_Starter/Sprites/mouse_right.png[/img]) it to get started..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1254553476]
 position = Vector2(961, 541)
@@ -405,7 +426,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -421,6 +442,7 @@ burst = NodePath("../Burst")
 cam = NodePath("../Camera2D")
 yellow = Color(0.9764706, 0.90588236, 0.5176471, 1)
 red = Color(0.9726061, 0.77588844, 0.7609485, 1)
+help_message = NodePath("../Sign/RichTextLabel")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -557,23 +579,29 @@ position = Vector2(31, -154)
 scale = Vector2(0.32391077, 0.32391077)
 remote_path = NodePath("../../Round Bumper3")
 
-[node name="Multi" type="Sprite2D" parent="Board/Rotating Area" unique_id=597047214]
+[node name="Multi" type="Node2D" parent="Board/Rotating Area" unique_id=1897954470]
 self_modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.17095001, 0.17095001)
+
+[node name="Visuals" type="Sprite2D" parent="Board/Rotating Area/Multi" unique_id=177156299]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(1.0020865, 1.0020865)
 texture = ExtResource("2_bo1nx")
 
-[node name="Fill" type="Sprite2D" parent="Board/Rotating Area/Multi" unique_id=202550059]
+[node name="Fill" type="Sprite2D" parent="Board/Rotating Area/Multi/Visuals" unique_id=202550059]
 self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
-scale = Vector2(0.80213434, 0.80213434)
+scale = Vector2(0.8004641, 0.8004641)
 texture = ExtResource("2_bo1nx")
 
-[node name="Plus" type="Sprite2D" parent="Board/Rotating Area/Multi" unique_id=347105021]
+[node name="Plus" type="Sprite2D" parent="Board/Rotating Area/Multi/Visuals" unique_id=347105021]
 material = SubResource("ShaderMaterial_536cc")
-scale = Vector2(1.6829134, 1.6829134)
+scale = Vector2(1.6794091, 1.6794091)
 texture = ExtResource("34_536cc")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Board/Rotating Area/Multi" unique_id=1756901750]
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Board/Rotating Area/Multi" unique_id=1756901750 node_paths=PackedStringArray("visuals")]
 physics_material_override = SubResource("PhysicsMaterial_7cvyb")
+script = ExtResource("15_pdsj5")
+visuals = NodePath("../Visuals")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Rotating Area/Multi/AnimatableBody2D" unique_id=1410353457]
 shape = SubResource("CircleShape2D_7cvyb")

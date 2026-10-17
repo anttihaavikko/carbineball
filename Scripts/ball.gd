@@ -21,9 +21,11 @@ func hit(other: Node):
 		last_hits.append(other)
 	if dupes == 10:
 		board.pop("[font_size=75][shake level 20]TILT WARNING!", global_position, board.red)
+		board.cam.shake(10, 0.2)
 	if dupes == 15:
 		Effects.singleton.add_many([0, 1, 2, 3, 4], global_position)
 		board.pop("[font_size=80][shake level 20]TILT!", global_position, board.red)
+		board.cam.shake(20, 0.3)
 		board.balls.remove_at(board.balls.find(self))
 		board.reset_after(1.0)
 		queue_free()

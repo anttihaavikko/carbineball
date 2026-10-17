@@ -9,7 +9,7 @@ class_name BallLock extends Node2D
 @export var left_trigger: BumperButton
 @export var right_trigger: BumperButton
 
-var balls := 2
+var balls := 0
 var mid := false
 var left := false
 var right := false
@@ -58,6 +58,8 @@ func toggle_markers():
 	label.modulate = Color.WHITE if is_enabled() else off_color
 	left_trigger.locked = !can_start
 	right_trigger.locked = !can_start
+	left_trigger.label.visible = can_start
+	right_trigger.label.visible = can_start
 
 func reset():
 	left = false

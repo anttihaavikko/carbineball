@@ -14,10 +14,12 @@ class_name Board extends Node2D
 @export var cam: Camera
 @export var yellow: Color
 @export var red: Color
+@export var help_message: RichTextLabel
 
 var started := false
 var balls: Array[Ball] = []
 var multi := 1
+var balls_left := 3
 
 func _ready() -> void:
 	reset()
@@ -45,15 +47,16 @@ func apply_savers():
 
 func start():
 	if started: return
+	help_message.text = "Okay, here we go!"
 	holder_left.retract()
 	holder_right.retract()
 
 func add_score(amount: int, pos: Vector2):
-	pop(str(amount * multi), pos)
+	pop(Utils.as_score(amount * multi), pos)
 
 func reset_after(delay: float):
 	await get_tree().create_timer(delay).timeout
-	reset()
+	next()
 
 func reset():
 	spawn_ball()
@@ -77,6 +80,15 @@ func increment_multi(pos: Vector2):
 	multi += 1
 	pop("x%d" % [multi], pos, yellow)
 
+func next():
+	balls_left -= 1
+	if balls_left == 0:
+		help_message.text = "GAME OVER!"
+		return
+	var left = "got 1 more ball" if balls_left == 1 else "still got %d balls" % [balls_left]
+	help_message.text = "Aww, too bad!\nBut you've %s left..." % [left]
+	reset()
+
 func die(node: Node):
 	if node is Ball:
 		burst.global_position = node.global_position
@@ -86,7 +98,7 @@ func die(node: Node):
 		balls.remove_at(balls.find(node))
 		if balls.size() == 0 and not ball_lock.spawning:
 			await get_tree().create_timer(0.5).timeout
-			call_deferred("reset")
+			call_deferred("next")
 
 func entered_bad_zone(node: Node):
 	if node is Dude:

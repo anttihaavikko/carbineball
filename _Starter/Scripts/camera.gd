@@ -6,6 +6,7 @@ var duration := 0.0
 var amount := 0.0
 
 func shake(amt: float, dur: float):
+	if amt > amt and duration > 0: return
 	duration = dur
 	amount = amt
 

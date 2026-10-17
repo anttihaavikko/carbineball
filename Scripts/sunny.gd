@@ -17,8 +17,6 @@ func _ready() -> void:
 	right_origin = right.global_position
 	left_rot = left.rotation
 	right_rot = right.rotation
-	await get_tree().create_timer(1).timeout
-	angry()
 
 func angry():
 	if emoting: return
