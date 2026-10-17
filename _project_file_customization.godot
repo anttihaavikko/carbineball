@@ -1,0 +1,15 @@
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/": "teal",
+"res://Scripts/": "orange",
+"res://Shaders/": "purple",
+"res://Sounds/": "yellow",
+"res://Sprites/": "red",
+"res://_Starter/": "pink",
+"res://_Starter/Scenes/": "green",
+"res://_Starter/Scripts/": "orange",
+"res://_Starter/Shaders/": "purple",
+"res://_Starter/Sprites/": "red"
+}

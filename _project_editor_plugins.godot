@@ -1,0 +1,4 @@
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/info/plugin.cfg", "res://addons/palette/plugin.cfg")

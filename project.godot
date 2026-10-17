@@ -1,0 +1,52 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Pinball"
+run/main_scene="uid://vf7dgj6kl1vn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/info/plugin.cfg", "res://addons/palette/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/": "teal",
+"res://Scripts/": "orange",
+"res://Shaders/": "purple",
+"res://Sounds/": "yellow",
+"res://Sprites/": "red",
+"res://_Starter/": "pink",
+"res://_Starter/Scenes/": "green",
+"res://_Starter/Scripts/": "orange",
+"res://_Starter/Shaders/": "purple",
+"res://_Starter/Sprites/": "red"
+}
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

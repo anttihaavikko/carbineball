@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://br12xdbg6b0p1"]
+
+[ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="1_bo1fr"]
+
+[node name="Button" type="Button" unique_id=392404427]
+custom_minimum_size = Vector2(150, 70)
+offset_right = 240.0
+offset_bottom = 86.0
+theme = ExtResource("1_bo1fr")
+theme_override_constants/h_separation = 4
+theme_override_constants/icon_max_width = 40
+theme_override_font_sizes/font_size = 30
+text = "HELLO"
+expand_icon = true
