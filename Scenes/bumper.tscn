@@ -12,9 +12,13 @@ bounce = 5.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1l0as"]
 height = 604.0932
 
-[node name="Bumper" type="Sprite2D" unique_id=681354212]
+[node name="Bumper" type="Node2D" unique_id=1134524076]
 scale = Vector2(0.7186184, 0.7186184)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1629563710]
+position = Vector2(161.42085, 161.42085)
 texture = ExtResource("1_gmmk5")
+offset = Vector2(-161.42085, -161.42085)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=456564391]
 position = Vector2(8.349365, 0)
@@ -25,12 +29,13 @@ physics_material_override = SubResource("PhysicsMaterial_21xkr")
 position = Vector2(-2002.7721, -940.08014)
 polygon = PackedVector2Array(1868.7106, 1118.4233, 1858.7466, 1097.2639, 2139.5513, 785.91907, 2155.856, 794.98737, 2160.3853, 1103.3094, 2147.7036, 1118.4233)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=546123511]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=546123511 node_paths=PackedStringArray("visuals")]
 position = Vector2(5.566236, 5.566236)
 rotation = 0.77298
 physics_material_override = SubResource("PhysicsMaterial_1l0as")
 script = ExtResource("2_1l0as")
 score = 100
+visuals = NodePath("../Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=38756652]
 rotation = 0.010141617

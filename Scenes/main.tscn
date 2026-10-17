@@ -25,7 +25,6 @@
 [ext_resource type="Script" uid="uid://blkmne3taoehe" path="res://Scripts/hand.gd" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://dkv55r634eg3b" path="res://Scenes/button.tscn" id="9_k12tt"]
 [ext_resource type="Script" uid="uid://d21tebxx08yd3" path="res://_Starter/Scripts/limb_live.gd" id="9_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://cq2l5pra5v8gg" path="res://Scenes/round_bumper.tscn" id="11_b3802"]
 [ext_resource type="Script" uid="uid://6vw1i8bs08bl" path="res://Scripts/rotating_area.gd" id="11_fevyy"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
 [ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="12_jwpg7"]
@@ -39,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://ts28k0yp7xc4" path="res://Sprites/saver_bg.png" id="23_neg2b"]
 [ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="29_6vcvc"]
+[ext_resource type="Texture2D" uid="uid://cg0hee5ygajqg" path="res://Sprites/round_bumper.png" id="34_8cuat"]
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
 
@@ -66,6 +66,12 @@ absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7cvyb"]
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cvyb"]
+radius = 222.81879
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_536cc"]
 shader = ExtResource("12_jwpg7")
 shader_parameter/amount = 12.0
@@ -75,10 +81,10 @@ shader_parameter/speed = 0.1
 shader_parameter/peaks = 7.0
 shader_parameter/time_mod = 1.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7cvyb"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o1aky"]
 bounce = 2.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7cvyb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwxat"]
 radius = 232.55157
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fevyy"]
@@ -123,7 +129,7 @@ metadata/_edit_lock_ = true
 [node name="Back Trees" type="Node2D" parent="." unique_id=1377650473]
 modulate = Color(0.9249347, 0.6238935, 0.4766543, 1)
 z_index = -10
-position = Vector2(38.999996, 816.00006)
+position = Vector2(38.000004, 668.00006)
 scale = Vector2(0.671913, 0.671913)
 
 [node name="Tree" parent="Back Trees" unique_id=1110862205 instance=ExtResource("1_e08e2")]
@@ -163,7 +169,7 @@ position = Vector2(2143.1345, 93.762115)
 position = Vector2(2361.9128, 74.414375)
 
 [node name="Tree13" parent="Back Trees" unique_id=31365039 instance=ExtResource("1_e08e2")]
-position = Vector2(2503.3003, 107.15671)
+position = Vector2(2503.3, 142.87552)
 
 [node name="Tree14" parent="Back Trees" unique_id=223172925 instance=ExtResource("1_e08e2")]
 position = Vector2(2659.5703, 157.75848)
@@ -171,12 +177,12 @@ position = Vector2(2659.5703, 157.75848)
 [node name="Polygon2D" type="Polygon2D" parent="Back Trees" unique_id=1540328276]
 position = Vector2(971, 117)
 offset = Vector2(-971, -117)
-polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 2332.147, 194.9657, 2580.691, 125.01611, 2726.5432, 200.91882, 2753.3325, 586.3854, 1945, 489, 42, 415)
+polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 2332.147, 194.9657, 2580.691, 125.01611, 2726.5432, 200.91882, 2783.0981, 599.7799, 1945, 489, 41.67206, 632.5222)
 
 [node name="Trees" type="Node2D" parent="." unique_id=1391566031]
 modulate = Color(0.83591425, 0.4813332, 0.3037173, 1)
 z_index = -10
-position = Vector2(-2, 844)
+position = Vector2(-2, 726)
 
 [node name="Tree" parent="Trees" unique_id=655034135 instance=ExtResource("1_e08e2")]
 position = Vector2(1642, 178)
@@ -551,33 +557,172 @@ position = Vector2(-117, 10)
 in_set = NodePath("..")
 board = NodePath("../..")
 
-[node name="Round Bumper" parent="Board" unique_id=1315277982 instance=ExtResource("11_b3802")]
-position = Vector2(1422, 304)
+[node name="Round Bumper" type="Node2D" parent="Board" unique_id=1315277982]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(1425, 338)
+scale = Vector2(0.32391077, 0.32391077)
 
-[node name="Round Bumper2" parent="Board" unique_id=1170194060 instance=ExtResource("11_b3802")]
-position = Vector2(1144, 258)
+[node name="Visuals" type="Sprite2D" parent="Board/Round Bumper" unique_id=1402226975]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.99760747, 0.99760747)
+texture = ExtResource("2_bo1nx")
 
-[node name="Round Bumper3" parent="Board" unique_id=1259518716 instance=ExtResource("11_b3802")]
-position = Vector2(1323, 60)
+[node name="Fill" type="Sprite2D" parent="Board/Round Bumper/Visuals" unique_id=202550059]
+scale = Vector2(1.0885139, 1.0885139)
+texture = ExtResource("34_8cuat")
 
-[node name="Rotating Area" type="Node2D" parent="Board" unique_id=2133149037]
-position = Vector2(1292, 214)
+[node name="AnimatableBody2D" type="StaticBody2D" parent="Board/Round Bumper" unique_id=1288405051 node_paths=PackedStringArray("visuals")]
+physics_material_override = SubResource("PhysicsMaterial_7cvyb")
+script = ExtResource("15_pdsj5")
+visuals = NodePath("../Visuals")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Round Bumper/AnimatableBody2D" unique_id=1410353457]
+shape = SubResource("CircleShape2D_7cvyb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Board/Round Bumper" unique_id=1000207038]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -172.8871
+offset_top = -169.79985
+offset_right = 154.36351
+offset_bottom = 166.7126
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/normal_font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Round Bumper2" type="Node2D" parent="Board" unique_id=1170194060]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(1147, 292)
+scale = Vector2(0.32391077, 0.32391077)
+
+[node name="Visuals" type="Sprite2D" parent="Board/Round Bumper2" unique_id=1062064744]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.99760747, 0.99760747)
+texture = ExtResource("2_bo1nx")
+
+[node name="Fill" type="Sprite2D" parent="Board/Round Bumper2/Visuals" unique_id=812875680]
+scale = Vector2(1.0885139, 1.0885139)
+texture = ExtResource("34_8cuat")
+
+[node name="AnimatableBody2D" type="StaticBody2D" parent="Board/Round Bumper2" unique_id=1750788111 node_paths=PackedStringArray("visuals")]
+physics_material_override = SubResource("PhysicsMaterial_7cvyb")
+script = ExtResource("15_pdsj5")
+visuals = NodePath("../Visuals")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Round Bumper2/AnimatableBody2D" unique_id=360826604]
+shape = SubResource("CircleShape2D_7cvyb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Board/Round Bumper2" unique_id=294495049]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -172.8871
+offset_top = -169.79985
+offset_right = 154.36351
+offset_bottom = 166.7126
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/normal_font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Round Bumper3" type="Node2D" parent="Board" unique_id=1259518716]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(1326, 94)
+scale = Vector2(0.32391077, 0.32391077)
+
+[node name="Visuals" type="Sprite2D" parent="Board/Round Bumper3" unique_id=17076789]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.99760747, 0.99760747)
+texture = ExtResource("2_bo1nx")
+
+[node name="Fill" type="Sprite2D" parent="Board/Round Bumper3/Visuals" unique_id=412287112]
+scale = Vector2(1.0885139, 1.0885139)
+texture = ExtResource("34_8cuat")
+
+[node name="AnimatableBody2D" type="StaticBody2D" parent="Board/Round Bumper3" unique_id=1364216694 node_paths=PackedStringArray("visuals")]
+physics_material_override = SubResource("PhysicsMaterial_7cvyb")
+script = ExtResource("15_pdsj5")
+visuals = NodePath("../Visuals")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Round Bumper3/AnimatableBody2D" unique_id=672521666]
+shape = SubResource("CircleShape2D_7cvyb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Board/Round Bumper3" unique_id=2101212952]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -172.8871
+offset_top = -169.79985
+offset_right = 154.36351
+offset_bottom = 166.7126
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/normal_font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rotating Area" type="Node2D" parent="Board" unique_id=2133149037 node_paths=PackedStringArray("bumper1", "bumper2", "bumper3", "board")]
+position = Vector2(1295, 248)
 script = ExtResource("11_fevyy")
+bumper1 = NodePath("Spot 1/RichTextLabel")
+bumper2 = NodePath("Spot2/RichTextLabel")
+bumper3 = NodePath("Spot3/RichTextLabel")
+board = NodePath("..")
 
 [node name="Spot 1" type="RemoteTransform2D" parent="Board/Rotating Area" unique_id=702039613]
 position = Vector2(130, 90)
 scale = Vector2(0.32391077, 0.32391077)
 remote_path = NodePath("../../Round Bumper")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Board/Rotating Area/Spot 1" unique_id=363138478]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -172.8871
+offset_top = -169.79985
+offset_right = 154.36351
+offset_bottom = 166.7126
+pivot_offset = Vector2(172.8872, 166.71259)
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/normal_font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Spot2" type="RemoteTransform2D" parent="Board/Rotating Area" unique_id=57050849]
 position = Vector2(-148, 44)
 scale = Vector2(0.32391077, 0.32391077)
 remote_path = NodePath("../../Round Bumper2")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Board/Rotating Area/Spot2" unique_id=1641951976]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -172.8871
+offset_top = -169.79985
+offset_right = 154.36351
+offset_bottom = 166.7126
+pivot_offset = Vector2(169.80005, 166.71259)
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/normal_font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Spot3" type="RemoteTransform2D" parent="Board/Rotating Area" unique_id=905666368]
 position = Vector2(31, -154)
 scale = Vector2(0.32391077, 0.32391077)
 remote_path = NodePath("../../Round Bumper3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Board/Rotating Area/Spot3" unique_id=2141328207]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -172.8871
+offset_top = -169.79985
+offset_right = 154.36351
+offset_bottom = 166.7126
+pivot_offset = Vector2(172.8872, 169.79985)
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/normal_font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Multi" type="Node2D" parent="Board/Rotating Area" unique_id=1897954470]
 self_modulate = Color(0, 0, 0, 1)
@@ -588,7 +733,7 @@ self_modulate = Color(0, 0, 0, 1)
 scale = Vector2(1.0020865, 1.0020865)
 texture = ExtResource("2_bo1nx")
 
-[node name="Fill" type="Sprite2D" parent="Board/Rotating Area/Multi/Visuals" unique_id=202550059]
+[node name="Fill" type="Sprite2D" parent="Board/Rotating Area/Multi/Visuals" unique_id=217326259]
 self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
 scale = Vector2(0.8004641, 0.8004641)
 texture = ExtResource("2_bo1nx")
@@ -599,12 +744,12 @@ scale = Vector2(1.6794091, 1.6794091)
 texture = ExtResource("34_536cc")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="Board/Rotating Area/Multi" unique_id=1756901750 node_paths=PackedStringArray("visuals")]
-physics_material_override = SubResource("PhysicsMaterial_7cvyb")
+physics_material_override = SubResource("PhysicsMaterial_o1aky")
 script = ExtResource("15_pdsj5")
 visuals = NodePath("../Visuals")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Rotating Area/Multi/AnimatableBody2D" unique_id=1410353457]
-shape = SubResource("CircleShape2D_7cvyb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Rotating Area/Multi/AnimatableBody2D" unique_id=192776239]
+shape = SubResource("CircleShape2D_kwxat")
 
 [node name="Ball Lock" type="Sprite2D" parent="Board" unique_id=34788498 node_paths=PackedStringArray("area", "board", "markers", "label", "count_label", "left_trigger", "right_trigger")]
 self_modulate = Color(0, 0, 0, 1)
@@ -1038,5 +1183,9 @@ polygon = PackedVector2Array(331, 842, 620, 841, 618, 572)
 [connection signal="used" from="Board/Rotate Button" to="Board/Rotating Area" method="rotate_left"]
 [connection signal="used" from="Board/Rotate Left" to="Board/Rotating Area" method="rotate_right"]
 [connection signal="when_all_on" from="Board/Saver Buttons" to="Board" method="apply_savers"]
+[connection signal="hit" from="Board/Round Bumper/AnimatableBody2D" to="Board/Rotating Area" method="score"]
+[connection signal="hit" from="Board/Round Bumper2/AnimatableBody2D" to="Board/Rotating Area" method="score"]
+[connection signal="hit" from="Board/Round Bumper3/AnimatableBody2D" to="Board/Rotating Area" method="score"]
+[connection signal="hit" from="Board/Rotating Area/Multi/AnimatableBody2D" to="Board/Rotating Area" method="increment"]
 [connection signal="body_entered" from="Death Area" to="Board" method="die"]
 [connection signal="body_entered" from="Bad Zones" to="Board" method="entered_bad_zone"]

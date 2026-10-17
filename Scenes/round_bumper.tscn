@@ -8,7 +8,7 @@
 bounce = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cvyb"]
-radius = 232.55157
+radius = 222.81879
 
 [node name="Round Bumper" type="Node2D" unique_id=1766371253]
 self_modulate = Color(0, 0, 0, 1)
