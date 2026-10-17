@@ -507,7 +507,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "lines", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -527,6 +527,7 @@ help_message = NodePath("../Sign/RichTextLabel")
 score_label = NodePath("../CanvasLayer/Score")
 multi_label = NodePath("../CanvasLayer/Multi")
 bonus_game_display = NodePath("../Sign/Bonus Game")
+balls_label = NodePath("../CanvasLayer/Balls")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -1313,6 +1314,24 @@ position = Vector2(947, -2)
 polygon = PackedVector2Array(331, 842, 620, 841, 618, 572)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1900353573]
+
+[node name="Balls" type="RichTextLabel" parent="CanvasLayer" unique_id=1210889144]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 17.0
+offset_top = -50.0
+offset_right = -38.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 150
+text = "•••"
+vertical_alignment = 1
+text_direction = 1
 
 [node name="Score" type="RichTextLabel" parent="CanvasLayer" unique_id=1903292123]
 anchors_preset = 10

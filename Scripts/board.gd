@@ -18,6 +18,7 @@ class_name Board extends Node2D
 @export var score_label: RichTextLabel
 @export var multi_label: RichTextLabel
 @export var bonus_game_display: RichTextLabel
+@export var balls_label: RichTextLabel
 
 var started := false
 var max_multi := 100
@@ -134,6 +135,11 @@ func increment_multi(pos: Vector2, amount: int = 1):
 
 func next():
 	balls_left -= 1
+
+	balls_label.text = ""
+	for b in balls_left:
+		balls_label.text += "•"
+
 	if balls_left == 0:
 		help_message.text = "GAME OVER!"
 		return
