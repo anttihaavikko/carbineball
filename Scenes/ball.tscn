@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://xpxovkbp7l1f" path="res://Scripts/ball.gd" id="1_ij5cq"]
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="2_376qj"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="3_376qj"]
+[ext_resource type="Texture2D" uid="uid://b3niapxr0sin8" path="res://Sprites/star.png" id="3_aw2wy"]
+[ext_resource type="Texture2D" uid="uid://bjyx60wqh2xnp" path="res://Sprites/skull.png" id="3_vblhy"]
 [ext_resource type="Script" uid="uid://bg61yohsj8qnu" path="res://Scripts/looker.gd" id="3_yk4cr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kry3j"]
@@ -14,7 +16,7 @@ radius = 47.010635
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_376qj"]
 blend_mode = 1
 
-[node name="Ball" type="RigidBody2D" unique_id=1932390979]
+[node name="Ball" type="RigidBody2D" unique_id=1932390979 node_paths=PackedStringArray("visuals", "shapes", "face")]
 collision_layer = 2
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_kry3j")
@@ -22,9 +24,20 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 0.5
 script = ExtResource("1_ij5cq")
+visuals = [NodePath("Broll"), NodePath("Skull"), NodePath("Starll")]
+shapes = [NodePath("Round Shape"), NodePath("Skull Shape"), NodePath("Star Shape")]
+face = NodePath("Looker/Face")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=157506610]
+[node name="Round Shape" type="CollisionShape2D" parent="." unique_id=157506610]
 shape = SubResource("CircleShape2D_8gbba")
+
+[node name="Star Shape" type="CollisionPolygon2D" parent="." unique_id=1836516245]
+polygon = PackedVector2Array(0, -66, 25, -28, 68, -17, 40, 19, 43, 64, 0, 47, -42, 65, -40, 18, -69, -16, -24, -28)
+disabled = true
+
+[node name="Skull Shape" type="CollisionPolygon2D" parent="." unique_id=1862019503]
+polygon = PackedVector2Array(2, -45, 27, -38, 45, -14, 45, 16, 30, 36, 16, 31, 16, 45, -12, 45, -13, 33, -29, 36, -43, 16, -45, -11, -28, -37)
+disabled = true
 
 [node name="Trail Dots" type="CPUParticles2D" parent="." unique_id=545890073]
 material = SubResource("CanvasItemMaterial_376qj")
@@ -35,15 +48,26 @@ scale_amount_min = 0.05
 scale_amount_max = 0.05
 color = Color(1, 1, 1, 0.13725491)
 
-[node name="Body" type="Sprite2D" parent="." unique_id=2043940934]
+[node name="Broll" type="Sprite2D" parent="." unique_id=2043940934]
 self_modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.19886917, 0.19886917)
 texture = ExtResource("2_376qj")
 
-[node name="Fill" type="Sprite2D" parent="Body" unique_id=573618181]
+[node name="Fill" type="Sprite2D" parent="Broll" unique_id=573618181]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
 scale = Vector2(0.86799544, 0.86799544)
 texture = ExtResource("2_376qj")
+
+[node name="Skull" type="Sprite2D" parent="." unique_id=1254395735]
+visible = false
+scale = Vector2(0.5774972, 0.5774972)
+texture = ExtResource("3_vblhy")
+
+[node name="Starll" type="Sprite2D" parent="." unique_id=153541991]
+visible = false
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+scale = Vector2(0.7426239, 0.7426239)
+texture = ExtResource("3_aw2wy")
 
 [node name="Looker" type="Node2D" parent="." unique_id=5777979]
 script = ExtResource("3_yk4cr")

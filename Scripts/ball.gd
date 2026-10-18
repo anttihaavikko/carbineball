@@ -1,10 +1,15 @@
 class_name Ball extends RigidBody2D
 
+@export var visuals: Array[Node2D]
+@export var shapes: Array[Node2D]
+@export var face: Face
+
 var board: Board
 var locked := false
 var bonked := false
 var last_hits: Array[Node] = []
 var dupes := 0
+var current: Personality = Personality.Broll
 
 enum Personality {
 	Broll,
@@ -41,6 +46,14 @@ func _process(_delta) -> void:
 	if global_position.y > 2500:
 		board.die(self)
 
+func use(personality: Personality):
+	visuals[current].hide()
+	shapes[current].disabled = true
+	current = personality
+	visuals[current].show()
+	shapes[current].disabled = false
+	face.visible = personality != Personality.Skull
+
 func hit(other: Node):
 	if linear_velocity.length() > 40:
 		SoundEffects.singleton.add(3, global_position, minf(linear_velocity.length() * 0.005, 1))
@@ -49,10 +62,10 @@ func hit(other: Node):
 	else:
 		dupes = 0
 		last_hits.append(other)
-	if dupes == 10:
+	if dupes == 10 and board.started:
 		board.pop("[font_size=75][shake level 20]TILT WARNING!", global_position, board.red)
 		board.cam.shake(10, 0.2)
-	if dupes == 15:
+	if dupes == 15 and board.started:
 		Effects.singleton.add_many([0, 1, 2, 3, 4], global_position)
 		board.pop("[font_size=80][shake level 20]TILT!", global_position, board.red)
 		board.cam.shake(20, 0.3)

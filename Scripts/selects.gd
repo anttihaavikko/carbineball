@@ -18,6 +18,8 @@ var data: SaveData
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	data = SaveData.load()
+	cur_char = roundi(data.character) as Dude.Personality
+	cur_ball = roundi(data.ball) as Ball.Personality
 	show_selections()
 
 func show_selections():
@@ -29,6 +31,10 @@ func show_selections():
 	ball_name_label.text = Ball.get_title(cur_ball)
 	ball_desc_label.text = Utils.colorize(Ball.get_desc(cur_ball, ball_lock.visible), "#F1E8B8")
 	dude_wrap.dude.use(cur_char)
+	ball.use(cur_ball)
+	data.character = cur_char
+	data.ball = cur_ball
+	data.save()
 
 func next_char():
 	change_char(1)

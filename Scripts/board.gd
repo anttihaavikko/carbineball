@@ -30,6 +30,7 @@ var multi := 1
 var balls_left := 3
 var score = 0
 var bonus_game: BonusGame
+var save: SaveData
 var bonuses := [
 	BonusGame.Carousel,
 	BonusGame.SunnyBumpers,
@@ -42,13 +43,20 @@ enum BonusGame {
 	MultiBall
 }
 
+var dude_personality: Dude.Personality
+var ball_personality: Ball.Personality
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-	reset()
 	bonuses.shuffle()
 	change_bonus()
 	options.on_toggle.connect(options_toggled)
 	PhysicsServer2D.set_active(true)
+	save = SaveData.load()
+	dude_personality = roundi(save.character) as Dude.Personality
+	ball_personality = roundi(save.ball) as Ball.Personality
+	dude_wrapper.dude.use(dude_personality)
+	reset()
 
 func options_toggled(state: bool):
 	PhysicsServer2D.set_active(!state)
@@ -92,6 +100,7 @@ func create_ball(pos) -> Ball:
 	ball.board = self
 	add_child(ball)
 	balls.append(ball)
+	ball.use(ball_personality)
 	return ball
 
 func apply_savers():

@@ -1,7 +1,7 @@
 class_name SaveData extends Object
 
-var player := "Anon"
-var player_id := str(ResourceUID.create_id())
+var character := 0
+var ball := 0
 var characters := [true]
 var balls := [true]
 
