@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bjyx60wqh2xnp" path="res://Sprites/skull.png" id="3_vblhy"]
 [ext_resource type="Script" uid="uid://bg61yohsj8qnu" path="res://Scripts/looker.gd" id="3_yk4cr"]
 [ext_resource type="Texture2D" uid="uid://bfwmuh2ox6hhb" path="res://Sprites/horns.png" id="5_31idh"]
+[ext_resource type="Texture2D" uid="uid://crsvxhvs8dw2u" path="res://Sprites/duality.png" id="6_vm4s8"]
 [ext_resource type="Texture2D" uid="uid://8wv7hf1jvyl8" path="res://Sprites/brow.png" id="8_hk63f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kry3j"]
@@ -26,8 +27,8 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 0.5
 script = ExtResource("1_ij5cq")
-visuals = [NodePath("Broll"), NodePath("Skull"), NodePath("Starll"), NodePath("Diaball")]
-shapes = [NodePath("Round Shape"), NodePath("Skull Shape"), NodePath("Star Shape"), NodePath("Round Shape")]
+visuals = [NodePath("Broll"), NodePath("Skull"), NodePath("Starll"), NodePath("Diaball"), NodePath("Duality")]
+shapes = [NodePath("Round Shape"), NodePath("Skull Shape"), NodePath("Star Shape"), NodePath("Round Shape"), NodePath("Round Shape")]
 face = NodePath("Looker/Face")
 brow = NodePath("Looker/Face/Brow")
 
@@ -88,6 +89,17 @@ texture = ExtResource("5_31idh")
 self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
 scale = Vector2(0.86799544, 0.86799544)
 texture = ExtResource("2_376qj")
+
+[node name="Duality" type="Sprite2D" parent="." unique_id=1776221447]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.19886917, 0.19886917)
+texture = ExtResource("2_376qj")
+
+[node name="Fill" type="Sprite2D" parent="Duality" unique_id=1518518697]
+rotation = -0.3245759
+scale = Vector2(3.1169896, 3.1169896)
+texture = ExtResource("6_vm4s8")
 
 [node name="Looker" type="Node2D" parent="." unique_id=5777979]
 script = ExtResource("3_yk4cr")

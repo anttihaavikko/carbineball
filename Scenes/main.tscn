@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://8wv7hf1jvyl8" path="res://Sprites/brow.png" id="21_k2e45"]
 [ext_resource type="Texture2D" uid="uid://cdangjfii2hhk" path="res://Sprites/palm.png" id="22_dmskm"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
+[ext_resource type="Texture2D" uid="uid://b7j4b1p3cjel7" path="res://Sprites/thumbs_up.png" id="22_jut3y"]
 [ext_resource type="Texture2D" uid="uid://ts28k0yp7xc4" path="res://Sprites/saver_bg.png" id="23_neg2b"]
 [ext_resource type="Script" uid="uid://3g8mgivqrdc4" path="res://_Starter/Scripts/burst.gd" id="26_cbgmd"]
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="29_6vcvc"]
@@ -313,7 +314,7 @@ metadata/_custom_type_script = "uid://d21tebxx08yd3"
 [node name="Point" type="Node2D" parent="Sun/Body/Arm Right" unique_id=1642756758 node_paths=PackedStringArray("sprites")]
 position = Vector2(296, -108.43933)
 script = ExtResource("18_v2nl5")
-sprites = [NodePath("Pointer"), NodePath("Shrug"), NodePath("Palm")]
+sprites = [NodePath("Pointer"), NodePath("Shrug"), NodePath("Palm"), NodePath("Thumb")]
 
 [node name="Pointer" type="Sprite2D" parent="Sun/Body/Arm Right/Point" unique_id=1290280150]
 visible = false
@@ -336,6 +337,15 @@ self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
 position = Vector2(-18.999985, -4.9290543)
 scale = Vector2(0.49863896, 0.49863896)
 texture = ExtResource("22_dmskm")
+offset = Vector2(-2.005371, -124.55139)
+
+[node name="Thumb" type="Sprite2D" parent="Sun/Body/Arm Right/Point" unique_id=1215757384]
+visible = false
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+z_index = 1
+position = Vector2(24.000015, -6.9007306)
+scale = Vector2(0.49863896, 0.49863896)
+texture = ExtResource("22_jut3y")
 offset = Vector2(-2.005371, -124.55139)
 
 [node name="LineMimic" type="Line2D" parent="Sun/Body/Arm Right" unique_id=1617499568 node_paths=PackedStringArray("target")]
@@ -367,7 +377,7 @@ metadata/_custom_type_script = "uid://d21tebxx08yd3"
 [node name="Point" type="Node2D" parent="Sun/Body/Arm Left" unique_id=1697685463 node_paths=PackedStringArray("sprites")]
 position = Vector2(-307, -112.38257)
 script = ExtResource("18_v2nl5")
-sprites = [NodePath("Pointer"), NodePath("Shrug"), NodePath("Palm")]
+sprites = [NodePath("Pointer"), NodePath("Shrug"), NodePath("Palm"), NodePath("Thumb")]
 
 [node name="Pointer" type="Sprite2D" parent="Sun/Body/Arm Left/Point" unique_id=696727896]
 visible = false
@@ -392,6 +402,16 @@ self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
 position = Vector2(22.000015, -4.9290543)
 scale = Vector2(0.49863896, 0.49863896)
 texture = ExtResource("22_dmskm")
+offset = Vector2(-2.005371, -124.55139)
+flip_h = true
+
+[node name="Thumb" type="Sprite2D" parent="Sun/Body/Arm Left/Point" unique_id=1024243641]
+visible = false
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+z_index = 1
+position = Vector2(-17.999985, 0.9857502)
+scale = Vector2(0.49863896, 0.49863896)
+texture = ExtResource("22_jut3y")
 offset = Vector2(-2.005371, -124.55139)
 flip_h = true
 

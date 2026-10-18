@@ -62,6 +62,7 @@ func toggle_markers():
 	markers[1].visible = right
 	markers[2].visible = left
 	if is_enabled():
+		board.sun.thumbs_up()
 		var msg = ["ONLINE!", "WELCOME!", "PLEASE!", "AWAITING!"].pick_random()
 		board.pop(msg, global_position, board.yellow)
 	label.text = "[wave]LOCK ONLINE" if is_enabled() else "LOCK OFFLINE"
@@ -96,6 +97,7 @@ func enter(node: Node):
 		balls += 1
 		get_tree().create_tween().tween_property(node, "global_position", global_position, 0.3).set_trans(Tween.TRANS_QUAD)
 		board.do_notes(global_position, true)
+		board.sun.thumbs_up()
 		await get_tree().create_timer(0.5).timeout
 		board.do_notes(global_position, true)
 		reset()

@@ -135,6 +135,7 @@ func apply_savers():
 	SoundEffects.singleton.add(14, balls[0].global_position)
 	saver_left.reset()
 	saver_right.reset()
+	sun.thumbs_up()
 
 func start():
 	if started: return
@@ -149,7 +150,14 @@ func bonus_pop(pos: Vector2, for_multi: bool = false):
 
 func add_score(amount: int, pos: Vector2, source: BonusGame = BonusGame.SunnyBumpers):
 	var multiball_bonus = bonus_game == BonusGame.MultiBall and balls.size() > 1
-	var extra = 10 if source == bonus_game or multiball_bonus else 1
+	var bonus = source == bonus_game or multiball_bonus
+	var is_duality = ball_personality == Ball.Personality.Duality
+	if is_duality and not bonus:
+		var msg = ["NIL", "NONE", "NULL", "VOID", "ZIP", "ZERO", "NADA"].pick_random()
+		pop("[shake][font_size=45]%s" % [msg], pos + Vector2.UP * 55, red)
+		return
+	var duality_extra = 2 if is_duality and bonus else 1
+	var extra = 10 * duality_extra if bonus else 1
 	var amt = amount * multi * extra * balls.size()
 	if dude_personality == Dude.Personality.Aballon:
 		var parsed = str(amt)
@@ -163,6 +171,8 @@ func add_score(amount: int, pos: Vector2, source: BonusGame = BonusGame.SunnyBum
 	score_label.text = Utils.as_score(score)
 	if score >= 1_000_000:
 		unlock_character(Dude.Personality.Veteran)
+		if dude_personality == Dude.Personality.Veteran:
+			unlock_ball(Ball.Personality.Duality)
 	if str(score).contains("666"):
 		unlock_ball(Ball.Personality.Diaball)
 

@@ -5,7 +5,8 @@ class_name HandSwap extends Node2D
 enum HandSprite {
 	Pointer,
 	Shrug,
-	Palm
+	Palm,
+	ThumbsUp
 }
 
 var current: Node2D

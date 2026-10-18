@@ -16,7 +16,8 @@ enum Personality {
 	Broll,
 	Skull,
 	Starll,
-	Diaball
+	Diaball,
+	Duality
 }
 
 static func get_title(p: Personality) -> String:
@@ -24,7 +25,8 @@ static func get_title(p: Personality) -> String:
 		"Broll",
 		"Skull",
 		"Starll",
-		"Diaball"
+		"Diaball",
+		"Duality"
 	][p]
 
 static func get_desc(p: Personality, is_locked: bool) -> String:
@@ -33,7 +35,8 @@ static func get_desc(p: Personality, is_locked: bool) -> String:
 			"None",
 			"Die",
 			"Multiball",
-			"Have (666) appear in your (score)"
+			"Have (666) appear in your (score)",
+			"Score (a million) with (Veteran)"
 		][p]
 		return "[color=#F1E8B8]UNLOCK METHOD[/color]: %s" % [desc]
 
@@ -41,7 +44,8 @@ static func get_desc(p: Personality, is_locked: bool) -> String:
 		"A sentient (friendly) ball. No (special) powers.",
 		"(Bumps) increase (multiplier) by your (death) amount.",
 		"Gains an (extra ball) to all (multi ball) events.",
-		"(Doubles) your (score) if the (carousel) reads (666)."
+		"(Doubles) your (score) if the (carousel) reads (666).",
+		"Receive (more score) from (bonus games), (zero otherwise)."
 	][p]
 
 func _ready() -> void:
@@ -90,9 +94,11 @@ func hit(other: Node):
 		SoundEffects.singleton.add(4, global_position)
 		var bonus = board.bonus_game == Board.BonusGame.SunnyBumpers
 		if bonus: board.bonus_pop(mid, true)
-		board.increment_multi(mid, 5 if bonus else 1)
+		var boost = 10 if board.ball_personality == Personality.Duality else 5
+		board.increment_multi(mid, boost if bonus else 1)
 		board.cam.shake(7, 0.12)
 		do_notes()
+		other.thumbs_up()
 		board.ball_lock.toggle()
 	if other is Dude:
 		var is_loon = board.dude_personality == Dude.Personality.Loon

@@ -38,6 +38,16 @@ func angry():
 	reset_hand(true)
 	reset_hand(false)
 
+func thumbs_up():
+	if emoting: return
+	var use_left = sequence % 2 == 0
+	var offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+	move_hand(use_left, global_position + Vector2(-200 if use_left else 200, -120) + offset, 0)
+	change_hand(use_left, HandSwap.HandSprite.ThumbsUp)
+	sequence += 1
+	await get_tree().create_timer(0.5).timeout
+	reset_hand(use_left)
+
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed("click") and point_at_clicks:
 		point_at_mouse()
