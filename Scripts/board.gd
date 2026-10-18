@@ -25,6 +25,7 @@ class_name Board extends Node2D
 @export var unlock_panel: SlidingPanel
 @export var unlock_label: RichTextLabel
 @export var sun_zone: CollisionShape2D
+@export var leaderboards: Leaderboards
 
 var started := false
 var max_multi := 100
@@ -33,6 +34,7 @@ var multi := 1
 var balls_left := 3
 var score = 0
 var deaths = 0
+var events = 1
 var bonus_game: BonusGame
 var save: SaveData
 var bonuses := [
@@ -61,6 +63,7 @@ func _ready() -> void:
 	ball_personality = roundi(save.ball) as Ball.Personality
 	dude_wrapper.dude.use(dude_personality)
 	sun_zone.disabled = dude_personality == Dude.Personality.Starchild
+	max_multi = 200 if dude_personality == Dude.Personality.Veteran else 100
 	reset()
 
 func unlock_character(character: Dude.Personality):
@@ -104,6 +107,7 @@ func change_bonus():
 	if started:
 		pop("NEW BONUS GAME!", spawn_point.global_position + Vector2.DOWN * 100, yellow)
 		SoundEffects.singleton.add(16, spawn_point.global_position, 1.3)
+		events += 1
 
 func spawn_ball():
 	started = false
@@ -222,6 +226,7 @@ func next():
 		balls_label.text += "•"
 
 	if balls_left == 0:
+		leaderboards.submit(score, events)
 		help_message.text = "GAME OVER!"
 		dude_wrapper.dude.moves = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

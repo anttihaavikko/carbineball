@@ -45,6 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
 [ext_resource type="Script" uid="uid://cljxpxo8sqbx0" path="res://_Starter/Scripts/sliding_panel.gd" id="46_s8vy0"]
 [ext_resource type="Shader" uid="uid://tcp7boiajjvw" path="res://_Starter/Shaders/blur.gdshader" id="49_54nrm"]
+[ext_resource type="Script" uid="uid://ycuhajgaxxh7" path="res://_Starter/Scripts/leaderboards.gd" id="49_v2nl5"]
 [ext_resource type="Script" uid="uid://clg7ymun2dxb2" path="res://_Starter/Scripts/options_menu.gd" id="50_dmskm"]
 [ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="50_xdkp6"]
 [ext_resource type="Script" uid="uid://dkwkobpcq5j4v" path="res://_Starter/Scripts/appearer.gd" id="70_sasc4"]
@@ -518,7 +519,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper", "game_over_appearers", "unlock_panel", "unlock_label", "sun_zone")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper", "game_over_appearers", "unlock_panel", "unlock_label", "sun_zone", "leaderboards")]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
@@ -545,6 +546,7 @@ game_over_appearers = [NodePath("../CanvasLayer/Game Over Wrap"), NodePath("../C
 unlock_panel = NodePath("../CanvasLayer/Unlock Notification")
 unlock_label = NodePath("../CanvasLayer/Unlock Notification/ColorRect/ColorRect2/Content")
 sun_zone = NodePath("../Bad Zones/CollisionShape2D")
+leaderboards = NodePath("../Leaderboards")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -1533,6 +1535,15 @@ vertical_alignment = 1
 text_direction = 1
 
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("42_o1aky")]
+
+[node name="Leaderboards" type="VBoxContainer" parent="." unique_id=1269443070]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("49_v2nl5")
+game_name = "carbineball"
+per_page = 0
+load_on_start = false
+metadata/_custom_type_script = "uid://ycuhajgaxxh7"
 
 [connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
 [connection signal="used" from="Board/Saver Right" to="Board/Ball Lock" method="toggle_right"]

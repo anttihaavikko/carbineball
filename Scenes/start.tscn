@@ -226,14 +226,15 @@ offset_top = 678.0
 offset_right = 607.0
 offset_bottom = 1149.0
 script = ExtResource("5_7pwkw")
+game_name = "carbineball"
 row_prefab = ExtResource("6_5bn4p")
 metadata/_custom_type_script = "uid://ycuhajgaxxh7"
 
 [node name="Greeting" type="Label" parent="CanvasLayer" unique_id=1216539010]
 offset_left = 404.0
-offset_top = 16.0
+offset_top = 27.0
 offset_right = 595.0
-offset_bottom = 107.0
+offset_bottom = 118.0
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
@@ -243,9 +244,9 @@ text = "Hello"
 
 [node name="NameInput" type="LineEdit" parent="CanvasLayer" unique_id=1449689876 node_paths=PackedStringArray("rename_help", "leaderboards", "mimic")]
 offset_left = 613.0
-offset_top = -17.0
+offset_top = -6.0
 offset_right = 1487.0
-offset_bottom = 140.0
+offset_bottom = 151.0
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/selection_color = Color(0.8156863, 0.3254902, 0.3254902, 1)
@@ -278,7 +279,7 @@ input = NodePath("..")
 metadata/_custom_type_script = "uid://bjb4mt3denn8"
 
 [node name="Mover" type="Node2D" parent="CanvasLayer" unique_id=1416438060]
-position = Vector2(904, 66)
+position = Vector2(904, 77)
 script = ExtResource("9_jwunu")
 moves = true
 move_direction = Vector2(-10, 0)
@@ -641,7 +642,7 @@ script = ExtResource("7_7pwkw")
 
 [connection signal="pressed" from="CanvasLayer/Start" to="CanvasLayer" method="start"]
 [connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer/OptionsMenu" method="toggle"]
-[connection signal="pressed" from="CanvasLayer/Quit" to="CanvasLayer" method="start"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="CanvasLayer/OptionsMenu" method="quit"]
 [connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Prev" to="CanvasLayer/Leaderboards" method="prev_page"]
 [connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Next" to="CanvasLayer/Leaderboards" method="next_page"]
 [connection signal="pressed" from="CanvasLayer/Fullscreen" to="CanvasLayer/OptionsMenu" method="toggle_fullscreen"]
