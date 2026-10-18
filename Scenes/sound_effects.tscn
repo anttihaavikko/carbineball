@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cm3d11ju853wk"]
 
 [ext_resource type="Script" uid="uid://e88pkdwyw65u" path="res://_Starter/Scripts/sound_effects.gd" id="1_kcj8n"]
-[ext_resource type="AudioStream" uid="uid://cfnn4lurnyjh5" path="res://Sounds/rifle.wav" id="2_gj1su"]
+[ext_resource type="AudioStream" uid="uid://l3ew6a5ibue5" path="res://Sounds/gun.wav" id="2_kcj8n"]
 [ext_resource type="AudioStream" uid="uid://df71r7nxmajn7" path="res://Sounds/arp1.wav" id="3_svpn8"]
 [ext_resource type="AudioStream" uid="uid://1hd6rruoas4h" path="res://Sounds/arp2.wav" id="4_b6583"]
 [ext_resource type="AudioStream" uid="uid://717beh60gdai" path="res://Sounds/arp11.wav" id="5_bh75e"]
@@ -46,6 +46,6 @@ stream_10/stream = ExtResource("5_bh75e")
 
 [node name="SoundEffects" type="Node" unique_id=244826690]
 script = ExtResource("1_kcj8n")
-effects = Array[AudioStream]([ExtResource("2_gj1su"), SubResource("AudioStreamRandomizer_aa8k8"), ExtResource("14_c4lpr"), ExtResource("15_75vs2"), ExtResource("16_2trqf"), ExtResource("17_rir7k"), ExtResource("18_1ehvv"), ExtResource("19_d11lj"), ExtResource("20_wfrk1"), ExtResource("21_3o2gf"), ExtResource("22_hwdvk"), ExtResource("23_bblgx"), ExtResource("24_4v82v"), ExtResource("25_b3tx7"), ExtResource("26_ehlpp"), ExtResource("27_w75x8"), ExtResource("28_it145")])
+effects = Array[AudioStream]([ExtResource("2_kcj8n"), SubResource("AudioStreamRandomizer_aa8k8"), ExtResource("14_c4lpr"), ExtResource("15_75vs2"), ExtResource("16_2trqf"), ExtResource("17_rir7k"), ExtResource("18_1ehvv"), ExtResource("19_d11lj"), ExtResource("20_wfrk1"), ExtResource("21_3o2gf"), ExtResource("22_hwdvk"), ExtResource("23_bblgx"), ExtResource("24_4v82v"), ExtResource("25_b3tx7"), ExtResource("26_ehlpp"), ExtResource("27_w75x8"), ExtResource("28_it145")])
 prefab = ExtResource("29_i85k2")
 metadata/_custom_type_script = "uid://e88pkdwyw65u"

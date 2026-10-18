@@ -1468,7 +1468,7 @@ color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 [connection signal="hit" from="Board/Rotating Area/Multi/AnimatableBody2D" to="Board/Rotating Area" method="increment"]
 [connection signal="body_entered" from="Death Area" to="Board" method="die"]
 [connection signal="body_entered" from="Bad Zones" to="Board" method="entered_bad_zone"]
-[connection signal="pressed" from="CanvasLayer/Try Again Wrap/Restart" to="CanvasLayer/OptionsMenu" method="restart"]
+[connection signal="pressed" from="CanvasLayer/Try Again Wrap/Restart" to="CanvasLayer/OptionsMenu" method="change_scene" binds= ["main"]]
 [connection signal="pressed" from="CanvasLayer/Quit Wrap/Exit" to="CanvasLayer/OptionsMenu" method="change_scene" binds= ["start"]]
 [connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Fullscreen" to="CanvasLayer/OptionsMenu" method="toggle_fullscreen"]
 [connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Resume" to="CanvasLayer/OptionsMenu" method="toggle"]

@@ -11,6 +11,7 @@ var pos: Vector2
 var open: bool
 var can_toggle := true
 var mouse_mode: Input.MouseMode
+var sound := 2
 
 signal on_toggle
 
@@ -23,6 +24,7 @@ func get_axis_size() -> float:
 
 func toggle():
 	if not can_toggle: return
+	if sound >= 0 and SoundEffects.singleton.effects.size() > sound: SoundEffects.singleton.add(sound, global_position)
 	pos = position if open else position - get_axis_size() * direction
 	open = !open
 	on_toggle.emit(open)
