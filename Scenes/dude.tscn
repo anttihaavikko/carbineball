@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="8_wo7fb"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="9_183wy"]
 [ext_resource type="Script" uid="uid://bg61yohsj8qnu" path="res://Scripts/looker.gd" id="10_cv7qn"]
+[ext_resource type="Texture2D" uid="uid://6mru0xhdqskd" path="res://Sprites/star_crown.png" id="10_fgw7f"]
+[ext_resource type="Texture2D" uid="uid://bfwmuh2ox6hhb" path="res://Sprites/horns.png" id="11_ix1ld"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="11_k6vcc"]
 [ext_resource type="Texture2D" uid="uid://b0hq8arh3621k" path="res://Sprites/eyepatch.png" id="12_ny48v"]
 [ext_resource type="Texture2D" uid="uid://bidn5b6nfy86k" path="res://Sprites/eyepatch_string.png" id="13_jww68"]
@@ -32,7 +34,7 @@ script = ExtResource("1_6hqwx")
 dude = NodePath("Dude")
 looker = NodePath("Dude/Looker Offset/Looker")
 
-[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1244375929 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string", "skins")]
+[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1244375929 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string", "skins", "crown", "face", "horns")]
 z_index = 2
 position = Vector2(960, 791)
 physics_material_override = SubResource("PhysicsMaterial_jjvhh")
@@ -45,8 +47,11 @@ eyepatch = NodePath("Looker Offset/Looker/Face/Eyepatch")
 eyepatch_string = NodePath("Looker Offset/Eyepatch String")
 red = Color(0.8156863, 0.3254902, 0.3254902, 1)
 skins = [NodePath("LineMimic"), NodePath("LineMimic2"), NodePath("Body/Fill"), NodePath("Arm Left/Hand/Hand"), NodePath("Arm Right/Hand/Hand")]
-colors = Array[Color]([Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1), Color(0.8156863, 0.3254902, 0.3254902, 1)])
-scarf_colors = Array[Color]([Color(0.8156863, 0.3254902, 0.3254902, 1), Color(1, 1, 1, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1)])
+colors = Array[Color]([Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1), Color(0.8156863, 0.3254902, 0.3254902, 1), Color(0.94509804, 0.9098039, 0.72156864, 1)])
+scarf_colors = Array[Color]([Color(0.8156863, 0.3254902, 0.3254902, 1), Color(1, 1, 1, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1), Color(0.94509804, 0.9098039, 0.72156864, 0)])
+crown = NodePath("Body/Crown")
+face = NodePath("Looker Offset/Looker/Face")
+horns = NodePath("Body/Horns")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dude" unique_id=1517803902]
 shape = SubResource("CircleShape2D_cpkcx")
@@ -162,6 +167,20 @@ texture = ExtResource("8_wo7fb")
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
 scale = Vector2(0.8535397, 0.8535397)
 texture = ExtResource("8_wo7fb")
+
+[node name="Crown" type="Sprite2D" parent="Dude/Body" unique_id=1642158228]
+visible = false
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(-4.6336584, -273.38583)
+scale = Vector2(3.1717217, 3.1717217)
+texture = ExtResource("10_fgw7f")
+
+[node name="Horns" type="Sprite2D" parent="Dude/Body" unique_id=99234897]
+visible = false
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(-4.6336584, -227.04926)
+scale = Vector2(2.8533797, 2.8533797)
+texture = ExtResource("11_ix1ld")
 
 [node name="LineMimic" type="Line2D" parent="Dude" unique_id=1314707977 node_paths=PackedStringArray("target")]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)

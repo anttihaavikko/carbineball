@@ -11,35 +11,46 @@ class_name Dude extends AnimatableBody2D
 @export var skins: Array[Node2D]
 @export var colors: Array[Color]
 @export var scarf_colors: Array[Color]
+@export var crown: Node2D
+@export var face: Face
+@export var horns: Node2D
 
 var moves := true
 
 enum Personality {
 	Vanillad,
 	Veteran,
-	Starchild
+	Starchild,
+	Aballon,
+	Loon
 }
 
 static func get_title(p: Personality) -> String:
 	return [
 		"Vanillad",
 		"Veteran",
-		"Starchild"
+		"Starchild",
+		"Aballon",
+		"Loon"
 	][p]
 
 static func get_desc(p: Personality, locked: bool) -> String:
 	if locked:
 		var desc = [
 			"None",
-			"Achieve a score of a million",
-			"Survive 30 seconds of multi ball"
+			"Achieve a score of (a million)",
+			"Survive (30 seconds) of (multi ball)",
+			"Reach (multiplier) of (66)",
+			"Tilt"
 		][p]
 		return "[color=#F1E8B8]UNLOCK METHOD[/color]: %s" % [desc]
 
 	return [
 		"Basic (grunt). Nothing (special) about him.",
 		"Can only operate (one gun), but has (2x) the (max multiplier).",
-		"Ironically (afraid) of (heights). Can freely (hug) the (sun)."
+		"Ironically (afraid) of (heights). Can freely (hug) the (sun).",
+		"(Replaces) all (1s) and (7s) in your (score) additions with a (6).",
+		"(Trigger happy)! Gains (multiplier) from (shooting) the (ball)."
 	][p]
 
 func use(personality: Personality):
@@ -49,6 +60,9 @@ func use(personality: Personality):
 	color_scarf(scarf_colors[personality])
 	right.toggle_visibility(not is_vet)
 	for s in skins: s.self_modulate = colors[personality]
+	crown.visible = personality == Personality.Starchild
+	horns.visible = personality == Personality.Aballon
+	face.scale = Vector2.ONE * (1.5 if personality == Personality.Loon else 1.0)
 
 func color_scarf(color: Color):
 	scarf_front.self_modulate = color

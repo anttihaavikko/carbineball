@@ -151,12 +151,20 @@ func add_score(amount: int, pos: Vector2, source: BonusGame = BonusGame.SunnyBum
 	var multiball_bonus = bonus_game == BonusGame.MultiBall and balls.size() > 1
 	var extra = 10 if source == bonus_game or multiball_bonus else 1
 	var amt = amount * multi * extra * balls.size()
+	if dude_personality == Dude.Personality.Aballon:
+		var parsed = str(amt)
+		if parsed.contains("1") or parsed.contains("7"):
+			var msg = ["DEVILISH!", "SATANIC!", "IMPURE!", "PUTRIFIED!", "CHAOS!"].pick_random()
+			pop("[font_size=45]%s" % [msg], pos + Vector2.UP * 55, yellow)
+			amt = int(parsed.replace("1", "6").replace("7", "6"))
 	if extra > 1: bonus_pop(pos)
 	pop(Utils.as_score(amt), pos)
 	score += amt
 	score_label.text = Utils.as_score(score)
 	if score >= 1_000_000:
 		unlock_character(Dude.Personality.Veteran)
+	if str(score).contains("666"):
+		unlock_ball(Ball.Personality.Diaball)
 
 func reset_after(delay: float):
 	await get_tree().create_timer(delay).timeout
@@ -193,6 +201,8 @@ func increment_multi(pos: Vector2, amount: int = 1):
 	multi = mini(multi + amount, max_multi)
 	pop("x%d" % [multi], pos, yellow)
 	show_multi()
+	if multi == 66:
+		unlock_character(Dude.Personality.Aballon)
 
 func next():
 	balls_left -= 1
@@ -232,6 +242,16 @@ func die(node: Node):
 			await get_tree().create_timer(0.5).timeout
 			call_deferred("next")
 
+func reset_multi():
+	multi = 1
+	show_multi()
+
+func reset_multi_with_message(message: String, pos: Vector2):
+	pop("[font_size=60][shake level=20]%s!" % [message], pos, red)
+	SoundEffects.singleton.add(9, pos, 1.3)
+	SoundEffects.singleton.add(10, pos, 2)
+	reset_multi()
+
 func entered_bad_zone(node: Node):
 	if node is Dude:
 		if multi > 1:
@@ -239,4 +259,4 @@ func entered_bad_zone(node: Node):
 			var msg = ["TOUCH", "TOO CLOSE", "WATCH IT", "KEEP THE DISTANCE", "TOUCHED", "BAD TOUCH", "NO TOUCHING", "FLEW TOO CLOSE"].pick_random()
 			pop("[font_size=60][shake level=20]%s!" % [msg], node.global_position, red)
 			sun.angry()
-			multi = 1
+			reset_multi()

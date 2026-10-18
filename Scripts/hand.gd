@@ -44,8 +44,12 @@ func shoot():
 			hit.apply_impulse(dir.normalized() * 2500)
 			Effects.singleton.add_many([2, 4], cp)
 			board.start()
+			var is_loon = board.dude_personality == Dude.Personality.Loon
 			if hit.bonked:
 				board.pop("[font_size=40]%s!" % [board.get_pop()], cp, board.yellow)
+			if is_loon:
+				board.pop("[font_size=40]%s!" % [board.get_pop()], cp + Vector2.UP * 10)
+				board.increment_multi(cp + Vector2.DOWN * 20, 1)
 			hit.bonked = false
 	recoil()
 

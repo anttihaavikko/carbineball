@@ -3,6 +3,7 @@ class_name Ball extends RigidBody2D
 @export var visuals: Array[Node2D]
 @export var shapes: Array[Node2D]
 @export var face: Face
+@export var brow: Node2D
 
 var board: Board
 var locked := false
@@ -14,14 +15,16 @@ var current: Personality = Personality.Broll
 enum Personality {
 	Broll,
 	Skull,
-	Starll
+	Starll,
+	Diaball
 }
 
 static func get_title(p: Personality) -> String:
 	return [
 		"Broll",
 		"Skull",
-		"Starll"
+		"Starll",
+		"Diaball"
 	][p]
 
 static func get_desc(p: Personality, is_locked: bool) -> String:
@@ -29,14 +32,16 @@ static func get_desc(p: Personality, is_locked: bool) -> String:
 		var desc = [
 			"None",
 			"Die",
-			"Multiball"
+			"Multiball",
+			"Have (666) appear in your (score)"
 		][p]
 		return "[color=#F1E8B8]UNLOCK METHOD[/color]: %s" % [desc]
 
 	return [
 		"A sentient (friendly) ball. No (special) powers.",
 		"(Bumps) increase (multiplier) by your (death) amount.",
-		"Gains an (extra ball) to all (multi ball) events."
+		"Gains an (extra ball) to all (multi ball) events.",
+		"(Doubles) your (score) if the (carousel) reads (666)."
 	][p]
 
 func _ready() -> void:
@@ -53,6 +58,7 @@ func use(personality: Personality):
 	visuals[current].show()
 	shapes[current].disabled = false
 	face.visible = personality != Personality.Skull
+	brow.visible = personality == Personality.Diaball
 
 func hit(other: Node):
 	if linear_velocity.length() > 40:
@@ -71,6 +77,8 @@ func hit(other: Node):
 		board.cam.shake(20, 0.3)
 		board.balls.remove_at(board.balls.find(self))
 		board.reset_after(1.0)
+		board.unlock_character(Dude.Personality.Loon)
+		if board.dude_personality == Dude.Personality.Loon: board.balls_left += 1
 		die()
 		queue_free()
 		return
@@ -87,8 +95,19 @@ func hit(other: Node):
 		do_notes()
 		board.ball_lock.toggle()
 	if other is Dude:
-		if bonked:
-			board.pop("[font_size=40]%s!" % [board.get_bonk()], mid)
+		var is_loon = board.dude_personality == Dude.Personality.Loon
+		if board.dude_personality == Dude.Personality.Starchild and other.global_position.y < 560 and board.multi > 1:
+			board.reset_multi()
+			board.cam.shake(20, 0.2)
+			var msg = ["TOO HIGH!", "SCARY!", "VERTIGO!", "SO HIGH!", "SCARY HIGH!"].pick_random()
+			board.reset_multi_with_message(msg, global_position)
+			return
+		if bonked or is_loon:
+			if is_loon and board.multi > 1:
+				var msg = ["EWW!", "ONLY SHOOT!", "NO TOUCH!", "JUST BULLETS!"].pick_random()
+				board.reset_multi_with_message(msg, global_position)
+			else:
+				board.pop("[font_size=40]%s!" % [board.get_bonk()], mid)
 		else:
 			do_notes()
 			board.increment_multi(mid, board.deaths if board.ball_personality == Ball.Personality.Skull else 1)
