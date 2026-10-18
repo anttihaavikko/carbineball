@@ -15,8 +15,15 @@
 [ext_resource type="Script" uid="uid://bjb4mt3denn8" path="res://_Starter/Scripts/input_mimic.gd" id="8_knwj7"]
 [ext_resource type="Script" uid="uid://uxu8p38o38ip" path="res://_Starter/Scripts/mover.gd" id="9_jwunu"]
 [ext_resource type="Texture2D" uid="uid://kjjdpmxdyadd" path="res://Sprites/arrow_left.png" id="10_1tr1b"]
+[ext_resource type="Script" uid="uid://clg7ymun2dxb2" path="res://_Starter/Scripts/options_menu.gd" id="12_w5kog"]
+[ext_resource type="Shader" uid="uid://tcp7boiajjvw" path="res://_Starter/Shaders/blur.gdshader" id="12_y71vl"]
+[ext_resource type="Texture2D" uid="uid://74hyg5isj5x3" path="res://_Starter/Sprites/square.png" id="13_vp7ys"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tr1b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5kog"]
+shader = ExtResource("12_y71vl")
+shader_parameter/amount = 3.0000001425
 
 [node name="Start" type="Node2D" unique_id=864225371]
 
@@ -38,9 +45,9 @@ blinders = NodePath("../Blinders")
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 71.0
-offset_top = 33.0
+offset_top = -38.0
 offset_right = -80.0
-offset_bottom = 586.0
+offset_bottom = 515.0
 grow_horizontal = 2
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -54,14 +61,34 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_direction = 1
 
-[node name="Button" type="Button" parent="CanvasLayer" unique_id=635471847]
+[node name="Start" type="Button" parent="CanvasLayer" unique_id=1862713147]
+offset_left = 727.0
+offset_top = 434.0
+offset_right = 1196.0
+offset_bottom = 597.0
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 60
+text = "START"
+script = ExtResource("2_lb6bl")
+
+[node name="Settings" type="Button" parent="CanvasLayer" unique_id=635471847]
 offset_left = 764.0
-offset_top = 731.0
+offset_top = 617.0
 offset_right = 1161.0
-offset_bottom = 868.0
+offset_bottom = 754.0
 theme = ExtResource("1_r48yj")
 theme_override_font_sizes/font_size = 50
-text = "START"
+text = "SETTINGS"
+script = ExtResource("2_lb6bl")
+
+[node name="Quit" type="Button" parent="CanvasLayer" unique_id=1547422354]
+offset_left = 802.0
+offset_top = 775.0
+offset_right = 1118.0
+offset_bottom = 890.0
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "QUIT"
 script = ExtResource("2_lb6bl")
 
 [node name="Leaderboards Title" type="Label" parent="CanvasLayer" unique_id=190030588]
@@ -117,9 +144,9 @@ metadata/_custom_type_script = "uid://ycuhajgaxxh7"
 
 [node name="Greeting" type="Label" parent="CanvasLayer" unique_id=1216539010]
 offset_left = 404.0
-offset_top = 106.0
+offset_top = 35.0
 offset_right = 595.0
-offset_bottom = 197.0
+offset_bottom = 126.0
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
@@ -129,9 +156,9 @@ text = "Hello"
 
 [node name="NameInput" type="LineEdit" parent="CanvasLayer" unique_id=1449689876 node_paths=PackedStringArray("rename_help", "leaderboards", "mimic")]
 offset_left = 613.0
-offset_top = 73.0
+offset_top = 2.0
 offset_right = 1487.0
-offset_bottom = 230.0
+offset_bottom = 159.0
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/selection_color = Color(0.8156863, 0.3254902, 0.3254902, 1)
@@ -164,7 +191,7 @@ input = NodePath("..")
 metadata/_custom_type_script = "uid://bjb4mt3denn8"
 
 [node name="Mover" type="Node2D" parent="CanvasLayer" unique_id=1416438060]
-position = Vector2(904, 156)
+position = Vector2(904, 85)
 script = ExtResource("9_jwunu")
 moves = true
 move_direction = Vector2(-10, 0)
@@ -193,6 +220,199 @@ texture = ExtResource("10_1tr1b")
 position = Vector2(-30.100159, 0.3529663)
 scale = Vector2(0.13210198, 0.13210198)
 texture = ExtResource("10_1tr1b")
+
+[node name="Blur" type="TextureRect" parent="CanvasLayer" unique_id=971507991]
+visible = false
+material = SubResource("ShaderMaterial_w5kog")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("13_vp7ys")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=1702136752 node_paths=PackedStringArray("music", "sounds", "backdrop")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 713.0
+offset_top = -124.0
+offset_right = 1237.0
+offset_bottom = 971.0
+script = ExtResource("12_w5kog")
+music = NodePath("ColorRect/VBoxContainer/HSlider")
+sounds = NodePath("ColorRect/VBoxContainer/HSlider2")
+direction = Vector2(0, -1)
+backdrop = NodePath("../Blur")
+metadata/_custom_type_script = "uid://clg7ymun2dxb2"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OptionsMenu" unique_id=150887927]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = 495.0
+offset_right = -10.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8980392, 0.56078434, 0.39607844, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1570586326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 27.0
+offset_right = -29.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1777484351]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_font_sizes/normal_font_size = 57
+text = "SETTINGS"
+fit_content = true
+
+[node name="Spacer2" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=957656493]
+custom_minimum_size = Vector2(0, 9.5)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Music" type="RichTextLabel" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=871524165]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/normal_font_size = 30
+text = "MUSIC"
+fit_content = true
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1379062990]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Spacer" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=676601585]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Sounds" type="RichTextLabel" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1642951542]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/normal_font_size = 30
+text = "SOUNDS"
+fit_content = true
+
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1621423769]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Control" type="Control" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=451709446]
+layout_mode = 2
+
+[node name="Spacer3" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1652523511]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Fullscreen" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=539356755]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "FULLSCREEN"
+script = ExtResource("2_lb6bl")
+
+[node name="Spacer4" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1542942740]
+visible = false
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Resume" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1363947092]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "BACK"
+script = ExtResource("2_lb6bl")
+
+[node name="Restart" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1939880396]
+visible = false
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "RESTART"
+script = ExtResource("2_lb6bl")
+
+[node name="Exit" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1991331981]
+visible = false
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "EXIT"
+script = ExtResource("2_lb6bl")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1586783548]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1065524981]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1326947345]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 11.0
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=525601320]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("2_5ogh5")]
 
@@ -317,6 +537,10 @@ position = Vector2(968, 1025)
 position = Vector2(961, 541)
 script = ExtResource("7_7pwkw")
 
-[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer" method="start"]
+[connection signal="pressed" from="CanvasLayer/Start" to="CanvasLayer" method="start"]
+[connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer/OptionsMenu" method="toggle"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="CanvasLayer" method="start"]
 [connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Prev" to="CanvasLayer/Leaderboards" method="prev_page"]
 [connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Next" to="CanvasLayer/Leaderboards" method="next_page"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Fullscreen" to="CanvasLayer/OptionsMenu" method="toggle_fullscreen"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Resume" to="CanvasLayer/OptionsMenu" method="toggle"]

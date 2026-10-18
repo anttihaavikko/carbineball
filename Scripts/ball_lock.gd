@@ -92,7 +92,9 @@ func enter(node: Node):
 		node.locked = true
 		balls += 1
 		get_tree().create_tween().tween_property(node, "global_position", global_position, 0.3).set_trans(Tween.TRANS_QUAD)
+		board.do_notes(global_position, true)
 		await get_tree().create_timer(0.5).timeout
+		board.do_notes(global_position, true)
 		reset()
 		toggle_markers()
 		node.queue_free()

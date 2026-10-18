@@ -13,11 +13,11 @@ var data: SettingsData
 
 func _ready():
 	super._ready()
-	toggle_button_top.visible = toggle_button_on_top
-	toggle_button_bottom.visible = not toggle_button_on_top
+	if toggle_button_top: toggle_button_top.visible = toggle_button_on_top
+	if toggle_button_bottom: toggle_button_bottom.visible = not toggle_button_on_top
 	show()
-	toggle_button_top.pressed.connect(close)
-	toggle_button_bottom.pressed.connect(close)
+	if toggle_button_top: toggle_button_top.pressed.connect(close)
+	if toggle_button_bottom: toggle_button_bottom.pressed.connect(close)
 	data = saver.load(func(): return SettingsData.new(0.5, 0.5)) as SettingsData
 	# print("%f/%f" % [data.music, data.sounds])
 	music.value = data.music
@@ -31,6 +31,7 @@ func _ready():
 func prepare_slider(slider: Slider):
 	slider.max_value = 1.0
 	slider.min_value = 0
+	slider.step = 0.05
 
 func volumes_changed(_val):
 	AudioServer.set_bus_volume_linear(1, music.value * 2)

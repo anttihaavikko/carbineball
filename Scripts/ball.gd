@@ -70,11 +70,13 @@ func hit(other: Node):
 		if bonus: board.bonus_pop(mid, true)
 		board.increment_multi(mid, 5 if bonus else 1)
 		board.cam.shake(7, 0.12)
+		do_notes()
 		board.ball_lock.toggle()
 	if other is Dude:
 		if bonked:
 			board.pop("[font_size=40]%s!" % [board.get_bonk()], mid)
 		else:
+			do_notes()
 			board.increment_multi(mid)
 		bonked = true
 		board.cam.shake(7, 0.12)
@@ -85,3 +87,6 @@ func hit(other: Node):
 			board.add_score(other.score, mid)
 			board.cam.shake(5, 0.1)
 		other.bump()
+
+func do_notes():
+	board.do_notes(global_position)

@@ -19,6 +19,8 @@ class_name Board extends Node2D
 @export var multi_label: RichTextLabel
 @export var bonus_game_display: RichTextLabel
 @export var balls_label: RichTextLabel
+@export var options: OptionsMenu
+@export var dude_wrapper: Wrapper
 
 var started := false
 var max_multi := 100
@@ -44,6 +46,12 @@ func _ready() -> void:
 	reset()
 	bonuses.shuffle()
 	change_bonus()
+	options.on_toggle.connect(options_toggled)
+	PhysicsServer2D.set_active(true)
+
+func options_toggled(state: bool):
+	PhysicsServer2D.set_active(!state)
+	dude_wrapper.dude.moves = !state
 
 func change_bonus():
 	bonus_game = bonuses.pop_front()
@@ -63,6 +71,12 @@ func spawn_ball():
 	create_ball(spawn_point.global_position)
 	holder_left.reset()
 	holder_right.reset()
+
+func do_notes(pos: Vector2, single: bool = false):
+	SoundEffects.singleton.add(1, pos, 0.8, 0)
+	if single: return
+	await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
+	SoundEffects.singleton.add(1, pos, 0.6, 0)
 
 func add_extra_ball():
 	var ball = create_ball(ball_lock.global_position)
@@ -88,6 +102,7 @@ func start():
 	started = true
 
 func bonus_pop(pos: Vector2, for_multi: bool = false):
+	do_notes(pos, true)
 	pop("[font_size=35]BONUS INCREASE!", pos + Vector2.UP * 25, Color.WHITE if for_multi else yellow)
 
 func add_score(amount: int, pos: Vector2, source: BonusGame = BonusGame.SunnyBumpers):

@@ -24,20 +24,31 @@
 [ext_resource type="PackedScene" uid="uid://dkv55r634eg3b" path="res://Scenes/button.tscn" id="9_k12tt"]
 [ext_resource type="AudioStream" uid="uid://cfnn4lurnyjh5" path="res://Sounds/rifle.wav" id="9_kqrg6"]
 [ext_resource type="Script" uid="uid://d21tebxx08yd3" path="res://_Starter/Scripts/limb_live.gd" id="9_ynf5e"]
+[ext_resource type="AudioStream" uid="uid://df71r7nxmajn7" path="res://Sounds/arp1.wav" id="10_55jeb"]
 [ext_resource type="AudioStream" uid="uid://bw8sg7g5bhgav" path="res://Sounds/blip.wav" id="10_s8vy0"]
 [ext_resource type="Script" uid="uid://6vw1i8bs08bl" path="res://Scripts/rotating_area.gd" id="11_fevyy"]
+[ext_resource type="AudioStream" uid="uid://1hd6rruoas4h" path="res://Sounds/arp2.wav" id="11_gsvbx"]
 [ext_resource type="AudioStream" uid="uid://bxkp2bw3vrkv" path="res://Sounds/thud.wav" id="11_jut3y"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
 [ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="12_jwpg7"]
+[ext_resource type="AudioStream" uid="uid://717beh60gdai" path="res://Sounds/arp11.wav" id="12_my4ki"]
 [ext_resource type="AudioStream" uid="uid://bxcb5r8bgjfi0" path="res://Sounds/boing.wav" id="12_v2nl5"]
 [ext_resource type="AudioStream" uid="uid://rabbh45grir0" path="res://Sounds/button.wav" id="13_jut3y"]
+[ext_resource type="AudioStream" uid="uid://jlkhb2map4dq" path="res://Sounds/arp3.wav" id="13_lx3vj"]
 [ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
 [ext_resource type="AudioStream" uid="uid://j4w5trbocoum" path="res://Sounds/beep.wav" id="14_v2nl5"]
+[ext_resource type="AudioStream" uid="uid://bcsdgcch3nyct" path="res://Sounds/arp4.wav" id="14_ynmfv"]
+[ext_resource type="AudioStream" uid="uid://c2uueiau64o7k" path="res://Sounds/arp5.wav" id="15_cblf0"]
 [ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="15_pdsj5"]
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
+[ext_resource type="AudioStream" uid="uid://6ccbcuw3qxi2" path="res://Sounds/arp6.wav" id="16_nay3j"]
+[ext_resource type="AudioStream" uid="uid://7gllkceldd1l" path="res://Sounds/arp7.wav" id="17_ovafv"]
+[ext_resource type="AudioStream" uid="uid://i55bbdt1f4gy" path="res://Sounds/arp8.wav" id="18_owhal"]
 [ext_resource type="Script" uid="uid://dfrcme5q3nvfq" path="res://Scripts/hand_swap.gd" id="18_v2nl5"]
 [ext_resource type="Texture2D" uid="uid://c6etrnelspok1" path="res://Sprites/sun_halo.png" id="19_hdf80"]
+[ext_resource type="AudioStream" uid="uid://dhu02lhff02tj" path="res://Sounds/arp9.wav" id="19_uv6w5"]
 [ext_resource type="Texture2D" uid="uid://bclc3ad2ia5ry" path="res://Sprites/shrug_hand.png" id="19_v2nl5"]
+[ext_resource type="AudioStream" uid="uid://bo6a87jhw21bp" path="res://Sounds/arp10.wav" id="20_r7bbj"]
 [ext_resource type="Texture2D" uid="uid://8wv7hf1jvyl8" path="res://Sprites/brow.png" id="21_k2e45"]
 [ext_resource type="Texture2D" uid="uid://cdangjfii2hhk" path="res://Sprites/palm.png" id="22_dmskm"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
@@ -49,9 +60,23 @@
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
+[ext_resource type="Shader" uid="uid://tcp7boiajjvw" path="res://_Starter/Shaders/blur.gdshader" id="49_54nrm"]
+[ext_resource type="Script" uid="uid://clg7ymun2dxb2" path="res://_Starter/Scripts/options_menu.gd" id="50_dmskm"]
+[ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="50_xdkp6"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aa8k8"]
-streams_count = 2
+streams_count = 11
+stream_0/stream = ExtResource("10_55jeb")
+stream_1/stream = ExtResource("11_gsvbx")
+stream_2/stream = ExtResource("13_lx3vj")
+stream_3/stream = ExtResource("14_ynmfv")
+stream_4/stream = ExtResource("15_cblf0")
+stream_5/stream = ExtResource("16_nay3j")
+stream_6/stream = ExtResource("17_ovafv")
+stream_7/stream = ExtResource("18_owhal")
+stream_8/stream = ExtResource("19_uv6w5")
+stream_9/stream = ExtResource("20_r7bbj")
+stream_10/stream = ExtResource("12_my4ki")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -117,6 +142,10 @@ size = Vector2(14840, 2276)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1bgf"]
 radius = 75.00667
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55jeb"]
+shader = ExtResource("49_54nrm")
+shader_parameter/amount = 3.0000001425
 
 [node name="Main" type="Node2D" unique_id=619511135]
 
@@ -503,7 +532,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -523,6 +552,8 @@ score_label = NodePath("../CanvasLayer/Score")
 multi_label = NodePath("../CanvasLayer/Multi")
 bonus_game_display = NodePath("../Sign/Bonus Game")
 balls_label = NodePath("../CanvasLayer/Balls")
+options = NodePath("../CanvasLayer/OptionsMenu")
+dude_wrapper = NodePath("../Dude Wrap")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -1193,6 +1224,196 @@ vertical_alignment = 1
 text_direction = 1
 metadata/_edit_lock_ = true
 
+[node name="Blur" type="TextureRect" parent="CanvasLayer" unique_id=1031807648]
+visible = false
+material = SubResource("ShaderMaterial_55jeb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("1_jjgbg")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=464498393 node_paths=PackedStringArray("music", "sounds", "backdrop")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 713.0
+offset_top = -130.0
+offset_right = 1237.0
+offset_bottom = 971.0
+script = ExtResource("50_dmskm")
+music = NodePath("ColorRect/VBoxContainer/HSlider")
+sounds = NodePath("ColorRect/VBoxContainer/HSlider2")
+direction = Vector2(0, -1)
+backdrop = NodePath("../Blur")
+metadata/_custom_type_script = "uid://clg7ymun2dxb2"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OptionsMenu" unique_id=1169535973]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = 301.0
+offset_right = -10.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8980392, 0.56078434, 0.39607844, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1202471038]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 27.0
+offset_right = -29.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1857480523]
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_font_sizes/normal_font_size = 57
+text = "SETTINGS"
+fit_content = true
+
+[node name="Spacer2" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=429440785]
+custom_minimum_size = Vector2(0, 9.5)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Music" type="RichTextLabel" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=2142651936]
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/normal_font_size = 30
+text = "MUSIC"
+fit_content = true
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=65154662]
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Spacer" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=681420633]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Sounds" type="RichTextLabel" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1344071623]
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/normal_font_size = 30
+text = "SOUNDS"
+fit_content = true
+
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=10033980]
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Control" type="Control" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=14477374]
+layout_mode = 2
+
+[node name="Spacer3" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1113336048]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Fullscreen" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=685583166]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/font_size = 50
+text = "FULLSCREEN"
+script = ExtResource("50_xdkp6")
+
+[node name="Spacer4" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1318425270]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Resume" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1208804472]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/font_size = 50
+text = "RESUME"
+script = ExtResource("50_xdkp6")
+
+[node name="Restart" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=941206767]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/font_size = 50
+text = "RESTART"
+script = ExtResource("50_xdkp6")
+
+[node name="Exit" type="Button" parent="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer" unique_id=1180774540]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/font_size = 50
+text = "EXIT"
+script = ExtResource("50_xdkp6")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1368904689]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1566608310]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1606114040]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 11.0
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="CanvasLayer/OptionsMenu/ColorRect" unique_id=1080844174]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("42_o1aky")]
 
 [connection signal="used" from="Board/Saver Right" to="Board/Saver Buttons" method="reset"]
@@ -1208,3 +1429,7 @@ metadata/_edit_lock_ = true
 [connection signal="hit" from="Board/Rotating Area/Multi/AnimatableBody2D" to="Board/Rotating Area" method="increment"]
 [connection signal="body_entered" from="Death Area" to="Board" method="die"]
 [connection signal="body_entered" from="Bad Zones" to="Board" method="entered_bad_zone"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Fullscreen" to="CanvasLayer/OptionsMenu" method="toggle_fullscreen"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Resume" to="CanvasLayer/OptionsMenu" method="toggle"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Restart" to="CanvasLayer/OptionsMenu" method="restart"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Exit" to="CanvasLayer/OptionsMenu" method="change_scene" binds= ["start"]]
