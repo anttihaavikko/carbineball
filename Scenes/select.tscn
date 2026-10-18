@@ -26,7 +26,7 @@ shader_parameter/time_mod = 1.0
 
 [node name="Select" type="Node2D" unique_id=1508879551]
 
-[node name="Select" type="Node" parent="." unique_id=1184268612 node_paths=PackedStringArray("char_name_label", "char_desc_label", "ball_name_label", "ball_desc_label", "char_lock", "ball_lock", "dude_wrap", "ball", "sun")]
+[node name="Select" type="Node" parent="." unique_id=1184268612 node_paths=PackedStringArray("char_name_label", "char_desc_label", "ball_name_label", "ball_desc_label", "char_lock", "ball_lock", "dude_wrap", "ball", "sun", "button")]
 script = ExtResource("1_ntqj0")
 char_name_label = NodePath("../CanvasLayer/Character Name")
 char_desc_label = NodePath("../CanvasLayer/Character Desc")
@@ -37,6 +37,7 @@ ball_lock = NodePath("../CanvasLayer/Ball Lock")
 dude_wrap = NodePath("../Dude Wrap")
 ball = NodePath("../Ball")
 sun = NodePath("../Sun")
+button = NodePath("../CanvasLayer/Continue")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1040220445]
 z_index = -10
@@ -167,6 +168,26 @@ theme_override_constants/shadow_offset_y = 9
 theme_override_font_sizes/normal_font_size = 90
 bbcode_enabled = true
 text = "[wave amp=20 freq=5]CHOOSE CHARACTER AND BALL"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
+
+[node name="Nope" type="RichTextLabel" parent="CanvasLayer" unique_id=376696514]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 39.0
+offset_top = 891.0
+offset_right = -47.0
+offset_bottom = 1078.0
+grow_horizontal = 2
+theme = ExtResource("1_o6757")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[wave amp=20 freq=5]NOT YET!"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_direction = 1

@@ -9,16 +9,21 @@ extends Node
 @export var dude_wrap: Wrapper
 @export var ball: Ball
 @export var sun: Sunny
+@export var button: Control
 
 var cur_char = Dude.Personality.Vanillad
 var cur_ball = Ball.Personality.Broll
+var data: SaveData
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	data = SaveData.load()
 	show_selections()
 
 func show_selections():
-	char_lock.visible = randf() < 0.5
-	ball_lock.visible = randf() < 0.5
+	char_lock.visible = not data.has_char(cur_char)
+	ball_lock.visible = not data.has_ball(cur_ball)
+	button.visible = not char_lock.visible and not ball_lock.visible
 	char_name_label.text = Dude.get_title(cur_char)
 	char_desc_label.text = Utils.colorize(Dude.get_desc(cur_char, char_lock.visible), "#F1E8B8")
 	ball_name_label.text = Ball.get_title(cur_ball)

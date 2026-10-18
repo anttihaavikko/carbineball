@@ -4,9 +4,19 @@
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="1_r48yj"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="2_5ogh5"]
 [ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="2_lb6bl"]
+[ext_resource type="Script" uid="uid://d4kctfli5ilmq" path="res://_Starter/Scripts/name_input.gd" id="4_iceld"]
+[ext_resource type="FontFile" uid="uid://dmnd70v1560ge" path="res://Misc/ChunkFive-Regular.otf" id="4_qmsyr"]
+[ext_resource type="Script" uid="uid://ycuhajgaxxh7" path="res://_Starter/Scripts/leaderboards.gd" id="5_7pwkw"]
 [ext_resource type="PackedScene" uid="uid://bpt1nog23ndgh" path="res://Scenes/tree.tscn" id="5_pg4io"]
+[ext_resource type="PackedScene" uid="uid://cb5t88f4kwnhd" path="res://_Starter/Scenes/score_row.tscn" id="6_5bn4p"]
 [ext_resource type="PackedScene" uid="uid://dl77k5gjiwq4o" path="res://Scenes/sun.tscn" id="6_iceld"]
 [ext_resource type="Script" uid="uid://ova7wngb7x7i" path="res://_Starter/Scripts/camera.gd" id="7_7pwkw"]
+[ext_resource type="Texture2D" uid="uid://ctomeeyc0h81m" path="res://Sprites/arrow_right.png" id="7_ss8vn"]
+[ext_resource type="Script" uid="uid://bjb4mt3denn8" path="res://_Starter/Scripts/input_mimic.gd" id="8_knwj7"]
+[ext_resource type="Script" uid="uid://uxu8p38o38ip" path="res://_Starter/Scripts/mover.gd" id="9_jwunu"]
+[ext_resource type="Texture2D" uid="uid://kjjdpmxdyadd" path="res://Sprites/arrow_left.png" id="10_1tr1b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tr1b"]
 
 [node name="Start" type="Node2D" unique_id=864225371]
 
@@ -28,9 +38,9 @@ blinders = NodePath("../Blinders")
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 71.0
-offset_top = 128.0
+offset_top = 33.0
 offset_right = -80.0
-offset_bottom = 681.0
+offset_bottom = 586.0
 grow_horizontal = 2
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -46,13 +56,143 @@ text_direction = 1
 
 [node name="Button" type="Button" parent="CanvasLayer" unique_id=635471847]
 offset_left = 764.0
-offset_top = 597.0
+offset_top = 731.0
 offset_right = 1161.0
-offset_bottom = 734.0
+offset_bottom = 868.0
 theme = ExtResource("1_r48yj")
 theme_override_font_sizes/font_size = 50
 text = "START"
 script = ExtResource("2_lb6bl")
+
+[node name="Leaderboards" type="VBoxContainer" parent="CanvasLayer" unique_id=635569225]
+offset_left = 36.0
+offset_top = 580.0
+offset_right = 607.0
+offset_bottom = 1051.0
+script = ExtResource("5_7pwkw")
+row_prefab = ExtResource("6_5bn4p")
+metadata/_custom_type_script = "uid://ycuhajgaxxh7"
+
+[node name="Greeting" type="Label" parent="CanvasLayer" unique_id=1216539010]
+offset_left = 404.0
+offset_top = 106.0
+offset_right = 595.0
+offset_bottom = 197.0
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 75
+text = "Hello"
+
+[node name="Leaderboards Title" type="Label" parent="CanvasLayer" unique_id=190030588]
+offset_left = 28.0
+offset_top = 500.0
+offset_right = 674.0
+offset_bottom = 591.0
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 50
+text = "LEADERBOARDS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Leaderboards Title" unique_id=374624232]
+layout_mode = 0
+offset_left = 456.0
+offset_top = -5.0
+offset_right = 605.0
+offset_bottom = 54.0
+theme_override_constants/separation = 12
+
+[node name="Prev" type="Button" parent="CanvasLayer/Leaderboards Title/HBoxContainer" unique_id=2142130526]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_constants/icon_max_width = 25
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("10_1tr1b")
+icon_alignment = 1
+script = ExtResource("2_lb6bl")
+resize_border = true
+border_width = 5
+
+[node name="Next" type="Button" parent="CanvasLayer/Leaderboards Title/HBoxContainer" unique_id=159196784]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_constants/icon_max_width = 25
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("7_ss8vn")
+icon_alignment = 1
+script = ExtResource("2_lb6bl")
+resize_border = true
+border_width = 5
+
+[node name="NameInput" type="LineEdit" parent="CanvasLayer" unique_id=1449689876 node_paths=PackedStringArray("rename_help", "leaderboards", "mimic")]
+offset_left = 613.0
+offset_top = 73.0
+offset_right = 1487.0
+offset_bottom = 230.0
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/selection_color = Color(0.8156863, 0.3254902, 0.3254902, 1)
+theme_override_fonts/font = ExtResource("4_qmsyr")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1tr1b")
+text = "Anon"
+max_length = 12
+flat = true
+caret_blink = true
+script = ExtResource("4_iceld")
+rename_help = NodePath("../Mover")
+leaderboards = NodePath("../Leaderboards")
+mimic = NodePath("InputMimic")
+metadata/_custom_type_script = "uid://d4kctfli5ilmq"
+
+[node name="InputMimic" type="Label" parent="CanvasLayer/NameInput" unique_id=682336957 node_paths=PackedStringArray("input")]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 38.0
+offset_right = 478.0
+offset_bottom = 216.0
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 75
+text = "Anon"
+script = ExtResource("8_knwj7")
+input = NodePath("..")
+metadata/_custom_type_script = "uid://bjb4mt3denn8"
+
+[node name="Mover" type="Node2D" parent="CanvasLayer" unique_id=1416438060]
+position = Vector2(904, 156)
+script = ExtResource("9_jwunu")
+moves = true
+move_direction = Vector2(-10, 0)
+single_direction = true
+metadata/_custom_type_script = "uid://uxu8p38o38ip"
+
+[node name="Help" type="Label" parent="CanvasLayer/Mover" unique_id=417736373]
+offset_left = 18.0
+offset_top = -29.0
+offset_right = 399.0
+offset_bottom = 32.0
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 50
+text = "Click to rename"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Mover" unique_id=114287846]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-26.100159, 8.352966)
+scale = Vector2(0.13210198, 0.13210198)
+texture = ExtResource("10_1tr1b")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Mover" unique_id=919572765]
+position = Vector2(-30.100159, 0.3529663)
+scale = Vector2(0.13210198, 0.13210198)
+texture = ExtResource("10_1tr1b")
 
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("2_5ogh5")]
 
@@ -61,88 +201,114 @@ modulate = Color(0.9249347, 0.6238935, 0.4766543, 1)
 z_index = -10
 position = Vector2(-296, 631)
 scale = Vector2(0.8404197, 0.8404197)
+metadata/_edit_lock_ = true
 
 [node name="Tree" parent="Back Trees" unique_id=596932785 instance=ExtResource("5_pg4io")]
 position = Vector2(1642, 178)
+metadata/_edit_lock_ = true
 
 [node name="Tree2" parent="Back Trees" unique_id=334794682 instance=ExtResource("5_pg4io")]
 position = Vector2(273, 173)
+metadata/_edit_lock_ = true
 
 [node name="Tree3" parent="Back Trees" unique_id=676231605 instance=ExtResource("5_pg4io")]
 position = Vector2(468, 191)
+metadata/_edit_lock_ = true
 
 [node name="Tree4" parent="Back Trees" unique_id=1799363969 instance=ExtResource("5_pg4io")]
 position = Vector2(657, 173)
+metadata/_edit_lock_ = true
 
 [node name="Tree5" parent="Back Trees" unique_id=107570433 instance=ExtResource("5_pg4io")]
 position = Vector2(775, 208)
+metadata/_edit_lock_ = true
 
 [node name="Tree6" parent="Back Trees" unique_id=1637971682 instance=ExtResource("5_pg4io")]
 position = Vector2(1050, 194)
+metadata/_edit_lock_ = true
 
 [node name="Tree7" parent="Back Trees" unique_id=1592944762 instance=ExtResource("5_pg4io")]
 position = Vector2(1248, 117)
+metadata/_edit_lock_ = true
 
 [node name="Tree8" parent="Back Trees" unique_id=593644542 instance=ExtResource("5_pg4io")]
 position = Vector2(1443, 160)
+metadata/_edit_lock_ = true
 
 [node name="Tree9" parent="Back Trees" unique_id=1805040045 instance=ExtResource("5_pg4io")]
 position = Vector2(1814.2229, 212.82513)
+metadata/_edit_lock_ = true
 
 [node name="Tree10" parent="Back Trees" unique_id=1909347039 instance=ExtResource("5_pg4io")]
 position = Vector2(2010.6769, 166.68822)
+metadata/_edit_lock_ = true
 
 [node name="Tree11" parent="Back Trees" unique_id=2052054477 instance=ExtResource("5_pg4io")]
 position = Vector2(2143.1345, 93.762115)
+metadata/_edit_lock_ = true
 
 [node name="Tree12" parent="Back Trees" unique_id=361358684 instance=ExtResource("5_pg4io")]
 position = Vector2(2361.9128, 74.414375)
+metadata/_edit_lock_ = true
 
 [node name="Tree13" parent="Back Trees" unique_id=440402244 instance=ExtResource("5_pg4io")]
 position = Vector2(2503.3, 142.87552)
+metadata/_edit_lock_ = true
 
 [node name="Tree14" parent="Back Trees" unique_id=699320391 instance=ExtResource("5_pg4io")]
 position = Vector2(2659.5703, 157.75848)
+metadata/_edit_lock_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="Back Trees" unique_id=948508941]
 position = Vector2(971, 117)
 offset = Vector2(-971, -117)
 polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 2332.147, 194.9657, 2580.691, 125.01611, 2726.5432, 200.91882, 2783.0981, 599.7799, 1945, 489, 41.67206, 632.5222)
+metadata/_edit_lock_ = true
 
 [node name="Trees" type="Node2D" parent="." unique_id=154992227]
 modulate = Color(0.83591425, 0.4813332, 0.3037173, 1)
 z_index = -10
 position = Vector2(-336, 688.99994)
 scale = Vector2(1.2507864, 1.2507864)
+metadata/_edit_lock_ = true
 
 [node name="Tree" parent="Trees" unique_id=761456837 instance=ExtResource("5_pg4io")]
 position = Vector2(1642, 178)
+metadata/_edit_lock_ = true
 
 [node name="Tree2" parent="Trees" unique_id=1191526064 instance=ExtResource("5_pg4io")]
 position = Vector2(273, 173)
+metadata/_edit_lock_ = true
 
 [node name="Tree3" parent="Trees" unique_id=609289967 instance=ExtResource("5_pg4io")]
 position = Vector2(468, 191)
+metadata/_edit_lock_ = true
 
 [node name="Tree4" parent="Trees" unique_id=541365523 instance=ExtResource("5_pg4io")]
 position = Vector2(657, 173)
+metadata/_edit_lock_ = true
 
 [node name="Tree5" parent="Trees" unique_id=1393318372 instance=ExtResource("5_pg4io")]
 position = Vector2(775, 208)
+metadata/_edit_lock_ = true
 
 [node name="Tree6" parent="Trees" unique_id=1364238930 instance=ExtResource("5_pg4io")]
 position = Vector2(1050, 194)
+metadata/_edit_lock_ = true
 
 [node name="Tree7" parent="Trees" unique_id=1255317243 instance=ExtResource("5_pg4io")]
 position = Vector2(1248, 117)
+metadata/_edit_lock_ = true
 
 [node name="Tree8" parent="Trees" unique_id=2044883132 instance=ExtResource("5_pg4io")]
 position = Vector2(1443, 160)
+metadata/_edit_lock_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="Trees" unique_id=1680362747]
 position = Vector2(971, 117)
 offset = Vector2(-971, -117)
 polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 1945, 489, 42, 415)
+metadata/_edit_lock_ = true
 
 [node name="Sun" parent="." unique_id=1495319388 instance=ExtResource("6_iceld")]
 position = Vector2(968, 1025)
@@ -152,3 +318,5 @@ position = Vector2(961, 541)
 script = ExtResource("7_7pwkw")
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer" method="start"]
+[connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Prev" to="CanvasLayer/Leaderboards" method="prev_page"]
+[connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Next" to="CanvasLayer/Leaderboards" method="next_page"]

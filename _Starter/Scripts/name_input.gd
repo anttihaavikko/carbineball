@@ -2,6 +2,7 @@ class_name NameInput extends LineEdit
 
 @export var rename_help: Node2D
 @export var leaderboards: Leaderboards
+@export var mimic: InputMimic
 
 func _ready() -> void:
 	focus_entered.connect(input_focused)
@@ -32,3 +33,4 @@ func check_name(content: String):
 	regex.compile("[^A-Za-z0-9]")
 	text = regex.sub(content, "", true)
 	caret_column = len(text)
+	if mimic: mimic.text_changed(text)
