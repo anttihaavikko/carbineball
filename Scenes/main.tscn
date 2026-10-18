@@ -498,7 +498,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper", "game_over_appearers", "unlock_panel", "unlock_label")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper", "game_over_appearers", "unlock_panel", "unlock_label", "sun_zone")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -523,6 +523,7 @@ dude_wrapper = NodePath("../Dude Wrap")
 game_over_appearers = [NodePath("../CanvasLayer/Game Over Wrap"), NodePath("../CanvasLayer/Try Again Wrap"), NodePath("../CanvasLayer/Quit Wrap")]
 unlock_panel = NodePath("../CanvasLayer/Unlock Notification")
 unlock_label = NodePath("../CanvasLayer/Unlock Notification/ColorRect/ColorRect2/Content")
+sun_zone = NodePath("../Bad Zones/CollisionShape2D")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)

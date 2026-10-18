@@ -32,7 +32,7 @@ script = ExtResource("1_6hqwx")
 dude = NodePath("Dude")
 looker = NodePath("Dude/Looker Offset/Looker")
 
-[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1244375929 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string")]
+[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1244375929 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string", "skins")]
 z_index = 2
 position = Vector2(960, 791)
 physics_material_override = SubResource("PhysicsMaterial_jjvhh")
@@ -44,6 +44,9 @@ scarf_back = NodePath("Scarf")
 eyepatch = NodePath("Looker Offset/Looker/Face/Eyepatch")
 eyepatch_string = NodePath("Looker Offset/Eyepatch String")
 red = Color(0.8156863, 0.3254902, 0.3254902, 1)
+skins = [NodePath("LineMimic"), NodePath("LineMimic2"), NodePath("Body/Fill"), NodePath("Arm Left/Hand/Hand"), NodePath("Arm Right/Hand/Hand")]
+colors = Array[Color]([Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1), Color(0.8156863, 0.3254902, 0.3254902, 1)])
+scarf_colors = Array[Color]([Color(0.8156863, 0.3254902, 0.3254902, 1), Color(1, 1, 1, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1)])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dude" unique_id=1517803902]
 shape = SubResource("CircleShape2D_cpkcx")

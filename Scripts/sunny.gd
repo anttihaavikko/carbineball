@@ -4,6 +4,7 @@ class_name Sunny extends Node2D
 @export var right: HandSwap
 @export var face: Face
 @export var brow: Node2D
+@export var point_at_clicks: bool
 
 var sequence := 0
 var left_origin: Vector2
@@ -37,8 +38,14 @@ func angry():
 	reset_hand(true)
 	reset_hand(false)
 
+func _process(_delta) -> void:
+	if Input.is_action_just_pressed("click") and point_at_clicks:
+		point_at_mouse()
+
 func point_at_mouse():
-	point(get_global_mouse_position())
+	var mp = get_global_mouse_position()
+	if mp.y > 1500: return
+	point(mp)
 
 func point(pos: Vector2):
 	if emoting: return

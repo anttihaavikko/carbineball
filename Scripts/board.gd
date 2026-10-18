@@ -24,6 +24,7 @@ class_name Board extends Node2D
 @export var game_over_appearers: Array[Appearer]
 @export var unlock_panel: SlidingPanel
 @export var unlock_label: RichTextLabel
+@export var sun_zone: CollisionShape2D
 
 var started := false
 var max_multi := 100
@@ -59,6 +60,7 @@ func _ready() -> void:
 	dude_personality = roundi(save.character) as Dude.Personality
 	ball_personality = roundi(save.ball) as Ball.Personality
 	dude_wrapper.dude.use(dude_personality)
+	sun_zone.disabled = dude_personality == Dude.Personality.Starchild
 	reset()
 
 func unlock_character(character: Dude.Personality):
@@ -222,6 +224,8 @@ func die(node: Node):
 		var was_multi = balls.size() > 1
 		node.queue_free()
 		balls.remove_at(balls.find(node))
+		if ball_lock.multiball_duration >= 30:
+			unlock_character(Dude.Personality.Starchild)
 		if balls.size() == 1 and not ball_lock.spawning and was_multi:
 			help_message.text = "Multi ball maddness over! You survived for %d seconds." % [roundi(ball_lock.multiball_duration)]
 		if balls.size() == 0 and not ball_lock.spawning:
