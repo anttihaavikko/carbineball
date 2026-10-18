@@ -46,7 +46,7 @@ scarf_back = NodePath("Scarf")
 eyepatch = NodePath("Looker Offset/Looker/Face/Eyepatch")
 eyepatch_string = NodePath("Looker Offset/Eyepatch String")
 red = Color(0.8156863, 0.3254902, 0.3254902, 1)
-skins = [NodePath("LineMimic"), NodePath("LineMimic2"), NodePath("Body/Fill"), NodePath("Arm Left/Hand/Hand"), NodePath("Arm Right/Hand/Hand")]
+skins = [NodePath("LineMimic"), NodePath("LineMimic2"), NodePath("Body/Fill"), NodePath("Arm Left/Hand/Gun/Hand"), NodePath("Arm Right/Hand/Gun/Hand")]
 colors = Array[Color]([Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1), Color(0.8156863, 0.3254902, 0.3254902, 1), Color(0.94509804, 0.9098039, 0.72156864, 1)])
 scarf_colors = Array[Color]([Color(0.8156863, 0.3254902, 0.3254902, 1), Color(1, 1, 1, 1), Color(0.94509804, 0.9098039, 0.72156864, 1), Color(0.9764706, 0.90588236, 0.5176471, 1), Color(0.94509804, 0.9098039, 0.72156864, 0)])
 crown = NodePath("Body/Crown")
@@ -92,6 +92,7 @@ wrapper = NodePath("../../..")
 lines = NodePath("../../../LineDrawer")
 root = NodePath("..")
 fill = NodePath("../../LineMimic")
+zero_angle = 180.0
 
 [node name="Gun" type="Sprite2D" parent="Dude/Arm Right/Hand" unique_id=123363429]
 position = Vector2(-5.0000067, -1.0000229)
@@ -104,10 +105,10 @@ position = Vector2(-84.922195, -41.610516)
 target_position = Vector2(-1482.9092, -2.3120728)
 collision_mask = 3
 
-[node name="Hand" type="Sprite2D" parent="Dude/Arm Right/Hand" unique_id=1598190997]
+[node name="Hand" type="Sprite2D" parent="Dude/Arm Right/Hand/Gun" unique_id=1598190997]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
-position = Vector2(8, -9)
-rotation = 0.43819404
+position = Vector2(2.8825684, -14.989685)
+rotation = -0.39096
 scale = Vector2(0.5386526, 0.5386526)
 texture = ExtResource("7_2hl5x")
 
@@ -150,10 +151,10 @@ position = Vector2(77.305695, -48.447147)
 target_position = Vector2(1796.0073, 40.19519)
 collision_mask = 3
 
-[node name="Hand" type="Sprite2D" parent="Dude/Arm Left/Hand" unique_id=1283388717]
+[node name="Hand" type="Sprite2D" parent="Dude/Arm Left/Hand/Gun" unique_id=1283388717]
 self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
-position = Vector2(-12, -13)
-rotation = -0.60087705
+position = Vector2(-8.227478, -22.300293)
+rotation = 0.22815435
 scale = Vector2(0.5386526, 0.5386526)
 texture = ExtResource("7_2hl5x")
 flip_h = true

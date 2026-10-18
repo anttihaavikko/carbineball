@@ -7,6 +7,7 @@ class_name Hand extends Node2D
 @export var lines: LineDrawer
 @export var root: Node2D
 @export var fill: Node2D
+@export var zero_angle := 0.0
 
 var origin: Vector2
 var gun_rot: float
@@ -22,6 +23,11 @@ func toggle_visibility(state: bool):
 
 func _process(delta) -> void:
 	cooling -= delta
+	var board = wrapper.board
+	if board and board.dude_personality == Dude.Personality.Loon and board.balls.size() > 0:
+		var ball = board.balls[0]
+		gun.rotation_degrees = zero_angle
+		look_at(ball.global_position)
 
 func shoot():
 	if cooling > 0: return
