@@ -218,6 +218,10 @@ func increment_multi(pos: Vector2, amount: int = 1):
 	if multi == 66:
 		unlock_character(Dude.Personality.Aballon)
 
+func double_score():
+	score *= 2
+	score_label.text = Utils.as_score(score)
+
 func next():
 	balls_left -= 1
 

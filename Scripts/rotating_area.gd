@@ -25,6 +25,9 @@ func increment(node: Node2D):
 	board.pop(msg, node.global_position, board.yellow)
 	values[cur] = (values[cur] + 1) % 9 + 1
 	update_labels()
+	if values[0] == 6 and values[1] == 6 and values[2] == 6:
+		board.double_score()
+		board.pop("BEAST CALLING!", node.global_position + Vector2.DOWN * 40)
 
 func rotate_right():
 	change(1)
