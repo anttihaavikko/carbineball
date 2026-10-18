@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://clg7ymun2dxb2" path="res://_Starter/Scripts/options_menu.gd" id="12_w5kog"]
 [ext_resource type="Shader" uid="uid://tcp7boiajjvw" path="res://_Starter/Shaders/blur.gdshader" id="12_y71vl"]
 [ext_resource type="Texture2D" uid="uid://74hyg5isj5x3" path="res://_Starter/Sprites/square.png" id="13_vp7ys"]
+[ext_resource type="PackedScene" uid="uid://cm3d11ju853wk" path="res://Scenes/sound_effects.tscn" id="19_1tb08"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tr1b"]
 
@@ -536,6 +537,8 @@ position = Vector2(968, 1025)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1034225895]
 position = Vector2(961, 541)
 script = ExtResource("7_7pwkw")
+
+[node name="SoundEffects" parent="." unique_id=244826690 instance=ExtResource("19_1tb08")]
 
 [connection signal="pressed" from="CanvasLayer/Start" to="CanvasLayer" method="start"]
 [connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer/OptionsMenu" method="toggle"]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cm3d11ju853wk"]
+
+[ext_resource type="Script" uid="uid://e88pkdwyw65u" path="res://_Starter/Scripts/sound_effects.gd" id="1_kcj8n"]
+[ext_resource type="AudioStream" uid="uid://cfnn4lurnyjh5" path="res://Sounds/rifle.wav" id="2_gj1su"]
+[ext_resource type="AudioStream" uid="uid://df71r7nxmajn7" path="res://Sounds/arp1.wav" id="3_svpn8"]
+[ext_resource type="AudioStream" uid="uid://1hd6rruoas4h" path="res://Sounds/arp2.wav" id="4_b6583"]
+[ext_resource type="AudioStream" uid="uid://717beh60gdai" path="res://Sounds/arp11.wav" id="5_bh75e"]
+[ext_resource type="AudioStream" uid="uid://jlkhb2map4dq" path="res://Sounds/arp3.wav" id="6_tfpgr"]
+[ext_resource type="AudioStream" uid="uid://bcsdgcch3nyct" path="res://Sounds/arp4.wav" id="7_av5vf"]
+[ext_resource type="AudioStream" uid="uid://c2uueiau64o7k" path="res://Sounds/arp5.wav" id="8_ftyk5"]
+[ext_resource type="AudioStream" uid="uid://6ccbcuw3qxi2" path="res://Sounds/arp6.wav" id="9_g375i"]
+[ext_resource type="AudioStream" uid="uid://7gllkceldd1l" path="res://Sounds/arp7.wav" id="10_3sl7t"]
+[ext_resource type="AudioStream" uid="uid://i55bbdt1f4gy" path="res://Sounds/arp8.wav" id="11_mwwey"]
+[ext_resource type="AudioStream" uid="uid://dhu02lhff02tj" path="res://Sounds/arp9.wav" id="12_qa0cs"]
+[ext_resource type="AudioStream" uid="uid://bo6a87jhw21bp" path="res://Sounds/arp10.wav" id="13_vqw6f"]
+[ext_resource type="AudioStream" uid="uid://bw8sg7g5bhgav" path="res://Sounds/blip.wav" id="14_c4lpr"]
+[ext_resource type="AudioStream" uid="uid://bxkp2bw3vrkv" path="res://Sounds/thud.wav" id="15_75vs2"]
+[ext_resource type="AudioStream" uid="uid://bxcb5r8bgjfi0" path="res://Sounds/boing.wav" id="16_2trqf"]
+[ext_resource type="AudioStream" uid="uid://rabbh45grir0" path="res://Sounds/button.wav" id="17_rir7k"]
+[ext_resource type="AudioStream" uid="uid://j4w5trbocoum" path="res://Sounds/beep.wav" id="18_1ehvv"]
+[ext_resource type="AudioStream" uid="uid://dqvubajb8h0pb" path="res://Sounds/Explosion 2896.wav" id="19_d11lj"]
+[ext_resource type="AudioStream" uid="uid://cdve8eb3ksa6o" path="res://Sounds/Explosion 2899.wav" id="20_wfrk1"]
+[ext_resource type="AudioStream" uid="uid://wgile72s3ftf" path="res://Sounds/angry.wav" id="21_3o2gf"]
+[ext_resource type="AudioStream" uid="uid://byaskamauf722" path="res://Sounds/talk.wav" id="22_hwdvk"]
+[ext_resource type="AudioStream" uid="uid://be8kwjgdsxw6k" path="res://Sounds/launch.wav" id="23_bblgx"]
+[ext_resource type="AudioStream" uid="uid://dthlwq4a43ftp" path="res://Sounds/multiball.wav" id="24_4v82v"]
+[ext_resource type="AudioStream" uid="uid://ckty2176p3fa4" path="res://Sounds/spawn.wav" id="25_b3tx7"]
+[ext_resource type="AudioStream" uid="uid://nj4kbl8rs6xq" path="res://Sounds/savers.wav" id="26_ehlpp"]
+[ext_resource type="AudioStream" uid="uid://cp043y65g6p6l" path="res://Sounds/wail.wav" id="27_w75x8"]
+[ext_resource type="AudioStream" uid="uid://da8408lr0bcn7" path="res://Sounds/bonus.wav" id="28_it145"]
+[ext_resource type="PackedScene" uid="uid://p0a0dayjvrf" path="res://_Starter/Scenes/sound.tscn" id="29_i85k2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aa8k8"]
+streams_count = 11
+stream_0/stream = ExtResource("3_svpn8")
+stream_1/stream = ExtResource("4_b6583")
+stream_2/stream = ExtResource("6_tfpgr")
+stream_3/stream = ExtResource("7_av5vf")
+stream_4/stream = ExtResource("8_ftyk5")
+stream_5/stream = ExtResource("9_g375i")
+stream_6/stream = ExtResource("10_3sl7t")
+stream_7/stream = ExtResource("11_mwwey")
+stream_8/stream = ExtResource("12_qa0cs")
+stream_9/stream = ExtResource("13_vqw6f")
+stream_10/stream = ExtResource("5_bh75e")
+
+[node name="SoundEffects" type="Node" unique_id=244826690]
+script = ExtResource("1_kcj8n")
+effects = Array[AudioStream]([ExtResource("2_gj1su"), SubResource("AudioStreamRandomizer_aa8k8"), ExtResource("14_c4lpr"), ExtResource("15_75vs2"), ExtResource("16_2trqf"), ExtResource("17_rir7k"), ExtResource("18_1ehvv"), ExtResource("19_d11lj"), ExtResource("20_wfrk1"), ExtResource("21_3o2gf"), ExtResource("22_hwdvk"), ExtResource("23_bblgx"), ExtResource("24_4v82v"), ExtResource("25_b3tx7"), ExtResource("26_ehlpp"), ExtResource("27_w75x8"), ExtResource("28_it145")])
+prefab = ExtResource("29_i85k2")
+metadata/_custom_type_script = "uid://e88pkdwyw65u"

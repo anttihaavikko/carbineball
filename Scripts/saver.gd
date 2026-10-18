@@ -17,3 +17,5 @@ func enter(node: Node):
 		node.apply_impulse(Vector2.UP * 2500)
 		retract()
 		used.emit()
+		SoundEffects.singleton.add(11, global_position, 1.2)
+		node.board.cam.shake(15, 0.2)

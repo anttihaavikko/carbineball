@@ -32,6 +32,7 @@ func _process(delta) -> void:
 func hit_trigger():
 	if spawning: return
 	if left_trigger.state and right_trigger.state:
+		SoundEffects.singleton.add(12, global_position)
 		multiball_duration = 0
 		spawning = true
 		for i in balls:

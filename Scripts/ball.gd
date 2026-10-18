@@ -58,6 +58,7 @@ func hit(other: Node):
 		board.cam.shake(20, 0.3)
 		board.balls.remove_at(board.balls.find(self))
 		board.reset_after(1.0)
+		die()
 		queue_free()
 		return
 	if last_hits.size() > 2: last_hits.pop_front()
@@ -90,3 +91,8 @@ func hit(other: Node):
 
 func do_notes():
 	board.do_notes(global_position)
+
+func die():
+	SoundEffects.singleton.add(7, global_position)
+	SoundEffects.singleton.add(8, global_position)
+	SoundEffects.singleton.add(15, global_position)

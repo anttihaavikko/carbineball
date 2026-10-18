@@ -20,6 +20,8 @@ func _ready() -> void:
 
 func angry():
 	if emoting: return
+	SoundEffects.singleton.add(9, global_position, 1.3)
+	SoundEffects.singleton.add(10, global_position, 2)
 	emoting = true
 	brow.show()
 	var mouth = face.mouth

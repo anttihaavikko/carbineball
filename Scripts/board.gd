@@ -21,6 +21,7 @@ class_name Board extends Node2D
 @export var balls_label: RichTextLabel
 @export var options: OptionsMenu
 @export var dude_wrapper: Wrapper
+@export var game_over_appearers: Array[Appearer]
 
 var started := false
 var max_multi := 100
@@ -64,7 +65,9 @@ func change_bonus():
 	bonus_game_display.text = "BONUS GAME:\n%s" % [game_name]
 	await get_tree().create_timer(30).timeout
 	change_bonus()
-	if started: pop("NEW BONUS GAME!", spawn_point.global_position + Vector2.DOWN * 100, yellow)
+	if started:
+		pop("NEW BONUS GAME!", spawn_point.global_position + Vector2.DOWN * 100, yellow)
+		SoundEffects.singleton.add(16, spawn_point.global_position, 1.3)
 
 func spawn_ball():
 	started = false
@@ -85,12 +88,14 @@ func add_extra_ball():
 func create_ball(pos) -> Ball:
 	var ball = ball_prefab.instantiate() as Ball
 	ball.global_position = pos
+	SoundEffects.singleton.add(13, pos, 2)
 	ball.board = self
 	add_child(ball)
 	balls.append(ball)
 	return ball
 
 func apply_savers():
+	SoundEffects.singleton.add(14, balls[0].global_position)
 	saver_left.reset()
 	saver_right.reset()
 
@@ -159,6 +164,12 @@ func next():
 
 	if balls_left == 0:
 		help_message.text = "GAME OVER!"
+		dude_wrapper.dude.moves = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		sun.angry()
+		for go in game_over_appearers:
+			go.appear()
+			await get_tree().create_timer(0.1).timeout
 		return
 	var left = "got 1 more ball" if balls_left == 1 else "still got %d balls" % [balls_left]
 	help_message.text = "Aww, too bad!\nBut you've %s left..." % [left]
@@ -166,12 +177,14 @@ func next():
 
 func die(node: Node):
 	if node is Ball:
+		node.die()
 		burst.global_position = node.global_position
 		cam.shake(30, 0.3)
 		burst.play()
+		var was_multi = balls.size() > 1
 		node.queue_free()
 		balls.remove_at(balls.find(node))
-		if balls.size() == 1 and not ball_lock.spawning:
+		if balls.size() == 1 and not ball_lock.spawning and was_multi:
 			help_message.text = "Multi ball maddness over! You survived for %d seconds." % [roundi(ball_lock.multiball_duration)]
 		if balls.size() == 0 and not ball_lock.spawning:
 			await get_tree().create_timer(0.5).timeout

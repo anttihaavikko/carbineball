@@ -16,39 +16,21 @@
 [ext_resource type="PackedScene" uid="uid://cm28ria524vm5" path="res://Scenes/bumper.tscn" id="7_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://w80g3fd86xfk" path="res://_Starter/Scenes/Effects/pulse_ring.tscn" id="7_r33sp"]
 [ext_resource type="Texture2D" uid="uid://cyot1afpoa0mo" path="res://Sprites/pointer.png" id="7_u50mg"]
-[ext_resource type="Script" uid="uid://e88pkdwyw65u" path="res://_Starter/Scripts/sound_effects.gd" id="8_kwxat"]
+[ext_resource type="PackedScene" uid="uid://cm3d11ju853wk" path="res://Scenes/sound_effects.tscn" id="8_nwwfm"]
 [ext_resource type="PackedScene" uid="uid://7n7g46pd3sxq" path="res://Scenes/saver.tscn" id="8_wsu2k"]
-[ext_resource type="PackedScene" uid="uid://p0a0dayjvrf" path="res://_Starter/Scenes/sound.tscn" id="9_aa8k8"]
 [ext_resource type="Script" uid="uid://bg61yohsj8qnu" path="res://Scripts/looker.gd" id="9_fdnlq"]
 [ext_resource type="Script" uid="uid://c4qpntc5su70t" path="res://Scripts/button_set.gd" id="9_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://dkv55r634eg3b" path="res://Scenes/button.tscn" id="9_k12tt"]
-[ext_resource type="AudioStream" uid="uid://cfnn4lurnyjh5" path="res://Sounds/rifle.wav" id="9_kqrg6"]
 [ext_resource type="Script" uid="uid://d21tebxx08yd3" path="res://_Starter/Scripts/limb_live.gd" id="9_ynf5e"]
-[ext_resource type="AudioStream" uid="uid://df71r7nxmajn7" path="res://Sounds/arp1.wav" id="10_55jeb"]
-[ext_resource type="AudioStream" uid="uid://bw8sg7g5bhgav" path="res://Sounds/blip.wav" id="10_s8vy0"]
 [ext_resource type="Script" uid="uid://6vw1i8bs08bl" path="res://Scripts/rotating_area.gd" id="11_fevyy"]
-[ext_resource type="AudioStream" uid="uid://1hd6rruoas4h" path="res://Sounds/arp2.wav" id="11_gsvbx"]
-[ext_resource type="AudioStream" uid="uid://bxkp2bw3vrkv" path="res://Sounds/thud.wav" id="11_jut3y"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
 [ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="12_jwpg7"]
-[ext_resource type="AudioStream" uid="uid://717beh60gdai" path="res://Sounds/arp11.wav" id="12_my4ki"]
-[ext_resource type="AudioStream" uid="uid://bxcb5r8bgjfi0" path="res://Sounds/boing.wav" id="12_v2nl5"]
-[ext_resource type="AudioStream" uid="uid://rabbh45grir0" path="res://Sounds/button.wav" id="13_jut3y"]
-[ext_resource type="AudioStream" uid="uid://jlkhb2map4dq" path="res://Sounds/arp3.wav" id="13_lx3vj"]
 [ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
-[ext_resource type="AudioStream" uid="uid://j4w5trbocoum" path="res://Sounds/beep.wav" id="14_v2nl5"]
-[ext_resource type="AudioStream" uid="uid://bcsdgcch3nyct" path="res://Sounds/arp4.wav" id="14_ynmfv"]
-[ext_resource type="AudioStream" uid="uid://c2uueiau64o7k" path="res://Sounds/arp5.wav" id="15_cblf0"]
 [ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="15_pdsj5"]
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
-[ext_resource type="AudioStream" uid="uid://6ccbcuw3qxi2" path="res://Sounds/arp6.wav" id="16_nay3j"]
-[ext_resource type="AudioStream" uid="uid://7gllkceldd1l" path="res://Sounds/arp7.wav" id="17_ovafv"]
-[ext_resource type="AudioStream" uid="uid://i55bbdt1f4gy" path="res://Sounds/arp8.wav" id="18_owhal"]
 [ext_resource type="Script" uid="uid://dfrcme5q3nvfq" path="res://Scripts/hand_swap.gd" id="18_v2nl5"]
 [ext_resource type="Texture2D" uid="uid://c6etrnelspok1" path="res://Sprites/sun_halo.png" id="19_hdf80"]
-[ext_resource type="AudioStream" uid="uid://dhu02lhff02tj" path="res://Sounds/arp9.wav" id="19_uv6w5"]
 [ext_resource type="Texture2D" uid="uid://bclc3ad2ia5ry" path="res://Sprites/shrug_hand.png" id="19_v2nl5"]
-[ext_resource type="AudioStream" uid="uid://bo6a87jhw21bp" path="res://Sounds/arp10.wav" id="20_r7bbj"]
 [ext_resource type="Texture2D" uid="uid://8wv7hf1jvyl8" path="res://Sprites/brow.png" id="21_k2e45"]
 [ext_resource type="Texture2D" uid="uid://cdangjfii2hhk" path="res://Sprites/palm.png" id="22_dmskm"]
 [ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="22_ee4r6"]
@@ -63,20 +45,7 @@
 [ext_resource type="Shader" uid="uid://tcp7boiajjvw" path="res://_Starter/Shaders/blur.gdshader" id="49_54nrm"]
 [ext_resource type="Script" uid="uid://clg7ymun2dxb2" path="res://_Starter/Scripts/options_menu.gd" id="50_dmskm"]
 [ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="50_xdkp6"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aa8k8"]
-streams_count = 11
-stream_0/stream = ExtResource("10_55jeb")
-stream_1/stream = ExtResource("11_gsvbx")
-stream_2/stream = ExtResource("13_lx3vj")
-stream_3/stream = ExtResource("14_ynmfv")
-stream_4/stream = ExtResource("15_cblf0")
-stream_5/stream = ExtResource("16_nay3j")
-stream_6/stream = ExtResource("17_ovafv")
-stream_7/stream = ExtResource("18_owhal")
-stream_8/stream = ExtResource("19_uv6w5")
-stream_9/stream = ExtResource("20_r7bbj")
-stream_10/stream = ExtResource("12_my4ki")
+[ext_resource type="Script" uid="uid://dkwkobpcq5j4v" path="res://_Starter/Scripts/appearer.gd" id="70_sasc4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -158,11 +127,7 @@ script = ExtResource("2_ueoa1")
 effects = Array[PackedScene]([ExtResource("3_6vcvc"), ExtResource("4_7k868"), ExtResource("5_hpc6h"), ExtResource("6_kltya"), ExtResource("7_r33sp")])
 metadata/_custom_type_script = "uid://calgx5smnk57"
 
-[node name="SoundEffects" type="Node" parent="." unique_id=953970054]
-script = ExtResource("8_kwxat")
-effects = Array[AudioStream]([ExtResource("9_kqrg6"), SubResource("AudioStreamRandomizer_aa8k8"), ExtResource("10_s8vy0"), ExtResource("11_jut3y"), ExtResource("12_v2nl5"), ExtResource("13_jut3y"), ExtResource("14_v2nl5")])
-prefab = ExtResource("9_aa8k8")
-metadata/_custom_type_script = "uid://e88pkdwyw65u"
+[node name="SoundEffects" parent="." unique_id=244826690 instance=ExtResource("8_nwwfm")]
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1870561501]
 z_index = -10
@@ -532,7 +497,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper", "game_over_appearers")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -554,6 +519,7 @@ bonus_game_display = NodePath("../Sign/Bonus Game")
 balls_label = NodePath("../CanvasLayer/Balls")
 options = NodePath("../CanvasLayer/OptionsMenu")
 dude_wrapper = NodePath("../Dude Wrap")
+game_over_appearers = [NodePath("../CanvasLayer/Game Over Wrap"), NodePath("../CanvasLayer/Try Again Wrap"), NodePath("../CanvasLayer/Quit Wrap")]
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -1224,6 +1190,78 @@ vertical_alignment = 1
 text_direction = 1
 metadata/_edit_lock_ = true
 
+[node name="Game Over Wrap" type="Control" parent="CanvasLayer" unique_id=1189829952]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 947.0
+offset_top = 450.0
+offset_right = 987.0
+offset_bottom = 490.0
+script = ExtResource("70_sasc4")
+
+[node name="Game Over" type="RichTextLabel" parent="CanvasLayer/Game Over Wrap" unique_id=1773990197]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -947.0
+offset_top = -139.0
+offset_right = 935.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_font_sizes/normal_font_size = 173
+bbcode_enabled = true
+text = "[wave]GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
+
+[node name="Try Again Wrap" type="Control" parent="CanvasLayer" unique_id=747812203]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 949.0
+offset_top = 634.0
+offset_right = 989.0
+offset_bottom = 674.0
+script = ExtResource("70_sasc4")
+
+[node name="Restart" type="Button" parent="CanvasLayer/Try Again Wrap" unique_id=1692061331]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 0
+offset_left = -241.0
+offset_top = -66.0
+offset_right = 244.0
+offset_bottom = 69.0
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/font_size = 50
+text = "TRY AGAIN"
+script = ExtResource("50_xdkp6")
+
+[node name="Quit Wrap" type="Control" parent="CanvasLayer" unique_id=130924765]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 950.0
+offset_top = 783.0
+offset_right = 990.0
+offset_bottom = 823.0
+script = ExtResource("70_sasc4")
+
+[node name="Exit" type="Button" parent="CanvasLayer/Quit Wrap" unique_id=561425138]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 0
+offset_left = -216.0
+offset_top = -50.0
+offset_right = 223.0
+offset_bottom = 50.320007
+theme = ExtResource("29_6vcvc")
+theme_override_font_sizes/font_size = 34
+text = "BACK TO MENU"
+script = ExtResource("50_xdkp6")
+
 [node name="Blur" type="TextureRect" parent="CanvasLayer" unique_id=1031807648]
 visible = false
 material = SubResource("ShaderMaterial_55jeb")
@@ -1238,6 +1276,7 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=464498393 node_paths=PackedStringArray("music", "sounds", "backdrop")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 713.0
@@ -1429,6 +1468,8 @@ color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 [connection signal="hit" from="Board/Rotating Area/Multi/AnimatableBody2D" to="Board/Rotating Area" method="increment"]
 [connection signal="body_entered" from="Death Area" to="Board" method="die"]
 [connection signal="body_entered" from="Bad Zones" to="Board" method="entered_bad_zone"]
+[connection signal="pressed" from="CanvasLayer/Try Again Wrap/Restart" to="CanvasLayer/OptionsMenu" method="restart"]
+[connection signal="pressed" from="CanvasLayer/Quit Wrap/Exit" to="CanvasLayer/OptionsMenu" method="change_scene" binds= ["start"]]
 [connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Fullscreen" to="CanvasLayer/OptionsMenu" method="toggle_fullscreen"]
 [connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Resume" to="CanvasLayer/OptionsMenu" method="toggle"]
 [connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Restart" to="CanvasLayer/OptionsMenu" method="restart"]

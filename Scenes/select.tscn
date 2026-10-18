@@ -14,6 +14,7 @@
 [ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="8_p31gw"]
 [ext_resource type="Script" uid="uid://ova7wngb7x7i" path="res://_Starter/Scripts/camera.gd" id="9_vg4do"]
 [ext_resource type="Texture2D" uid="uid://kjjdpmxdyadd" path="res://Sprites/arrow_left.png" id="10_c4bf3"]
+[ext_resource type="PackedScene" uid="uid://cm3d11ju853wk" path="res://Scenes/sound_effects.tscn" id="15_2aekw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fevql"]
 shader = ExtResource("8_p31gw")
@@ -357,6 +358,8 @@ stretch_mode = 5
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2137040192]
 position = Vector2(961, 541)
 script = ExtResource("9_vg4do")
+
+[node name="SoundEffects" parent="." unique_id=244826690 instance=ExtResource("15_2aekw")]
 
 [connection signal="pressed" from="CanvasLayer/Next Char" to="Select" method="next_char"]
 [connection signal="pressed" from="CanvasLayer/Prev Char" to="Select" method="prev_char"]

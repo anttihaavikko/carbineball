@@ -21,6 +21,7 @@ func _process(delta) -> void:
 
 func increment(node: Node2D):
 	var msg = ["UP UP UP!", "LEVEL UP!", "NEXT LEVEL!", "MORE!", "ADDING!", "ADD MORE!", "INCREMENT!"].pick_random()
+	board.do_notes(node.global_position)
 	board.pop(msg, node.global_position, board.yellow)
 	values[cur] = (values[cur] + 1) % 9 + 1
 	update_labels()
