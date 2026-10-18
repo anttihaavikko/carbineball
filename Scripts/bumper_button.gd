@@ -40,6 +40,8 @@ func enter(node: Node):
 		if in_set: in_set.check()
 		colorize()
 		used.emit()
+		SoundEffects.singleton.add(5, global_position, 1.3)
+		SoundEffects.singleton.add(6, global_position, 1)
 		var dir = Vector2(0, -10).rotated(rotation)
 		get_tree().create_tween().tween_property(self, "position", origin + dir, 0.1).set_trans(Tween.TRANS_BOUNCE)
 		await get_tree().create_timer(0.1).timeout

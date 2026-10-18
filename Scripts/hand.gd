@@ -30,6 +30,7 @@ func shoot():
 
 	ray.force_raycast_update()
 	if ray.is_colliding():
+		SoundEffects.singleton.add(0, global_position)
 		var board = wrapper.board
 		# board.sun.point(ray.global_position)
 		var hit = ray.get_collider()

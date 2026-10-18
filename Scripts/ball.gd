@@ -42,6 +42,8 @@ func _process(_delta) -> void:
 		board.die(self)
 
 func hit(other: Node):
+	if linear_velocity.length() > 40:
+		SoundEffects.singleton.add(3, global_position, minf(linear_velocity.length() * 0.005, 1))
 	if last_hits.has(other):
 		dupes += 1
 	else:
@@ -63,6 +65,7 @@ func hit(other: Node):
 	if other is not FakeParticle and linear_velocity.length() > 100:
 		Effects.singleton.add(4, global_position)
 	if other is Sunny:
+		SoundEffects.singleton.add(4, global_position)
 		var bonus = board.bonus_game == Board.BonusGame.SunnyBumpers
 		if bonus: board.bonus_pop(mid, true)
 		board.increment_multi(mid, 5 if bonus else 1)
@@ -77,6 +80,7 @@ func hit(other: Node):
 		board.cam.shake(7, 0.12)
 		board.start()
 	if other is Bumpable:
+		SoundEffects.singleton.add(4, global_position)
 		if other.score > 0:
 			board.add_score(other.score, mid)
 			board.cam.shake(5, 0.1)

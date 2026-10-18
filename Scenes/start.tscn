@@ -64,32 +64,11 @@ theme_override_font_sizes/font_size = 50
 text = "START"
 script = ExtResource("2_lb6bl")
 
-[node name="Leaderboards" type="VBoxContainer" parent="CanvasLayer" unique_id=635569225]
-offset_left = 36.0
-offset_top = 580.0
-offset_right = 607.0
-offset_bottom = 1051.0
-script = ExtResource("5_7pwkw")
-row_prefab = ExtResource("6_5bn4p")
-metadata/_custom_type_script = "uid://ycuhajgaxxh7"
-
-[node name="Greeting" type="Label" parent="CanvasLayer" unique_id=1216539010]
-offset_left = 404.0
-offset_top = 106.0
-offset_right = 595.0
-offset_bottom = 197.0
-theme = ExtResource("1_r48yj")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 5
-theme_override_constants/shadow_offset_y = 5
-theme_override_font_sizes/font_size = 75
-text = "Hello"
-
 [node name="Leaderboards Title" type="Label" parent="CanvasLayer" unique_id=190030588]
 offset_left = 28.0
-offset_top = 500.0
+offset_top = 598.0
 offset_right = 674.0
-offset_bottom = 591.0
+offset_bottom = 689.0
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
@@ -126,6 +105,27 @@ icon_alignment = 1
 script = ExtResource("2_lb6bl")
 resize_border = true
 border_width = 5
+
+[node name="Leaderboards" type="VBoxContainer" parent="CanvasLayer" unique_id=635569225]
+offset_left = 36.0
+offset_top = 678.0
+offset_right = 607.0
+offset_bottom = 1149.0
+script = ExtResource("5_7pwkw")
+row_prefab = ExtResource("6_5bn4p")
+metadata/_custom_type_script = "uid://ycuhajgaxxh7"
+
+[node name="Greeting" type="Label" parent="CanvasLayer" unique_id=1216539010]
+offset_left = 404.0
+offset_top = 106.0
+offset_right = 595.0
+offset_bottom = 197.0
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 75
+text = "Hello"
 
 [node name="NameInput" type="LineEdit" parent="CanvasLayer" unique_id=1449689876 node_paths=PackedStringArray("rename_help", "leaderboards", "mimic")]
 offset_left = 613.0

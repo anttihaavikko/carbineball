@@ -16,15 +16,23 @@
 [ext_resource type="PackedScene" uid="uid://cm28ria524vm5" path="res://Scenes/bumper.tscn" id="7_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://w80g3fd86xfk" path="res://_Starter/Scenes/Effects/pulse_ring.tscn" id="7_r33sp"]
 [ext_resource type="Texture2D" uid="uid://cyot1afpoa0mo" path="res://Sprites/pointer.png" id="7_u50mg"]
+[ext_resource type="Script" uid="uid://e88pkdwyw65u" path="res://_Starter/Scripts/sound_effects.gd" id="8_kwxat"]
 [ext_resource type="PackedScene" uid="uid://7n7g46pd3sxq" path="res://Scenes/saver.tscn" id="8_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://p0a0dayjvrf" path="res://_Starter/Scenes/sound.tscn" id="9_aa8k8"]
 [ext_resource type="Script" uid="uid://bg61yohsj8qnu" path="res://Scripts/looker.gd" id="9_fdnlq"]
 [ext_resource type="Script" uid="uid://c4qpntc5su70t" path="res://Scripts/button_set.gd" id="9_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://dkv55r634eg3b" path="res://Scenes/button.tscn" id="9_k12tt"]
+[ext_resource type="AudioStream" uid="uid://cfnn4lurnyjh5" path="res://Sounds/rifle.wav" id="9_kqrg6"]
 [ext_resource type="Script" uid="uid://d21tebxx08yd3" path="res://_Starter/Scripts/limb_live.gd" id="9_ynf5e"]
+[ext_resource type="AudioStream" uid="uid://bw8sg7g5bhgav" path="res://Sounds/blip.wav" id="10_s8vy0"]
 [ext_resource type="Script" uid="uid://6vw1i8bs08bl" path="res://Scripts/rotating_area.gd" id="11_fevyy"]
+[ext_resource type="AudioStream" uid="uid://bxkp2bw3vrkv" path="res://Sounds/thud.wav" id="11_jut3y"]
 [ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="12_6iyac"]
 [ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="12_jwpg7"]
+[ext_resource type="AudioStream" uid="uid://bxcb5r8bgjfi0" path="res://Sounds/boing.wav" id="12_v2nl5"]
+[ext_resource type="AudioStream" uid="uid://rabbh45grir0" path="res://Sounds/button.wav" id="13_jut3y"]
 [ext_resource type="Script" uid="uid://c6oim11rwsnci" path="res://Scripts/ball_lock.gd" id="14_hibaj"]
+[ext_resource type="AudioStream" uid="uid://j4w5trbocoum" path="res://Sounds/beep.wav" id="14_v2nl5"]
 [ext_resource type="Script" uid="uid://bp5igedx4hmlt" path="res://Scripts/bumpable.gd" id="15_pdsj5"]
 [ext_resource type="Script" uid="uid://c30l08dfimwwb" path="res://Scripts/sunny.gd" id="16_3pmx8"]
 [ext_resource type="Script" uid="uid://dfrcme5q3nvfq" path="res://Scripts/hand_swap.gd" id="18_v2nl5"]
@@ -41,6 +49,9 @@
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aa8k8"]
+streams_count = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
 bounce = 2.0
@@ -117,6 +128,12 @@ metadata/_custom_type_script = "uid://b0fr17vp8abvx"
 script = ExtResource("2_ueoa1")
 effects = Array[PackedScene]([ExtResource("3_6vcvc"), ExtResource("4_7k868"), ExtResource("5_hpc6h"), ExtResource("6_kltya"), ExtResource("7_r33sp")])
 metadata/_custom_type_script = "uid://calgx5smnk57"
+
+[node name="SoundEffects" type="Node" parent="." unique_id=953970054]
+script = ExtResource("8_kwxat")
+effects = Array[AudioStream]([ExtResource("9_kqrg6"), SubResource("AudioStreamRandomizer_aa8k8"), ExtResource("10_s8vy0"), ExtResource("11_jut3y"), ExtResource("12_v2nl5"), ExtResource("13_jut3y"), ExtResource("14_v2nl5")])
+prefab = ExtResource("9_aa8k8")
+metadata/_custom_type_script = "uid://e88pkdwyw65u"
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1870561501]
 z_index = -10
