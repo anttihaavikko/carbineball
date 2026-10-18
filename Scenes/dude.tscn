@@ -27,8 +27,9 @@ radius = 51.1957
 radius = 6.0
 height = 32.0
 
-[node name="Dude Wrap" type="Node2D" unique_id=2065492428]
+[node name="Dude Wrap" type="Node2D" unique_id=2065492428 node_paths=PackedStringArray("dude")]
 script = ExtResource("1_6hqwx")
+dude = NodePath("Dude")
 
 [node name="Dude" type="AnimatableBody2D" parent="." unique_id=1244375929 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string")]
 z_index = 2
@@ -41,6 +42,7 @@ scarf_front = NodePath("Scarf Front")
 scarf_back = NodePath("Scarf")
 eyepatch = NodePath("Looker Offset/Looker/Face/Eyepatch")
 eyepatch_string = NodePath("Looker Offset/Eyepatch String")
+red = Color(0.8156863, 0.3254902, 0.3254902, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dude" unique_id=1517803902]
 shape = SubResource("CircleShape2D_cpkcx")
@@ -72,13 +74,15 @@ target = NodePath("../Hand")
 bezier = true
 metadata/_custom_type_script = "uid://d21tebxx08yd3"
 
-[node name="Hand" type="Node2D" parent="Dude/Arm Right" unique_id=714110735 node_paths=PackedStringArray("gun", "ray", "wrapper", "lines")]
+[node name="Hand" type="Node2D" parent="Dude/Arm Right" unique_id=714110735 node_paths=PackedStringArray("gun", "ray", "wrapper", "lines", "root", "fill")]
 position = Vector2(125, -15)
 script = ExtResource("5_ix1ld")
 gun = NodePath("Gun")
 ray = NodePath("Gun/RayCast2D")
 wrapper = NodePath("../../..")
 lines = NodePath("../../../LineDrawer")
+root = NodePath("..")
+fill = NodePath("../../LineMimic")
 
 [node name="Gun" type="Sprite2D" parent="Dude/Arm Right/Hand" unique_id=123363429]
 position = Vector2(-5.0000067, -1.0000229)
@@ -114,7 +118,7 @@ flip = true
 bezier = true
 metadata/_custom_type_script = "uid://d21tebxx08yd3"
 
-[node name="Hand" type="Node2D" parent="Dude/Arm Left" unique_id=1341116039 node_paths=PackedStringArray("gun", "ray", "wrapper", "lines")]
+[node name="Hand" type="Node2D" parent="Dude/Arm Left" unique_id=1341116039 node_paths=PackedStringArray("gun", "ray", "wrapper", "lines", "root", "fill")]
 position = Vector2(-125, -15)
 script = ExtResource("5_ix1ld")
 gun = NodePath("Gun")
@@ -122,6 +126,8 @@ flip = -1
 ray = NodePath("Gun/RayCast2D")
 wrapper = NodePath("../../..")
 lines = NodePath("../../../LineDrawer")
+root = NodePath("..")
+fill = NodePath("../../LineMimic2")
 
 [node name="Gun" type="Sprite2D" parent="Dude/Arm Left/Hand" unique_id=991278329]
 position = Vector2(9.999992, -4.0000267)

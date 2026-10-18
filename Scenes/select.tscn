@@ -1,11 +1,40 @@
 [gd_scene format=3 uid="uid://kckio3fuqc1k"]
 
+[ext_resource type="PackedScene" uid="uid://bpt1nog23ndgh" path="res://Scenes/tree.tscn" id="1_3kbv6"]
+[ext_resource type="Script" uid="uid://d0bq4hscb7d2e" path="res://Scripts/selects.gd" id="1_ntqj0"]
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="1_o6757"]
 [ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="2_jbtq5"]
 [ext_resource type="Script" uid="uid://co2drprnxc3bm" path="res://Scripts/start.gd" id="2_nwg6c"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="3_nwg6c"]
+[ext_resource type="Texture2D" uid="uid://diown41hxs82u" path="res://Sprites/lock.png" id="4_fevql"]
+[ext_resource type="PackedScene" uid="uid://dl77k5gjiwq4o" path="res://Scenes/sun.tscn" id="4_nwg6c"]
+[ext_resource type="PackedScene" uid="uid://d3sg6otu4askw" path="res://Scenes/dude.tscn" id="5_kqlx8"]
+[ext_resource type="PackedScene" uid="uid://ktqgft2vo86g" path="res://Scenes/ball.tscn" id="7_ayi5r"]
+[ext_resource type="Shader" uid="uid://dw5u0j1r1we5x" path="res://_Starter/Shaders/blob.gdshader" id="8_p31gw"]
+[ext_resource type="Script" uid="uid://ova7wngb7x7i" path="res://_Starter/Scripts/camera.gd" id="9_vg4do"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fevql"]
+shader = ExtResource("8_p31gw")
+shader_parameter/amount = 5.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/offset = 0.0
+shader_parameter/speed = 0.1
+shader_parameter/peaks = 4.0
+shader_parameter/time_mod = 1.0
 
 [node name="Select" type="Node2D" unique_id=1508879551]
+
+[node name="Select" type="Node" parent="." unique_id=1184268612 node_paths=PackedStringArray("char_name_label", "char_desc_label", "ball_name_label", "ball_desc_label", "char_lock", "ball_lock", "dude_wrap", "ball", "sun")]
+script = ExtResource("1_ntqj0")
+char_name_label = NodePath("../CanvasLayer/Character Name")
+char_desc_label = NodePath("../CanvasLayer/Character Desc")
+ball_name_label = NodePath("../CanvasLayer/Ball Name")
+ball_desc_label = NodePath("../CanvasLayer/Ball Desc")
+char_lock = NodePath("../CanvasLayer/Char Lock")
+ball_lock = NodePath("../CanvasLayer/Ball Lock")
+dude_wrap = NodePath("../Dude Wrap")
+ball = NodePath("../Ball")
+sun = NodePath("../Sun")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1040220445]
 z_index = -10
@@ -16,38 +45,138 @@ offset_bottom = 2122.0
 color = Color(0.8980392, 0.56078434, 0.39607844, 1)
 metadata/_edit_lock_ = true
 
+[node name="Back Trees" type="Node2D" parent="." unique_id=1334369779]
+modulate = Color(0.9249347, 0.6238935, 0.4766543, 1)
+z_index = -10
+position = Vector2(-296, 631)
+scale = Vector2(0.8404197, 0.8404197)
+
+[node name="Tree" parent="Back Trees" unique_id=596932785 instance=ExtResource("1_3kbv6")]
+position = Vector2(1642, 178)
+
+[node name="Tree2" parent="Back Trees" unique_id=334722749 instance=ExtResource("1_3kbv6")]
+position = Vector2(273, 173)
+
+[node name="Tree3" parent="Back Trees" unique_id=352980699 instance=ExtResource("1_3kbv6")]
+position = Vector2(468, 191)
+
+[node name="Tree4" parent="Back Trees" unique_id=730058021 instance=ExtResource("1_3kbv6")]
+position = Vector2(657, 173)
+
+[node name="Tree5" parent="Back Trees" unique_id=1736547108 instance=ExtResource("1_3kbv6")]
+position = Vector2(775, 208)
+
+[node name="Tree6" parent="Back Trees" unique_id=586939432 instance=ExtResource("1_3kbv6")]
+position = Vector2(1050, 194)
+
+[node name="Tree7" parent="Back Trees" unique_id=2064044874 instance=ExtResource("1_3kbv6")]
+position = Vector2(1248, 117)
+
+[node name="Tree8" parent="Back Trees" unique_id=608657373 instance=ExtResource("1_3kbv6")]
+position = Vector2(1443, 160)
+
+[node name="Tree9" parent="Back Trees" unique_id=1869690340 instance=ExtResource("1_3kbv6")]
+position = Vector2(1814.2229, 212.82513)
+
+[node name="Tree10" parent="Back Trees" unique_id=2145689541 instance=ExtResource("1_3kbv6")]
+position = Vector2(2010.6769, 166.68822)
+
+[node name="Tree11" parent="Back Trees" unique_id=1050302775 instance=ExtResource("1_3kbv6")]
+position = Vector2(2143.1345, 93.762115)
+
+[node name="Tree12" parent="Back Trees" unique_id=894640606 instance=ExtResource("1_3kbv6")]
+position = Vector2(2361.9128, 74.414375)
+
+[node name="Tree13" parent="Back Trees" unique_id=931817542 instance=ExtResource("1_3kbv6")]
+position = Vector2(2503.3, 142.87552)
+
+[node name="Tree14" parent="Back Trees" unique_id=1184697550 instance=ExtResource("1_3kbv6")]
+position = Vector2(2659.5703, 157.75848)
+
+[node name="Polygon2D" type="Polygon2D" parent="Back Trees" unique_id=1193238040]
+position = Vector2(971, 117)
+offset = Vector2(-971, -117)
+polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 2332.147, 194.9657, 2580.691, 125.01611, 2726.5432, 200.91882, 2783.0981, 599.7799, 1945, 489, 41.67206, 632.5222)
+
+[node name="Trees" type="Node2D" parent="." unique_id=1310391925]
+modulate = Color(0.83591425, 0.4813332, 0.3037173, 1)
+z_index = -10
+position = Vector2(-336, 688.99994)
+scale = Vector2(1.2507864, 1.2507864)
+
+[node name="Tree" parent="Trees" unique_id=1771956676 instance=ExtResource("1_3kbv6")]
+position = Vector2(1642, 178)
+
+[node name="Tree2" parent="Trees" unique_id=1728278950 instance=ExtResource("1_3kbv6")]
+position = Vector2(273, 173)
+
+[node name="Tree3" parent="Trees" unique_id=739685398 instance=ExtResource("1_3kbv6")]
+position = Vector2(468, 191)
+
+[node name="Tree4" parent="Trees" unique_id=403992257 instance=ExtResource("1_3kbv6")]
+position = Vector2(657, 173)
+
+[node name="Tree5" parent="Trees" unique_id=484694117 instance=ExtResource("1_3kbv6")]
+position = Vector2(775, 208)
+
+[node name="Tree6" parent="Trees" unique_id=2141542574 instance=ExtResource("1_3kbv6")]
+position = Vector2(1050, 194)
+
+[node name="Tree7" parent="Trees" unique_id=449684677 instance=ExtResource("1_3kbv6")]
+position = Vector2(1248, 117)
+
+[node name="Tree8" parent="Trees" unique_id=1872722335 instance=ExtResource("1_3kbv6")]
+position = Vector2(1443, 160)
+
+[node name="Polygon2D" type="Polygon2D" parent="Trees" unique_id=441007619]
+position = Vector2(971, 117)
+offset = Vector2(-971, -117)
+polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 1945, 489, 42, 415)
+
+[node name="Sun" parent="." unique_id=1495319388 instance=ExtResource("4_nwg6c")]
+position = Vector2(968, 1025)
+
+[node name="Dude Wrap" parent="." unique_id=2065492428 instance=ExtResource("5_kqlx8")]
+position = Vector2(0, -512)
+moves = false
+
+[node name="Ball" parent="." unique_id=1932390979 instance=ExtResource("7_ayi5r")]
+position = Vector2(960, 593)
+gravity_scale = 0.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1505295936 node_paths=PackedStringArray("blinders")]
 script = ExtResource("2_nwg6c")
 scene = "main"
 blinders = NodePath("../Blinders")
 
-[node name="Balls" type="RichTextLabel" parent="CanvasLayer" unique_id=632349744]
-visible = false
+[node name="Title" type="RichTextLabel" parent="CanvasLayer" unique_id=632349744]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 17.0
-offset_top = -50.0
-offset_right = -38.0
-offset_bottom = 137.0
+offset_left = 45.0
+offset_top = 13.0
+offset_right = -41.0
+offset_bottom = 200.0
 grow_horizontal = 2
 theme = ExtResource("1_o6757")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 1
 theme_override_constants/shadow_offset_x = 9
 theme_override_constants/shadow_offset_y = 9
-theme_override_font_sizes/normal_font_size = 150
-text = "•••"
+theme_override_font_sizes/normal_font_size = 90
+bbcode_enabled = true
+text = "[wave amp=20 freq=5]CHOOSE CHARACTER AND BALL"
+horizontal_alignment = 1
 vertical_alignment = 1
 text_direction = 1
 
-[node name="Score" type="RichTextLabel" parent="CanvasLayer" unique_id=389144841]
-visible = false
+[node name="Character Name" type="RichTextLabel" parent="CanvasLayer" unique_id=1878041483]
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 3.0
-offset_top = -9.0
-offset_right = -23.0
-offset_bottom = 132.0
+offset_left = 45.0
+offset_top = 283.0
+offset_right = -41.0
+offset_bottom = 470.0
 grow_horizontal = 2
 theme = ExtResource("1_o6757")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -55,43 +184,149 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_constants/shadow_offset_x = 9
 theme_override_constants/shadow_offset_y = 9
 theme_override_font_sizes/normal_font_size = 80
-text = "0"
-horizontal_alignment = 2
+text = "VANILLAD"
+horizontal_alignment = 1
 vertical_alignment = 1
 text_direction = 1
-metadata/_edit_lock_ = true
 
-[node name="Multi" type="RichTextLabel" parent="CanvasLayer" unique_id=2098974714]
-visible = false
+[node name="Character Desc" type="RichTextLabel" parent="CanvasLayer" unique_id=1549661487]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 3.0
-offset_top = 65.0
-offset_right = -23.0
-offset_bottom = 206.0
+offset_left = 45.0
+offset_top = 371.0
+offset_right = -41.0
+offset_bottom = 558.0
+grow_horizontal = 2
+theme = ExtResource("1_o6757")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[color=#F1E8B8]UNLOCK METHOD[/color]: Die"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
+
+[node name="Ball Name" type="RichTextLabel" parent="CanvasLayer" unique_id=779752648]
+self_modulate = Color(0.9764706, 0.90588236, 0.5176471, 1)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 45.0
+offset_top = 588.0
+offset_right = -41.0
+offset_bottom = 775.0
 grow_horizontal = 2
 theme = ExtResource("1_o6757")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 1
 theme_override_constants/shadow_offset_x = 9
 theme_override_constants/shadow_offset_y = 9
-theme_override_font_sizes/normal_font_size = 60
-text = "x1"
-horizontal_alignment = 2
+theme_override_font_sizes/normal_font_size = 80
+text = "BROLL"
+horizontal_alignment = 1
 vertical_alignment = 1
 text_direction = 1
-metadata/_edit_lock_ = true
 
-[node name="Button" type="Button" parent="CanvasLayer" unique_id=1418881275]
-offset_left = 768.0
-offset_top = 904.0
-offset_right = 1165.0
-offset_bottom = 1041.0
+[node name="Ball Desc" type="RichTextLabel" parent="CanvasLayer" unique_id=873180976]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 45.0
+offset_top = 676.0
+offset_right = -41.0
+offset_bottom = 863.0
+grow_horizontal = 2
+theme = ExtResource("1_o6757")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "A sentient friendly ball. No special powers."
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
+
+[node name="Next Char" type="Button" parent="CanvasLayer" unique_id=1418881275]
+offset_left = 1299.0
+offset_top = 260.0
+offset_right = 1402.0
+offset_bottom = 360.0
+theme = ExtResource("1_o6757")
+theme_override_font_sizes/font_size = 50
+text = ">"
+script = ExtResource("2_jbtq5")
+
+[node name="Prev Char" type="Button" parent="CanvasLayer" unique_id=318198124]
+offset_left = 512.0
+offset_top = 260.0
+offset_right = 615.0
+offset_bottom = 360.0
+theme = ExtResource("1_o6757")
+theme_override_font_sizes/font_size = 50
+text = "<"
+script = ExtResource("2_jbtq5")
+
+[node name="Next Ball" type="Button" parent="CanvasLayer" unique_id=2071550970]
+offset_left = 1299.0
+offset_top = 587.0
+offset_right = 1402.0
+offset_bottom = 687.0
+theme = ExtResource("1_o6757")
+theme_override_font_sizes/font_size = 50
+text = ">"
+script = ExtResource("2_jbtq5")
+
+[node name="Prev Ball" type="Button" parent="CanvasLayer" unique_id=987223231]
+offset_left = 512.0
+offset_top = 587.0
+offset_right = 615.0
+offset_bottom = 687.0
+theme = ExtResource("1_o6757")
+theme_override_font_sizes/font_size = 50
+text = "<"
+script = ExtResource("2_jbtq5")
+
+[node name="Continue" type="Button" parent="CanvasLayer" unique_id=1882182003]
+offset_left = 1436.0
+offset_top = 868.0
+offset_right = 1860.0
+offset_bottom = 1022.0
 theme = ExtResource("1_o6757")
 theme_override_font_sizes/font_size = 50
 text = "CONTINUE"
 script = ExtResource("2_jbtq5")
 
+[node name="Char Lock" type="TextureRect" parent="CanvasLayer" unique_id=1567005020]
+material = SubResource("ShaderMaterial_fevql")
+offset_left = 884.0
+offset_top = 244.0
+offset_right = 1037.4048
+offset_bottom = 398.0
+texture = ExtResource("4_fevql")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Ball Lock" type="TextureRect" parent="CanvasLayer" unique_id=1652672293]
+material = SubResource("ShaderMaterial_fevql")
+offset_left = 884.0
+offset_top = 558.0
+offset_right = 1037.4048
+offset_bottom = 712.0
+texture = ExtResource("4_fevql")
+expand_mode = 3
+stretch_mode = 5
+
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("3_nwg6c")]
 
-[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer" method="start"]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2137040192]
+position = Vector2(961, 541)
+script = ExtResource("9_vg4do")
+
+[connection signal="pressed" from="CanvasLayer/Next Char" to="Select" method="next_char"]
+[connection signal="pressed" from="CanvasLayer/Prev Char" to="Select" method="prev_char"]
+[connection signal="pressed" from="CanvasLayer/Next Ball" to="Select" method="next_ball"]
+[connection signal="pressed" from="CanvasLayer/Prev Ball" to="Select" method="prev_ball"]
+[connection signal="pressed" from="CanvasLayer/Continue" to="CanvasLayer" method="start"]

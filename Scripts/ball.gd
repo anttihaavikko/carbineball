@@ -6,6 +6,34 @@ var bonked := false
 var last_hits: Array[Node] = []
 var dupes := 0
 
+enum Personality {
+	Broll,
+	Skull,
+	Starll
+}
+
+static func get_title(p: Personality) -> String:
+	return [
+		"Broll",
+		"Skull",
+		"Starll"
+	][p]
+
+static func get_desc(p: Personality, is_locked: bool) -> String:
+	if is_locked:
+		var desc = [
+			"None",
+			"Die",
+			"Multiball"
+		][p]
+		return "[color=#F1E8B8]UNLOCK METHOD[/color]: %s" % [desc]
+
+	return [
+		"A sentient friendly ball. No special powers.",
+		"Lorem ipsum dolor.",
+		"Loremer imsumer dolorer."
+	][p]
+
 func _ready() -> void:
 	body_entered.connect(hit)
 

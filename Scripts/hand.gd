@@ -5,6 +5,8 @@ class_name Hand extends Node2D
 @export var ray: RayCast2D
 @export var wrapper: Wrapper
 @export var lines: LineDrawer
+@export var root: Node2D
+@export var fill: Node2D
 
 var origin: Vector2
 var gun_rot: float
@@ -13,6 +15,10 @@ var cooling := 0.0
 func _ready() -> void:
 	origin = position
 	gun_rot = gun.rotation
+
+func toggle_visibility(state: bool):
+	root.visible = state
+	fill.visible = state
 
 func _process(delta) -> void:
 	cooling -= delta

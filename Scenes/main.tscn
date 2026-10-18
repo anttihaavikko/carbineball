@@ -40,7 +40,6 @@
 [ext_resource type="Texture2D" uid="uid://cg0hee5ygajqg" path="res://Sprites/round_bumper.png" id="34_8cuat"]
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
-[ext_resource type="Script" uid="uid://bhwsvcjr5eof3" path="res://Scripts/wrapper.gd" id="41_o1aky"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
@@ -1086,7 +1085,6 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_jjgbg")
 
 [node name="Dude Wrap" parent="." unique_id=2065492428 node_paths=PackedStringArray("board") instance=ExtResource("31_e08e2")]
-script = ExtResource("41_o1aky")
 board = NodePath("../Board")
 
 [node name="Death Area" type="Area2D" parent="." unique_id=1612607923]
