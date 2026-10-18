@@ -12,6 +12,8 @@ func enter(node: Node):
 
 	if node is Ball:
 		node.linear_velocity = Vector2.ZERO
+		var msg = ["SPROING!", "SWOOSH!", "HUUMPH!", "OOMPH!"].pick_random()
+		node.board.pop(msg, node.global_position)
 		node.apply_impulse(Vector2.UP * 2500)
 		retract()
 		used.emit()

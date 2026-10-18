@@ -35,6 +35,9 @@ func angry():
 	reset_hand(true)
 	reset_hand(false)
 
+func point_at_mouse():
+	point(get_global_mouse_position())
+
 func point(pos: Vector2):
 	if emoting: return
 	var use_left = sequence % 2 == 0

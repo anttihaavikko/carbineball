@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pinball"
-run/main_scene="uid://vf7dgj6kl1vn"
+run/main_scene="uid://chrcvcmh2ejns"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://dlovvg7hm5ebs"
 

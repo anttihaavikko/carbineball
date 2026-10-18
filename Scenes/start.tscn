@@ -4,6 +4,9 @@
 [ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="1_r48yj"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="2_5ogh5"]
 [ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="2_lb6bl"]
+[ext_resource type="PackedScene" uid="uid://bpt1nog23ndgh" path="res://Scenes/tree.tscn" id="5_pg4io"]
+[ext_resource type="PackedScene" uid="uid://dl77k5gjiwq4o" path="res://Scenes/sun.tscn" id="6_iceld"]
+[ext_resource type="Script" uid="uid://ova7wngb7x7i" path="res://_Starter/Scripts/camera.gd" id="7_7pwkw"]
 
 [node name="Start" type="Node2D" unique_id=864225371]
 
@@ -21,77 +24,131 @@ script = ExtResource("1_lb6bl")
 scene = "select"
 blinders = NodePath("../Blinders")
 
-[node name="Balls" type="RichTextLabel" parent="CanvasLayer" unique_id=306492352]
-visible = false
+[node name="Title" type="RichTextLabel" parent="CanvasLayer" unique_id=306492352]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 17.0
-offset_top = -50.0
-offset_right = -38.0
-offset_bottom = 137.0
+offset_left = 71.0
+offset_top = 128.0
+offset_right = -80.0
+offset_bottom = 681.0
 grow_horizontal = 2
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_constants/shadow_offset_x = 9
-theme_override_constants/shadow_offset_y = 9
-theme_override_font_sizes/normal_font_size = 150
-text = "•••"
+theme_override_constants/shadow_offset_x = 17
+theme_override_constants/shadow_offset_y = 17
+theme_override_font_sizes/normal_font_size = 250
+bbcode_enabled = true
+text = "[wave]PINBALL?"
+horizontal_alignment = 1
 vertical_alignment = 1
 text_direction = 1
-
-[node name="Score" type="RichTextLabel" parent="CanvasLayer" unique_id=215522926]
-visible = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 3.0
-offset_top = -9.0
-offset_right = -23.0
-offset_bottom = 132.0
-grow_horizontal = 2
-theme = ExtResource("1_r48yj")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 1
-theme_override_constants/shadow_offset_x = 9
-theme_override_constants/shadow_offset_y = 9
-theme_override_font_sizes/normal_font_size = 80
-text = "0"
-horizontal_alignment = 2
-vertical_alignment = 1
-text_direction = 1
-metadata/_edit_lock_ = true
-
-[node name="Multi" type="RichTextLabel" parent="CanvasLayer" unique_id=1056855089]
-visible = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 3.0
-offset_top = 65.0
-offset_right = -23.0
-offset_bottom = 206.0
-grow_horizontal = 2
-theme = ExtResource("1_r48yj")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 1
-theme_override_constants/shadow_offset_x = 9
-theme_override_constants/shadow_offset_y = 9
-theme_override_font_sizes/normal_font_size = 60
-text = "x1"
-horizontal_alignment = 2
-vertical_alignment = 1
-text_direction = 1
-metadata/_edit_lock_ = true
 
 [node name="Button" type="Button" parent="CanvasLayer" unique_id=635471847]
-offset_left = 768.0
-offset_top = 904.0
-offset_right = 1165.0
-offset_bottom = 1041.0
+offset_left = 764.0
+offset_top = 597.0
+offset_right = 1161.0
+offset_bottom = 734.0
 theme = ExtResource("1_r48yj")
 theme_override_font_sizes/font_size = 50
 text = "START"
 script = ExtResource("2_lb6bl")
 
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("2_5ogh5")]
+
+[node name="Back Trees" type="Node2D" parent="." unique_id=1072664016]
+modulate = Color(0.9249347, 0.6238935, 0.4766543, 1)
+z_index = -10
+position = Vector2(-296, 631)
+scale = Vector2(0.8404197, 0.8404197)
+
+[node name="Tree" parent="Back Trees" unique_id=596932785 instance=ExtResource("5_pg4io")]
+position = Vector2(1642, 178)
+
+[node name="Tree2" parent="Back Trees" unique_id=334794682 instance=ExtResource("5_pg4io")]
+position = Vector2(273, 173)
+
+[node name="Tree3" parent="Back Trees" unique_id=676231605 instance=ExtResource("5_pg4io")]
+position = Vector2(468, 191)
+
+[node name="Tree4" parent="Back Trees" unique_id=1799363969 instance=ExtResource("5_pg4io")]
+position = Vector2(657, 173)
+
+[node name="Tree5" parent="Back Trees" unique_id=107570433 instance=ExtResource("5_pg4io")]
+position = Vector2(775, 208)
+
+[node name="Tree6" parent="Back Trees" unique_id=1637971682 instance=ExtResource("5_pg4io")]
+position = Vector2(1050, 194)
+
+[node name="Tree7" parent="Back Trees" unique_id=1592944762 instance=ExtResource("5_pg4io")]
+position = Vector2(1248, 117)
+
+[node name="Tree8" parent="Back Trees" unique_id=593644542 instance=ExtResource("5_pg4io")]
+position = Vector2(1443, 160)
+
+[node name="Tree9" parent="Back Trees" unique_id=1805040045 instance=ExtResource("5_pg4io")]
+position = Vector2(1814.2229, 212.82513)
+
+[node name="Tree10" parent="Back Trees" unique_id=1909347039 instance=ExtResource("5_pg4io")]
+position = Vector2(2010.6769, 166.68822)
+
+[node name="Tree11" parent="Back Trees" unique_id=2052054477 instance=ExtResource("5_pg4io")]
+position = Vector2(2143.1345, 93.762115)
+
+[node name="Tree12" parent="Back Trees" unique_id=361358684 instance=ExtResource("5_pg4io")]
+position = Vector2(2361.9128, 74.414375)
+
+[node name="Tree13" parent="Back Trees" unique_id=440402244 instance=ExtResource("5_pg4io")]
+position = Vector2(2503.3, 142.87552)
+
+[node name="Tree14" parent="Back Trees" unique_id=699320391 instance=ExtResource("5_pg4io")]
+position = Vector2(2659.5703, 157.75848)
+
+[node name="Polygon2D" type="Polygon2D" parent="Back Trees" unique_id=948508941]
+position = Vector2(971, 117)
+offset = Vector2(-971, -117)
+polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 2332.147, 194.9657, 2580.691, 125.01611, 2726.5432, 200.91882, 2783.0981, 599.7799, 1945, 489, 41.67206, 632.5222)
+
+[node name="Trees" type="Node2D" parent="." unique_id=154992227]
+modulate = Color(0.83591425, 0.4813332, 0.3037173, 1)
+z_index = -10
+position = Vector2(-336, 688.99994)
+scale = Vector2(1.2507864, 1.2507864)
+
+[node name="Tree" parent="Trees" unique_id=761456837 instance=ExtResource("5_pg4io")]
+position = Vector2(1642, 178)
+
+[node name="Tree2" parent="Trees" unique_id=1191526064 instance=ExtResource("5_pg4io")]
+position = Vector2(273, 173)
+
+[node name="Tree3" parent="Trees" unique_id=609289967 instance=ExtResource("5_pg4io")]
+position = Vector2(468, 191)
+
+[node name="Tree4" parent="Trees" unique_id=541365523 instance=ExtResource("5_pg4io")]
+position = Vector2(657, 173)
+
+[node name="Tree5" parent="Trees" unique_id=1393318372 instance=ExtResource("5_pg4io")]
+position = Vector2(775, 208)
+
+[node name="Tree6" parent="Trees" unique_id=1364238930 instance=ExtResource("5_pg4io")]
+position = Vector2(1050, 194)
+
+[node name="Tree7" parent="Trees" unique_id=1255317243 instance=ExtResource("5_pg4io")]
+position = Vector2(1248, 117)
+
+[node name="Tree8" parent="Trees" unique_id=2044883132 instance=ExtResource("5_pg4io")]
+position = Vector2(1443, 160)
+
+[node name="Polygon2D" type="Polygon2D" parent="Trees" unique_id=1680362747]
+position = Vector2(971, 117)
+offset = Vector2(-971, -117)
+polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 1054, 180, 1274, 123, 1347, 167, 1553, 161, 1797, 187, 1928, 118, 1945, 489, 42, 415)
+
+[node name="Sun" parent="." unique_id=1495319388 instance=ExtResource("6_iceld")]
+position = Vector2(968, 1025)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1034225895]
+position = Vector2(961, 541)
+script = ExtResource("7_7pwkw")
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer" method="start"]

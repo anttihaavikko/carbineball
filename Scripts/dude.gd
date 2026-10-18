@@ -26,13 +26,13 @@ static func get_desc(p: Personality, locked: bool) -> String:
 	if locked:
 		var desc = [
 			"None",
-			"Achieve a score of a million."
+			"Achieve a score of a million"
 		][p]
 		return "[color=#F1E8B8]UNLOCK METHOD[/color]: %s" % [desc]
 
 	return [
-		"Basic grunt.",
-		"Can only operate one gun."
+		"Basic (grunt). Nothing (special) about him.",
+		"Can only operate (one gun), but has (2x) the (max multiplier)."
 	][p]
 
 func use(personality: Personality):

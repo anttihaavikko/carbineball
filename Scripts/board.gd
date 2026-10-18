@@ -59,6 +59,7 @@ func change_bonus():
 	if started: pop("NEW BONUS GAME!", spawn_point.global_position + Vector2.DOWN * 100, yellow)
 
 func spawn_ball():
+	started = false
 	create_ball(spawn_point.global_position)
 	holder_left.reset()
 	holder_right.reset()

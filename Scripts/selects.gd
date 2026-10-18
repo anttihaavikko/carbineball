@@ -20,9 +20,9 @@ func show_selections():
 	char_lock.visible = randf() < 0.5
 	ball_lock.visible = randf() < 0.5
 	char_name_label.text = Dude.get_title(cur_char)
-	char_desc_label.text = Dude.get_desc(cur_char, char_lock.visible)
+	char_desc_label.text = Utils.colorize(Dude.get_desc(cur_char, char_lock.visible), "#F1E8B8")
 	ball_name_label.text = Ball.get_title(cur_ball)
-	ball_desc_label.text = Ball.get_desc(cur_ball, ball_lock.visible)
+	ball_desc_label.text = Utils.colorize(Ball.get_desc(cur_ball, ball_lock.visible), "#F1E8B8")
 	dude_wrap.dude.use(cur_char)
 
 func next_char():
@@ -35,6 +35,7 @@ func change_char(dir: int):
 	var s = Dude.Personality.size()
 	cur_char = ((cur_char + dir) + s) % s as Dude.Personality
 	show_selections()
+	sun.point_at_mouse()
 
 func next_ball():
 	change_ball(1)
@@ -46,3 +47,4 @@ func change_ball(dir: int):
 	var s = Ball.Personality.size()
 	cur_ball = ((cur_ball + dir) + s) % s as Ball.Personality
 	show_selections()
+	sun.point_at_mouse()

@@ -27,9 +27,10 @@ radius = 51.1957
 radius = 6.0
 height = 32.0
 
-[node name="Dude Wrap" type="Node2D" unique_id=2065492428 node_paths=PackedStringArray("dude")]
+[node name="Dude Wrap" type="Node2D" unique_id=2065492428 node_paths=PackedStringArray("dude", "looker")]
 script = ExtResource("1_6hqwx")
 dude = NodePath("Dude")
+looker = NodePath("Dude/Looker Offset/Looker")
 
 [node name="Dude" type="AnimatableBody2D" parent="." unique_id=1244375929 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string")]
 z_index = 2

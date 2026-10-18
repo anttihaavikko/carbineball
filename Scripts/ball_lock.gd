@@ -58,6 +58,9 @@ func toggle_markers():
 	markers[0].visible = mid
 	markers[1].visible = right
 	markers[2].visible = left
+	if is_enabled():
+		var msg = ["ONLINE!", "WELCOME!", "PLEASE!", "AWAITING!"].pick_random()
+		board.pop(msg, global_position, board.yellow)
 	label.text = "[wave]LOCK ONLINE" if is_enabled() else "LOCK OFFLINE"
 	count_label.text = str(balls) + (" BALL" if balls == 1 else " BALLS")
 	var can_start = balls > 0
