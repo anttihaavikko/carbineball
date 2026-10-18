@@ -231,15 +231,15 @@ polygon = PackedVector2Array(66, 95, 317, 192, 531, 184, 725, 210, 874, 200, 105
 [node name="Sign" type="Sprite2D" parent="." unique_id=617540960]
 self_modulate = Color(0.68289727, 0.36716983, 0.20488298, 1)
 z_index = -2
-position = Vector2(960, 1012.0001)
-scale = Vector2(1.1350881, 1.1350881)
+position = Vector2(960, 1022.2865)
+scale = Vector2(1.1350881, 1.079459)
 texture = ExtResource("40_aqgau")
 offset = Vector2(-0.35916138, -66.09073)
 
 [node name="Bonus Sign" type="Sprite2D" parent="Sign" unique_id=1599779976]
 self_modulate = Color(0.68289727, 0.36716983, 0.20488298, 1)
-position = Vector2(-0.88100004, -284.55948)
-scale = Vector2(0.5349623, 0.29961893)
+position = Vector2(-0.8810327, -298.4001)
+scale = Vector2(0.5349623, 0.37446973)
 texture = ExtResource("40_aqgau")
 offset = Vector2(-0.35916138, -66.09073)
 
@@ -249,13 +249,13 @@ z_index = -2
 [node name="RichTextLabel" type="RichTextLabel" parent="Node2D" unique_id=2081668577]
 self_modulate = Color(0.9268312, 0.629104, 0.48638684, 1)
 offset_left = 720.0
-offset_top = 733.0
+offset_top = 758.0
 offset_right = 1198.0
 offset_bottom = 975.0
 theme = ExtResource("29_6vcvc")
 theme_override_font_sizes/normal_font_size = 46
 bbcode_enabled = true
-text = "Bump the ball or shoot (with [img=12]res://_Starter/Sprites/mouse_click.png[/img] or [img=12]res://_Starter/Sprites/mouse_right.png[/img]) it to get started..."
+text = "Bump the ball or shoot (with [img=40]res://_Starter/Sprites/mouse_click.png[/img] or [img=40]res://_Starter/Sprites/mouse_right.png[/img]) it to get started..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
