@@ -1,0 +1,298 @@
+[gd_scene format=3 uid="uid://d3sg6otu4askw"]
+
+[ext_resource type="Script" uid="uid://bhwsvcjr5eof3" path="res://Scripts/wrapper.gd" id="1_6hqwx"]
+[ext_resource type="Script" uid="uid://uq5uddkuj305" path="res://Scripts/dude.gd" id="1_kxkj1"]
+[ext_resource type="Texture2D" uid="uid://c4k45aop5npkf" path="res://Sprites/scarf.png" id="2_kek35"]
+[ext_resource type="Script" uid="uid://bwknch2pvkg4u" path="res://_Starter/Scripts/line.gd" id="3_6hqwx"]
+[ext_resource type="Script" uid="uid://d21tebxx08yd3" path="res://_Starter/Scripts/limb_live.gd" id="4_fgw7f"]
+[ext_resource type="Script" uid="uid://blkmne3taoehe" path="res://Scripts/hand.gd" id="5_ix1ld"]
+[ext_resource type="Texture2D" uid="uid://ctm6u0gsqbmpx" path="res://Sprites/gun.png" id="6_tuggm"]
+[ext_resource type="Texture2D" uid="uid://3ss1u6gvyjjd" path="res://Sprites/hand.png" id="7_2hl5x"]
+[ext_resource type="Texture2D" uid="uid://cijvrkcbnjaal" path="res://_Starter/Sprites/circle.png" id="8_wo7fb"]
+[ext_resource type="Script" uid="uid://cav6gx1wclcxg" path="res://_Starter/Scripts/line_mimic.gd" id="9_183wy"]
+[ext_resource type="Script" uid="uid://bg61yohsj8qnu" path="res://Scripts/looker.gd" id="10_cv7qn"]
+[ext_resource type="PackedScene" uid="uid://dxxgw2udie8rg" path="res://_Starter/Scenes/face.tscn" id="11_k6vcc"]
+[ext_resource type="Texture2D" uid="uid://b0hq8arh3621k" path="res://Sprites/eyepatch.png" id="12_ny48v"]
+[ext_resource type="Texture2D" uid="uid://bidn5b6nfy86k" path="res://Sprites/eyepatch_string.png" id="13_jww68"]
+[ext_resource type="Texture2D" uid="uid://r5ggaewnjl7g" path="res://Sprites/scarf_front.png" id="14_xaxxe"]
+[ext_resource type="Script" uid="uid://b2gfrikyseqk" path="res://_Starter/Scripts/line_drawer.gd" id="15_kek35"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jjvhh"]
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpkcx"]
+radius = 51.1957
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa8k8"]
+radius = 6.0
+height = 32.0
+
+[node name="Dude Wrap" type="Node2D" unique_id=2065492428]
+script = ExtResource("1_6hqwx")
+
+[node name="Dude" type="AnimatableBody2D" parent="." unique_id=1244375929 node_paths=PackedStringArray("left", "right", "scarf_front", "scarf_back", "eyepatch", "eyepatch_string")]
+z_index = 2
+position = Vector2(960, 791)
+physics_material_override = SubResource("PhysicsMaterial_jjvhh")
+script = ExtResource("1_kxkj1")
+left = NodePath("Arm Left/Hand")
+right = NodePath("Arm Right/Hand")
+scarf_front = NodePath("Scarf Front")
+scarf_back = NodePath("Scarf")
+eyepatch = NodePath("Looker Offset/Looker/Face/Eyepatch")
+eyepatch_string = NodePath("Looker Offset/Eyepatch String")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dude" unique_id=1517803902]
+shape = SubResource("CircleShape2D_cpkcx")
+
+[node name="Scarf" type="Line2D" parent="Dude" unique_id=633710221 node_paths=PackedStringArray("targets")]
+self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
+z_index = -1
+z_as_relative = false
+points = PackedVector2Array(0, 0, 1, 28, 1, 74, 1, 119, 1, 162, 0, 206, 0, 237)
+width = 70.0
+texture = ExtResource("2_kek35")
+texture_mode = 2
+script = ExtResource("3_6hqwx")
+targets = [NodePath("."), NodePath("../../Scarf Link 1/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 2/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 3/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 4/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 5/CollisionShape2D/PinJoint2D"), NodePath("../../Scarf Link 5/CollisionShape2D/Tip")]
+per_segment = 4
+
+[node name="Arm Right" type="Node2D" parent="Dude" unique_id=1384434329]
+
+[node name="LiveLimb" type="Line2D" parent="Dude/Arm Right" unique_id=1202285837 node_paths=PackedStringArray("target")]
+position = Vector2(38, -11)
+points = PackedVector2Array(0, 0, 45.567383, 42.96289, 87, -4.000122)
+width = 19.54
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_fgw7f")
+target = NodePath("../Hand")
+bezier = true
+metadata/_custom_type_script = "uid://d21tebxx08yd3"
+
+[node name="Hand" type="Node2D" parent="Dude/Arm Right" unique_id=714110735 node_paths=PackedStringArray("gun", "ray", "wrapper", "lines")]
+position = Vector2(125, -15)
+script = ExtResource("5_ix1ld")
+gun = NodePath("Gun")
+ray = NodePath("Gun/RayCast2D")
+wrapper = NodePath("../../..")
+lines = NodePath("../../../LineDrawer")
+
+[node name="Gun" type="Sprite2D" parent="Dude/Arm Right/Hand" unique_id=123363429]
+position = Vector2(-5.0000067, -1.0000229)
+rotation = 0.829154
+texture = ExtResource("6_tuggm")
+offset = Vector2(-37.98352, -20.308777)
+
+[node name="RayCast2D" type="RayCast2D" parent="Dude/Arm Right/Hand/Gun" unique_id=2026694723]
+position = Vector2(-84.922195, -41.610516)
+target_position = Vector2(-1482.9092, -2.3120728)
+collision_mask = 3
+
+[node name="Hand" type="Sprite2D" parent="Dude/Arm Right/Hand" unique_id=1598190997]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(8, -9)
+rotation = 0.43819404
+scale = Vector2(0.5386526, 0.5386526)
+texture = ExtResource("7_2hl5x")
+
+[node name="Arm Left" type="Node2D" parent="Dude" unique_id=2073958929]
+
+[node name="LiveLimb" type="Line2D" parent="Dude/Arm Left" unique_id=2122213250 node_paths=PackedStringArray("target")]
+position = Vector2(-39, -10)
+points = PackedVector2Array(0, 0, -45.61908, 42.548096, -86, -5)
+width = 19.54
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_fgw7f")
+target = NodePath("../Hand")
+flip = true
+bezier = true
+metadata/_custom_type_script = "uid://d21tebxx08yd3"
+
+[node name="Hand" type="Node2D" parent="Dude/Arm Left" unique_id=1341116039 node_paths=PackedStringArray("gun", "ray", "wrapper", "lines")]
+position = Vector2(-125, -15)
+script = ExtResource("5_ix1ld")
+gun = NodePath("Gun")
+flip = -1
+ray = NodePath("Gun/RayCast2D")
+wrapper = NodePath("../../..")
+lines = NodePath("../../../LineDrawer")
+
+[node name="Gun" type="Sprite2D" parent="Dude/Arm Left/Hand" unique_id=991278329]
+position = Vector2(9.999992, -4.0000267)
+rotation = -0.8290314
+texture = ExtResource("6_tuggm")
+offset = Vector2(31.045227, -26.402344)
+flip_h = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Dude/Arm Left/Hand/Gun" unique_id=731707204]
+position = Vector2(77.305695, -48.447147)
+target_position = Vector2(1796.0073, 40.19519)
+collision_mask = 3
+
+[node name="Hand" type="Sprite2D" parent="Dude/Arm Left/Hand" unique_id=1283388717]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(-12, -13)
+rotation = -0.60087705
+scale = Vector2(0.5386526, 0.5386526)
+texture = ExtResource("7_2hl5x")
+flip_h = true
+
+[node name="Body" type="Sprite2D" parent="Dude" unique_id=1148633389]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.21581219, 0.21581219)
+texture = ExtResource("8_wo7fb")
+
+[node name="Fill" type="Sprite2D" parent="Dude/Body" unique_id=758799664]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+scale = Vector2(0.8535397, 0.8535397)
+texture = ExtResource("8_wo7fb")
+
+[node name="LineMimic" type="Line2D" parent="Dude" unique_id=1314707977 node_paths=PackedStringArray("target")]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(38, -11)
+points = PackedVector2Array(0, 0, 45.567383, 42.96289, 87, -4.000122)
+width = 7.74
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("9_183wy")
+target = NodePath("../Arm Right/LiveLimb")
+metadata/_custom_type_script = "uid://cav6gx1wclcxg"
+
+[node name="LineMimic2" type="Line2D" parent="Dude" unique_id=105936099 node_paths=PackedStringArray("target")]
+self_modulate = Color(0.94509804, 0.9098039, 0.72156864, 1)
+position = Vector2(-39, -10)
+points = PackedVector2Array(0, 0, -45.61908, 42.548096, -86, -5)
+width = 7.74
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("9_183wy")
+target = NodePath("../Arm Left/LiveLimb")
+metadata/_custom_type_script = "uid://cav6gx1wclcxg"
+
+[node name="Looker Offset" type="Node2D" parent="Dude" unique_id=79267815]
+
+[node name="Looker" type="Node2D" parent="Dude/Looker Offset" unique_id=110075425]
+script = ExtResource("10_cv7qn")
+metadata/_custom_type_script = "uid://bg61yohsj8qnu"
+
+[node name="Face" parent="Dude/Looker Offset/Looker" unique_id=1240513132 instance=ExtResource("11_k6vcc")]
+
+[node name="Eyepatch" type="Sprite2D" parent="Dude/Looker Offset/Looker/Face" unique_id=172584728]
+visible = false
+z_index = 2
+position = Vector2(14, -8)
+rotation = 0.74057686
+scale = Vector2(0.5987787, 0.5987787)
+texture = ExtResource("12_ny48v")
+
+[node name="Eyepatch String" type="Sprite2D" parent="Dude/Looker Offset" unique_id=1260622862]
+visible = false
+position = Vector2(18, -19)
+rotation = 0.10502192
+scale = Vector2(0.55308825, 0.55308825)
+texture = ExtResource("13_jww68")
+
+[node name="Scarf Front" type="Sprite2D" parent="Dude" unique_id=339969620]
+self_modulate = Color(0.8156863, 0.3254902, 0.3254902, 1)
+position = Vector2(0, 24)
+scale = Vector2(0.7145846, 0.7145846)
+texture = ExtResource("14_xaxxe")
+
+[node name="Scarf Link 1" type="RigidBody2D" parent="." unique_id=885490827]
+position = Vector2(961, 835)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 1" unique_id=2000311742]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 1/CollisionShape2D" unique_id=749911288]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Dude")
+node_b = NodePath("../..")
+softness = 1.0
+
+[node name="Scarf Link 2" type="RigidBody2D" parent="." unique_id=1495750481]
+position = Vector2(961, 881)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 2" unique_id=1421119818]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 2/CollisionShape2D" unique_id=189275344]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 1")
+node_b = NodePath("../..")
+softness = 1.0
+
+[node name="Scarf Link 3" type="RigidBody2D" parent="." unique_id=1227508758]
+position = Vector2(961, 926)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 3" unique_id=1908341338]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 3/CollisionShape2D" unique_id=912649697]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 2")
+node_b = NodePath("../..")
+softness = 1.0
+
+[node name="Scarf Link 4" type="RigidBody2D" parent="." unique_id=786690904]
+position = Vector2(961, 969)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 4" unique_id=1325148035]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 4/CollisionShape2D" unique_id=1211009477]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 3")
+node_b = NodePath("../..")
+softness = 1.0
+
+[node name="Scarf Link 5" type="RigidBody2D" parent="." unique_id=2129936482]
+position = Vector2(960, 1013)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scarf Link 5" unique_id=746304169]
+shape = SubResource("CapsuleShape2D_aa8k8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Scarf Link 5/CollisionShape2D" unique_id=1253221527]
+position = Vector2(0, -16)
+node_a = NodePath("../../../Scarf Link 4")
+node_b = NodePath("../..")
+softness = 1.0
+
+[node name="Tip" type="Node2D" parent="Scarf Link 5/CollisionShape2D" unique_id=877786311]
+position = Vector2(0, 15)
+
+[node name="Shot Line" type="Line2D" parent="." unique_id=247464899]
+position = Vector2(115, -283)
+points = PackedVector2Array(866, 81, 0, 0)
+
+[node name="LineDrawer" type="Node" parent="." unique_id=590816438 node_paths=PackedStringArray("line")]
+script = ExtResource("15_kek35")
+line = NodePath("../Shot Line")
+metadata/_custom_type_script = "uid://b2gfrikyseqk"

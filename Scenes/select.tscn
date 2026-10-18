@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://kckio3fuqc1k"]
+
+[ext_resource type="Theme" uid="uid://dcgt6p5ro22q2" path="res://_Starter/Themes/theme.tres" id="1_o6757"]
+[ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="2_jbtq5"]
+[ext_resource type="Script" uid="uid://co2drprnxc3bm" path="res://Scripts/start.gd" id="2_nwg6c"]
+[ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="3_nwg6c"]
+
+[node name="Select" type="Node2D" unique_id=1508879551]
+
+[node name="Bg" type="ColorRect" parent="." unique_id=1040220445]
+z_index = -10
+offset_left = -1329.0
+offset_top = -913.0
+offset_right = 3177.0
+offset_bottom = 2122.0
+color = Color(0.8980392, 0.56078434, 0.39607844, 1)
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1505295936 node_paths=PackedStringArray("blinders")]
+script = ExtResource("2_nwg6c")
+scene = "main"
+blinders = NodePath("../Blinders")
+
+[node name="Balls" type="RichTextLabel" parent="CanvasLayer" unique_id=632349744]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 17.0
+offset_top = -50.0
+offset_right = -38.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme = ExtResource("1_o6757")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 150
+text = "•••"
+vertical_alignment = 1
+text_direction = 1
+
+[node name="Score" type="RichTextLabel" parent="CanvasLayer" unique_id=389144841]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 3.0
+offset_top = -9.0
+offset_right = -23.0
+offset_bottom = 132.0
+grow_horizontal = 2
+theme = ExtResource("1_o6757")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 80
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_direction = 1
+metadata/_edit_lock_ = true
+
+[node name="Multi" type="RichTextLabel" parent="CanvasLayer" unique_id=2098974714]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 3.0
+offset_top = 65.0
+offset_right = -23.0
+offset_bottom = 206.0
+grow_horizontal = 2
+theme = ExtResource("1_o6757")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 60
+text = "x1"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_direction = 1
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=1418881275]
+offset_left = 768.0
+offset_top = 904.0
+offset_right = 1165.0
+offset_bottom = 1041.0
+theme = ExtResource("1_o6757")
+theme_override_font_sizes/font_size = 50
+text = "CONTINUE"
+script = ExtResource("2_jbtq5")
+
+[node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("3_nwg6c")]
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer" method="start"]

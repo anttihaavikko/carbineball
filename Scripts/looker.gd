@@ -14,6 +14,7 @@ func _ready() -> void:
 	original_pos = position
 
 func _process(delta: float) -> void:
+	if not board: return
 	if not target:
 		if board.balls.size() > 0: target = board.balls[0]
 		return

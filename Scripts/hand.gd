@@ -3,7 +3,8 @@ class_name Hand extends Node2D
 @export var gun: Node2D
 @export var flip := 1
 @export var ray: RayCast2D
-@export var board: Board
+@export var wrapper: Wrapper
+@export var lines: LineDrawer
 
 var origin: Vector2
 var gun_rot: float
@@ -23,10 +24,11 @@ func shoot():
 
 	ray.force_raycast_update()
 	if ray.is_colliding():
+		var board = wrapper.board
 		# board.sun.point(ray.global_position)
 		var hit = ray.get_collider()
 		var cp = ray.get_collision_point()
-		board.lines.add(ray.global_position, cp)
+		lines.add(ray.global_position, cp)
 		Effects.singleton.add_many([1, 3], cp)
 		board.cam.shake(10, 0.1)
 		if hit is Ball:
