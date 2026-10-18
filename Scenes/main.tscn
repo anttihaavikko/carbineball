@@ -1162,7 +1162,6 @@ position = Vector2(947, -2)
 polygon = PackedVector2Array(331, 842, 620, 841, 618, 572)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1900353573]
-visible = false
 
 [node name="Balls" type="RichTextLabel" parent="CanvasLayer" unique_id=1210889144]
 anchors_preset = 10
