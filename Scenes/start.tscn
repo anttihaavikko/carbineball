@@ -26,6 +26,16 @@
 [ext_resource type="Texture2D" uid="uid://74hyg5isj5x3" path="res://_Starter/Sprites/square.png" id="13_vp7ys"]
 [ext_resource type="PackedScene" uid="uid://cm3d11ju853wk" path="res://Scenes/sound_effects.tscn" id="19_1tb08"]
 [ext_resource type="Texture2D" uid="uid://cnwp67b5haw7c" path="res://_Starter/Sprites/fullscreen.png" id="21_p78ed"]
+[ext_resource type="Script" uid="uid://cljxpxo8sqbx0" path="res://_Starter/Scripts/sliding_panel.gd" id="22_8mf14"]
+[ext_resource type="Texture2D" uid="uid://dlovvg7hm5ebs" path="res://Sprites/icon.png" id="23_4h3ew"]
+[ext_resource type="Script" uid="uid://dys0o6hmmtjrm" path="res://Scripts/tips.gd" id="23_vheb2"]
+[ext_resource type="Texture2D" uid="uid://b7j4b1p3cjel7" path="res://Sprites/thumbs_up.png" id="24_3sorl"]
+[ext_resource type="Texture2D" uid="uid://cyn1o8ssenu62" path="res://Sprites/tip1.png" id="25_7c3rw"]
+[ext_resource type="Texture2D" uid="uid://diw072ru6qgyy" path="res://Sprites/tipsun.png" id="26_qgy5k"]
+[ext_resource type="Texture2D" uid="uid://d4epcblyxs22g" path="res://Sprites/tip2.png" id="26_rya6j"]
+[ext_resource type="Texture2D" uid="uid://cs5c2k7hvw0s8" path="res://Sprites/tip3.png" id="27_3ybgg"]
+[ext_resource type="Texture2D" uid="uid://bhg3dqlw2yqdx" path="res://Sprites/tipbonus.png" id="29_m5uvf"]
+[ext_resource type="Texture2D" uid="uid://dooieev8mej7k" path="res://Sprites/tiptilit.png" id="30_m5uvf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4h3ew"]
 shader = ExtResource("3_edpt4")
@@ -322,6 +332,17 @@ icon = ExtResource("21_p78ed")
 icon_alignment = 1
 script = ExtResource("2_lb6bl")
 
+[node name="Tips2" type="Button" parent="CanvasLayer" unique_id=914759344]
+custom_minimum_size = Vector2(0, 100.32)
+offset_left = 1575.0
+offset_top = 960.0
+offset_right = 1788.0
+offset_bottom = 1061.3201
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "TIPS"
+script = ExtResource("2_lb6bl")
+
 [node name="Blur" type="TextureRect" parent="CanvasLayer" unique_id=971507991]
 visible = false
 material = SubResource("ShaderMaterial_w5kog")
@@ -514,6 +535,163 @@ grow_horizontal = 0
 grow_vertical = 2
 color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 
+[node name="Tips" type="Control" parent="CanvasLayer" unique_id=289885816 node_paths=PackedStringArray("backdrop")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1256.0
+offset_top = -441.0
+offset_right = 1877.0
+offset_bottom = 670.0
+script = ExtResource("22_8mf14")
+direction = Vector2(0, -1)
+backdrop = NodePath("../Blur")
+metadata/_custom_type_script = "uid://cljxpxo8sqbx0"
+
+[node name="Tip Container" type="ColorRect" parent="CanvasLayer/Tips" unique_id=1626037615 node_paths=PackedStringArray("title", "heading", "image", "description")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = 495.0
+offset_right = -10.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8980392, 0.56078434, 0.39607844, 1)
+script = ExtResource("23_vheb2")
+title = NodePath("VBoxContainer/Title")
+heading = NodePath("VBoxContainer/Title2")
+image = NodePath("VBoxContainer/TextureRect")
+description = NodePath("VBoxContainer/Description")
+images = Array[Texture2D]([ExtResource("24_3sorl"), ExtResource("25_7c3rw"), ExtResource("26_qgy5k"), ExtResource("26_rya6j"), ExtResource("27_3ybgg"), ExtResource("29_m5uvf"), ExtResource("26_qgy5k"), ExtResource("30_m5uvf"), ExtResource("24_3sorl")])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Tips/Tip Container" unique_id=934914695]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 27.0
+offset_right = -29.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/Tips/Tip Container/VBoxContainer" unique_id=1165764454]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/normal_font_size = 43
+text = "TIPS 1/10"
+fit_content = true
+
+[node name="Title2" type="RichTextLabel" parent="CanvasLayer/Tips/Tip Container/VBoxContainer" unique_id=1748345029]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_font_sizes/normal_font_size = 60
+text = "TIPS 1/10"
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tips/Tip Container/VBoxContainer" unique_id=575264921]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("23_4h3ew")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Description" type="RichTextLabel" parent="CanvasLayer/Tips/Tip Container/VBoxContainer" unique_id=354469445]
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet. And something like that."
+fit_content = true
+
+[node name="Spacer2" type="ColorRect" parent="CanvasLayer/Tips/Tip Container/VBoxContainer" unique_id=1697865220]
+custom_minimum_size = Vector2(0, 9.5)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tips/Tip Container/VBoxContainer" unique_id=899235073]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Prev" type="Button" parent="CanvasLayer/Tips/Tip Container/VBoxContainer/HBoxContainer" unique_id=1539070223]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "PREV"
+script = ExtResource("2_lb6bl")
+
+[node name="Next" type="Button" parent="CanvasLayer/Tips/Tip Container/VBoxContainer/HBoxContainer" unique_id=506340178]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "NEXT"
+script = ExtResource("2_lb6bl")
+
+[node name="Exit" type="Button" parent="CanvasLayer/Tips/Tip Container/VBoxContainer" unique_id=192053934]
+custom_minimum_size = Vector2(0, 100.32)
+layout_mode = 2
+theme = ExtResource("1_r48yj")
+theme_override_font_sizes/font_size = 50
+text = "CLOSE"
+script = ExtResource("2_lb6bl")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Tips/Tip Container" unique_id=1881472790]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Tips/Tip Container" unique_id=2024531614]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/Tips/Tip Container" unique_id=1873211031]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 11.0
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="CanvasLayer/Tips/Tip Container" unique_id=887303765]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("2_5ogh5")]
 
 [node name="Back Trees" type="Node2D" parent="." unique_id=1072664016]
@@ -646,5 +824,9 @@ script = ExtResource("7_7pwkw")
 [connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Prev" to="CanvasLayer/Leaderboards" method="prev_page"]
 [connection signal="pressed" from="CanvasLayer/Leaderboards Title/HBoxContainer/Next" to="CanvasLayer/Leaderboards" method="next_page"]
 [connection signal="pressed" from="CanvasLayer/Fullscreen" to="CanvasLayer/OptionsMenu" method="toggle_fullscreen"]
+[connection signal="pressed" from="CanvasLayer/Tips2" to="CanvasLayer/Tips" method="toggle"]
 [connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Fullscreen" to="CanvasLayer/OptionsMenu" method="toggle_fullscreen"]
 [connection signal="pressed" from="CanvasLayer/OptionsMenu/ColorRect/VBoxContainer/Resume" to="CanvasLayer/OptionsMenu" method="toggle"]
+[connection signal="pressed" from="CanvasLayer/Tips/Tip Container/VBoxContainer/HBoxContainer/Prev" to="CanvasLayer/Tips/Tip Container" method="prev"]
+[connection signal="pressed" from="CanvasLayer/Tips/Tip Container/VBoxContainer/HBoxContainer/Next" to="CanvasLayer/Tips/Tip Container" method="next"]
+[connection signal="pressed" from="CanvasLayer/Tips/Tip Container/VBoxContainer/Exit" to="CanvasLayer/Tips" method="toggle"]
