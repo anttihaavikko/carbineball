@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://bmeoofqoelfcj" path="res://Sprites/x.png" id="34_536cc"]
 [ext_resource type="Texture2D" uid="uid://c60mg33q366nu" path="res://Sprites/sign.png" id="40_aqgau"]
 [ext_resource type="PackedScene" uid="uid://b8agfuem7q6wk" path="res://_Starter/Scenes/blinders.tscn" id="42_o1aky"]
+[ext_resource type="Script" uid="uid://cljxpxo8sqbx0" path="res://_Starter/Scripts/sliding_panel.gd" id="46_s8vy0"]
 [ext_resource type="Shader" uid="uid://tcp7boiajjvw" path="res://_Starter/Shaders/blur.gdshader" id="49_54nrm"]
 [ext_resource type="Script" uid="uid://clg7ymun2dxb2" path="res://_Starter/Scripts/options_menu.gd" id="50_dmskm"]
 [ext_resource type="Script" uid="uid://dtybvy8y50rsc" path="res://_Starter/Scripts/button_hover.gd" id="50_xdkp6"]
@@ -497,7 +498,7 @@ points = PackedVector2Array(0, 0, 69.54639, -1264.0223)
 width = 45.42
 width_curve = SubResource("Curve_cbgmd")
 
-[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper", "game_over_appearers")]
+[node name="Board" type="Node2D" parent="." unique_id=185348112 node_paths=PackedStringArray("holder_left", "holder_right", "spawn_point", "saver_left", "saver_right", "saver_buttons", "ball_lock", "sun", "burst", "cam", "help_message", "score_label", "multi_label", "bonus_game_display", "balls_label", "options", "dude_wrapper", "game_over_appearers", "unlock_panel", "unlock_label")]
 script = ExtResource("2_kry3j")
 holder_left = NodePath("Holder Left")
 holder_right = NodePath("Holder Right")
@@ -520,6 +521,8 @@ balls_label = NodePath("../CanvasLayer/Balls")
 options = NodePath("../CanvasLayer/OptionsMenu")
 dude_wrapper = NodePath("../Dude Wrap")
 game_over_appearers = [NodePath("../CanvasLayer/Game Over Wrap"), NodePath("../CanvasLayer/Try Again Wrap"), NodePath("../CanvasLayer/Quit Wrap")]
+unlock_panel = NodePath("../CanvasLayer/Unlock Notification")
+unlock_label = NodePath("../CanvasLayer/Unlock Notification/ColorRect/ColorRect2/Content")
 
 [node name="Holder Left" type="Sprite2D" parent="Board" unique_id=169843154 node_paths=PackedStringArray("body")]
 self_modulate = Color(0, 0, 0, 1)
@@ -1452,6 +1455,60 @@ offset_left = -11.0
 grow_horizontal = 0
 grow_vertical = 2
 color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="Unlock Notification" type="Control" parent="CanvasLayer" unique_id=444941532]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -439.0
+offset_top = -18.0
+offset_right = 440.0
+offset_bottom = 88.0
+grow_horizontal = 2
+script = ExtResource("46_s8vy0")
+direction = Vector2(0, -1)
+metadata/_custom_type_script = "uid://cljxpxo8sqbx0"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Unlock Notification" unique_id=1341900668]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Unlock Notification/ColorRect" unique_id=340760790]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="RichTextLabel" parent="CanvasLayer/Unlock Notification/ColorRect/ColorRect2" unique_id=898301733]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("29_6vcvc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "UNLOCKED CHARACTER VANILLAND!"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
 
 [node name="Blinders" parent="." unique_id=843717358 instance=ExtResource("42_o1aky")]
 

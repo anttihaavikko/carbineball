@@ -16,9 +16,11 @@ func has_char(p: Dude.Personality) -> bool:
 
 func unlock_char(p: Dude.Personality):
 	if characters.size() < p + 1: characters.resize(p + 1)
+	characters[p] = true
 
 func has_ball(p: Ball.Personality) -> bool:
 	return balls.size() > p and balls[p]
 
 func unlock_ball(p: Ball.Personality):
 	if balls.size() < p + 1: balls.resize(p + 1)
+	balls[p] = true

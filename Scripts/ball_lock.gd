@@ -32,9 +32,11 @@ func _process(delta) -> void:
 func hit_trigger():
 	if spawning: return
 	if left_trigger.state and right_trigger.state:
+		board.unlock_ball(Ball.Personality.Starll)
 		SoundEffects.singleton.add(12, global_position)
 		multiball_duration = 0
 		spawning = true
+		if board.ball_personality == Ball.Personality.Starll: balls += 1
 		for i in balls:
 			await get_tree().create_timer(0.7).timeout
 			board.add_extra_ball()

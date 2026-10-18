@@ -34,9 +34,9 @@ static func get_desc(p: Personality, is_locked: bool) -> String:
 		return "[color=#F1E8B8]UNLOCK METHOD[/color]: %s" % [desc]
 
 	return [
-		"A sentient friendly ball. No special powers.",
-		"Lorem ipsum dolor.",
-		"Loremer imsumer dolorer."
+		"A sentient (friendly) ball. No (special) powers.",
+		"(Bumps) increase (multiplier) by your (death) amount.",
+		"Gains an (extra ball) to all (multi ball) events."
 	][p]
 
 func _ready() -> void:
@@ -91,7 +91,7 @@ func hit(other: Node):
 			board.pop("[font_size=40]%s!" % [board.get_bonk()], mid)
 		else:
 			do_notes()
-			board.increment_multi(mid)
+			board.increment_multi(mid, board.deaths if board.ball_personality == Ball.Personality.Skull else 1)
 		bonked = true
 		board.cam.shake(7, 0.12)
 		board.start()
@@ -106,6 +106,7 @@ func do_notes():
 	board.do_notes(global_position)
 
 func die():
+	board.deaths += 1
 	SoundEffects.singleton.add(7, global_position)
 	SoundEffects.singleton.add(8, global_position)
 	SoundEffects.singleton.add(15, global_position)

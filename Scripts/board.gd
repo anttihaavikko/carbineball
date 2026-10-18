@@ -22,6 +22,8 @@ class_name Board extends Node2D
 @export var options: OptionsMenu
 @export var dude_wrapper: Wrapper
 @export var game_over_appearers: Array[Appearer]
+@export var unlock_panel: SlidingPanel
+@export var unlock_label: RichTextLabel
 
 var started := false
 var max_multi := 100
@@ -29,6 +31,7 @@ var balls: Array[Ball] = []
 var multi := 1
 var balls_left := 3
 var score = 0
+var deaths = 0
 var bonus_game: BonusGame
 var save: SaveData
 var bonuses := [
@@ -57,6 +60,29 @@ func _ready() -> void:
 	ball_personality = roundi(save.ball) as Ball.Personality
 	dude_wrapper.dude.use(dude_personality)
 	reset()
+
+func unlock_character(character: Dude.Personality):
+	if save.has_char(character): return
+	save.unlock_char(character)
+	save.save()
+	show_notification(Utils.colorize("(UNLOCKED) NEW CHARACTER, (%s)!" % [Dude.get_title(character).to_upper()], "#F9E784"))
+
+func unlock_ball(ball: Ball.Personality):
+	if save.has_ball(ball): return
+	save.unlock_ball(ball)
+	print(save.balls)
+	save.save()
+	show_notification(Utils.colorize("(UNLOCKED) NEW BALL, (%s)!" % [Ball.get_title(ball).to_upper()], "#F9E784"))
+
+func show_notification(message: String):
+	if unlock_panel.open:
+		await unlock_panel.on_toggle
+		await get_tree().create_timer(0.3).timeout
+	unlock_label.text = message
+	unlock_panel.toggle()
+	SoundEffects.singleton.add(17, unlock_label.global_position)
+	await get_tree().create_timer(2.5).timeout
+	unlock_panel.toggle()
 
 func options_toggled(state: bool):
 	PhysicsServer2D.set_active(!state)
@@ -127,6 +153,8 @@ func add_score(amount: int, pos: Vector2, source: BonusGame = BonusGame.SunnyBum
 	pop(Utils.as_score(amt), pos)
 	score += amt
 	score_label.text = Utils.as_score(score)
+	if score >= 1_000_000:
+		unlock_character(Dude.Personality.Veteran)
 
 func reset_after(delay: float):
 	await get_tree().create_timer(delay).timeout
@@ -187,6 +215,7 @@ func next():
 func die(node: Node):
 	if node is Ball:
 		node.die()
+		unlock_ball(Ball.Personality.Skull)
 		burst.global_position = node.global_position
 		cam.shake(30, 0.3)
 		burst.play()

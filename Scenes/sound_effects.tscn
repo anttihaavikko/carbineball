@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://nj4kbl8rs6xq" path="res://Sounds/savers.wav" id="26_ehlpp"]
 [ext_resource type="AudioStream" uid="uid://cp043y65g6p6l" path="res://Sounds/wail.wav" id="27_w75x8"]
 [ext_resource type="AudioStream" uid="uid://da8408lr0bcn7" path="res://Sounds/bonus.wav" id="28_it145"]
+[ext_resource type="AudioStream" uid="uid://d2prsh17mf28r" path="res://Sounds/unlock.wav" id="29_gj1su"]
 [ext_resource type="PackedScene" uid="uid://p0a0dayjvrf" path="res://_Starter/Scenes/sound.tscn" id="29_i85k2"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aa8k8"]
@@ -46,6 +47,6 @@ stream_10/stream = ExtResource("5_bh75e")
 
 [node name="SoundEffects" type="Node" unique_id=244826690]
 script = ExtResource("1_kcj8n")
-effects = Array[AudioStream]([ExtResource("2_kcj8n"), SubResource("AudioStreamRandomizer_aa8k8"), ExtResource("14_c4lpr"), ExtResource("15_75vs2"), ExtResource("16_2trqf"), ExtResource("17_rir7k"), ExtResource("18_1ehvv"), ExtResource("19_d11lj"), ExtResource("20_wfrk1"), ExtResource("21_3o2gf"), ExtResource("22_hwdvk"), ExtResource("23_bblgx"), ExtResource("24_4v82v"), ExtResource("25_b3tx7"), ExtResource("26_ehlpp"), ExtResource("27_w75x8"), ExtResource("28_it145")])
+effects = Array[AudioStream]([ExtResource("2_kcj8n"), SubResource("AudioStreamRandomizer_aa8k8"), ExtResource("14_c4lpr"), ExtResource("15_75vs2"), ExtResource("16_2trqf"), ExtResource("17_rir7k"), ExtResource("18_1ehvv"), ExtResource("19_d11lj"), ExtResource("20_wfrk1"), ExtResource("21_3o2gf"), ExtResource("22_hwdvk"), ExtResource("23_bblgx"), ExtResource("24_4v82v"), ExtResource("25_b3tx7"), ExtResource("26_ehlpp"), ExtResource("27_w75x8"), ExtResource("28_it145"), ExtResource("29_gj1su")])
 prefab = ExtResource("29_i85k2")
 metadata/_custom_type_script = "uid://e88pkdwyw65u"

@@ -206,10 +206,10 @@ offset_right = 399.0
 offset_bottom = 32.0
 theme = ExtResource("1_r48yj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
 theme_override_font_sizes/font_size = 50
-text = "Click to rename"
+text = "Click to change name"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Mover" unique_id=114287846]
 self_modulate = Color(0, 0, 0, 1)
